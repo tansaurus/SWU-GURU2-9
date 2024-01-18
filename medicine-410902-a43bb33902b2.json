@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "medicine-410902",
+  "private_key_id": "a43bb33902b27c66afcb40965d469fa39adfb440",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC+KEdTzrN5cPPR\nNn1YlDDCKMc0Vdw9wAuidahW8twoM0GzGcrGxpe5ka2O5QC+rhO5Y8fE4dXpSjPx\n6UBoGetFi2o2K3h4DMJZonr+erB7Hfsoa0Q5dDJmZ79HZaodb4R3g+/dtv+pf4WJ\nx0mx7ho1t/4J0IkSuiiGPbYyS/igorRRWpwRIvFBFe7VZIxQHDVoWS0Mzra8hJc+\nK6wG4E08s95sBfrN7QEzg3AvfFiiezPP97roDke5CK0ThodkwTl4+A8tmWkVI95l\n1lvbl094TkyzvF8SXZmxn+naQCvtfSrRC40OaqOlv+wW0qColGBsKjA9UsNajFHr\nYxeZBWfTAgMBAAECggEAO0wLJga0b7+5wDk6MCeR5tHZgKfvlG/xENmYw3hbD8wg\nBi4aTg76nDrhwMgHie51px+G2Y3E60kg1qRyWaQPejHFzpuSpvjvmAzzRqzSoKnS\nOqHsdfAWkVlzy9tXh3NRfwVtBJn+sofaCANVpz8E/FBiTwQw4l6bqXTP/nIzVz+q\nW1vExrwVx4rxhTIG0LkFf6cEN6AEOGqwbjvw3BOoxNcR3xv4vxAXcvIjHw4fKgkW\n9NPf98BmViUFyRvSFvPuxzNTh96fd0MXMgRaeYjXe4k5NRO9/HUMFWrA5L/yEjr3\n/5sgvb3tTKaFGlkxlTvh/9+B/teZ8IhYoj26GmmO4QKBgQD/m5xC/pIeYEXR0/6O\nTCg6w6kgRXyVshMySd2X6iiH7S4N7OcRyUufESu6g80FOW82IRQv9dj8Sz7D7h3H\nK+6Q2jFZIcl720PAC+RSKy+3yc+LxLPwKbmoGcDZIu4a++QV97nJfimDINZ7nvRE\nd3UKZ2UFY5SuQWkbyLZ/u66RMwKBgQC+cvZvI1plPMlpKMM/FonOmpW1Ra+xNdlJ\nIjkOyCm7xYmziGYOkO/LIbcXuGJAzNMIVowMBmPkfBIgoymW19kOj2E0gya5v9pj\nXyGAUt7rti14wgaFqsb/uUTyUft6bzIMF4THyviEGtBTmjGs6gv/jomnth2ZvAer\nbV9Bgr0O4QKBgQDU0JWwvc2glt1qz0ug5E2WZ7OXl+Mbq7EJ7LAfvKjUSyhOFdFp\nYKSioqQ63WPElsY+Vho9uD5aCLgQX1/RpYUye0gdAuGDStLEweHue+B18APqRfLe\n4Y6fJBoJb2i5dMG5fJDl7zHW6G9La9PKcX80E1PrwbZXw0QlCt7PyM6WOwKBgQCE\nQz7WDE1ZBZAzEfYWuEZYT48s5wqPHYCbg8Lwex5Qo21wW4fVEd8WyYFoXcsOibD9\nl22HZGC3a1sDg4z8j0bVD8pIN9ULJyw52vVfMy5RsKF/ve/doK63Jim1yC3H57Vw\nJF04i8Nvq1eG2A0rsxdGEe2TpayE+cqxyTFgQ7WcwQKBgQDsqdAfbifA5n72+1i4\neHEOGn3I0W/qozWiP6Y46zdKmExU+9vxbSgkBJbtD53Q4EoAzWiM/WGZa68hQvPI\nYzGsT4is/F8pdq3zuXdnEPuIdGnF916ZJI+L++sRgaPfXjP0pvLtnIkuSWGkarna\ni7gSA3FLXdHqcRbn/4XMaJkNOw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "kyuri-377@medicine-410902.iam.gserviceaccount.com",
+  "client_id": "101158732275363301729",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kyuri-377%40medicine-410902.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
