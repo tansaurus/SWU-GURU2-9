@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">약 정보 앱</string>
+    <string name="camera">카메라</string>
+    <string name="gallery">갤러리</string>
+    <string name="capture">촬영</string>
+    <string name="selected_image">imageView</string>
+
+</resources>
