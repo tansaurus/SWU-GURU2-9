@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -33,7 +32,6 @@ class CameraActivity : AppCompatActivity() {
             } else {
                 // 권한이 거부되었을 때 처리
                 // 예: Toast 메시지 표시, 기능 제한, 앱 종료 등
-                Toast.makeText(this, "권한이 거부되었습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
