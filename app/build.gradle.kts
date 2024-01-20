@@ -57,6 +57,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(fileTree(mapOf("dir" to "libs", "includes" to listOf("*.aar", "*.jar"))))
+    implementation(files("libs/libDaumMapAndroid.jar"))
     testImplementation("junit:junit:4.13.2")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -71,7 +73,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.mlkit:text-recognition-korean:16.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
-
 
 
 }
