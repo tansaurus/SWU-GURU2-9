@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = listAdapter
 
         // 리스트 아이템 클릭 시 해당 위치로 이동
-        // 리스트 아이템 클릭 시 해당 위치로 이동하지 않음
         listAdapter.setItemClickListener(object: ListAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 val mapPoint = MapPoint.mapPointWithGeoCoord(listItems[position].y, listItems[position].x)
