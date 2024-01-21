@@ -58,8 +58,4 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 }
-  //버튼 클릭되었을 때
