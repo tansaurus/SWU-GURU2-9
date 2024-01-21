@@ -21,7 +21,7 @@ class DBHelper(
     }
 
     companion object {
-        private const val DATABASE_NAME = "drug_info.db"
+        private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
         private const val DATABASE_VERSION = 1
     }
 
@@ -52,7 +52,7 @@ class DBHelper(
     fun getDrugInfo(context: Context, drugName: String): Cursor? {
         try {
             val db = this.readableDatabase
-            return db.query("drug_info", null, "약품명 LIKE ?", arrayOf("%$drugName%"), null, null, null)
+            return db.query("drug_info", null, "DRUG_NAME LIKE ?", arrayOf("%$drugName%"), null, null, null) // 쿼리 업데이트
         } catch (e: Exception) {
             Toast.makeText(context, "Error while getting drug info: ${e.message}", Toast.LENGTH_LONG).show()
         }
