@@ -1,5 +1,6 @@
 package om.androidbook.medicine4
 
+<<<<<<< HEAD
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
@@ -231,5 +232,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+=======
+class MainActivity{
+>>>>>>> 93019d70596e5e6fe2958383fe8fcc44f5344c23
 
 }
