@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                 if(checkEM == true){
                     Toast.makeText(this@LoginActivity, "로그인 되었습니다.", Toast.LENGTH_SHORT)
                         .show()
-                    val intent = Intent(applicationContext, HomeActivity::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
+                    val intent = Intent(applicationContext, HomeFragment::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
                     startActivity(intent)
                 }
                 else{
