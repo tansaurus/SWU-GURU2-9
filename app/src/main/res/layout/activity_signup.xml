@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <EditText
+        android:id="@+id/inputPN"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="5"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/PN_ET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="426dp"
+        android:layout_marginRight="288dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="연락처"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/profileImage"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="486dp"
+        android:layout_marginRight="264dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="프로필 사진"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputBR"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="384dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="5"
+        android:inputType="datetime" />
+
+    <TextView
+        android:id="@+id/BR_ET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="363dp"
+        android:layout_marginRight="277dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="생년월일"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputPW"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="322dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:inputType="text|textPassword" />
+
+    <TextView
+        android:id="@+id/passwordET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="302dp"
+        android:layout_marginRight="278dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="비밀번호"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputEM"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="263dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:inputType="text|textEmailAddress" />
+
+    <TextView
+        android:id="@+id/edit_EM"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginRight="289dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="이메일"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/logo"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="106dp"
+        android:background="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/signup_text"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginRight="106dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/signup_text"
+        android:textAppearance="@style/signup_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginRight="299dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/name"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputname"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="5"
+        android:inputType="text" />
+
+    <RelativeLayout
+        android:id="@+id/profileAvatar"
+        android:layout_width="80.17dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="142dp"
+        android:background="@drawable/avatar"
+        android:clipToOutline="true" />
+
+    <View
+        android:id="@+id/profileAvatar2"
+        android:layout_width="59.17dp"
+        android:layout_height="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="155dp"
+        android:background="@drawable/Avatar"
+        android:clipToOutline="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ImageplusButton"
+        android:layout_width="31dp"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/Shape"
+        android:clipToOutline="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/joinButton"
+        android:layout_width="284dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="618dp"
+        android:layout_marginRight="26dp"
+        android:background="@drawable/join_button_background" />
+
+
+</RelativeLayout>

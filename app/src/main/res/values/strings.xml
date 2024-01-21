@@ -4,5 +4,6 @@
     <string name="gallery">갤러리</string>
     <string name="capture">촬영</string>
     <string name="selected_image">imageView</string>
-
+    <string name="signup_text">회원가입</string>
+    <string name="name">이름</string>
 </resources>
