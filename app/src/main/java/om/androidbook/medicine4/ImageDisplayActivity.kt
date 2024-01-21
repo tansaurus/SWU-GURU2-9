@@ -18,7 +18,7 @@ class ImageDisplayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_display)
 
-        dbHelper = DBHelper(this, "drug_info", null, 1)
+        dbHelper = DBHelper(this, "DRUG_INFO", null, 1)
         val recognizedText = intent.getStringExtra("DetectedText") ?: "기본 텍스트" // 여기에 OCR로 인식된 텍스트를 넣습니다.
         textView = findViewById(R.id.textView)
         searchDrugInfo(recognizedText)
@@ -41,11 +41,11 @@ class ImageDisplayActivity : AppCompatActivity() {
             val cursor = dbHelper.getDrugInfo(this@ImageDisplayActivity, drugName)
             val result = if (cursor != null && cursor.moveToFirst()) {
                 // 데이터베이스에서 정보를 읽어와서 문자열로 변환
-                val info = "약품명: ${cursor.getString(cursor.getColumnIndex("약품명"))}\n\n" +
-                        "효능군: ${cursor.getString(cursor.getColumnIndex("효능군"))}\n\n" +
-                        "1일 최대투여량: ${cursor.getString(cursor.getColumnIndex("1일 최대투여량"))}\n\n" +
-                        "같이 복용하면 안되는 성분명: ${cursor.getString(cursor.getColumnIndex("성분명B"))}\n\n" +
-                        "금기사유: ${cursor.getString(cursor.getColumnIndex("금기사유"))}"
+                val info = "약품명: ${cursor.getString(cursor.getColumnIndex("DRUG_NAME"))}\n\n" +
+                        "효능군: ${cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))}\n\n" +
+                        "1일 최대투여량: ${cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))}\n\n" +
+                        "같이 복용하면 안되는 성분명: ${cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))}\n\n" +
+                        "금기사유: ${cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))}"
                 cursor.close()
                 info
             } else {
