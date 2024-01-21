@@ -167,9 +167,9 @@ class MainActivity : AppCompatActivity() {
     private fun startTracking() {
         mapView.currentLocationTrackingMode =
             MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-        val lm: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val lm: LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         val userNowLocation: Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         val locationListener = LocationListener { location ->
             // 현재 위치 업데이트
             uLatitude = location.latitude

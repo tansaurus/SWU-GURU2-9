@@ -155,8 +155,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="106dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="102dp"
         android:background="@drawable/logo" />
 
     <TextView
@@ -216,15 +216,6 @@
         android:background="@drawable/avatar"
         android:clipToOutline="true" />
 
-    <View
-        android:id="@+id/profileAvatar2"
-        android:layout_width="59.17dp"
-        android:layout_height="59dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="155dp"
-        android:background="@drawable/avatar"
-        android:clipToOutline="true" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ImageplusButton"

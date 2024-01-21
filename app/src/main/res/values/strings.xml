@@ -6,4 +6,7 @@
     <string name="selected_image">imageView</string>
     <string name="signup_text">회원가입</string>
     <string name="name">이름</string>
+    <string name="icon_chevro">
+    chevron-left
+</string>
 </resources>
