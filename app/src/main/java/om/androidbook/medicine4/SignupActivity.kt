@@ -10,12 +10,12 @@ import kotlin.math.sign
 
 class SignupActivity : AppCompatActivity() {
     lateinit var signupBinding: ActivitySignupBinding
-    var DB:DatabaseHelper?=null
+    var DB:DBHelper?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(signupBinding.root)
-        DB = DatabaseHelper(this)
+        DB = DBHelper(this, "DRUG_INFO", null, 2)
 
         signupBinding.joinButton.setOnClickListener{
             val name = signupBinding.inputname.text.toString()

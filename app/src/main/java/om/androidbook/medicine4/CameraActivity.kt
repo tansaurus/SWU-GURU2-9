@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.cloud.vision.v1.ImageAnnotatorClient
 import om.androidbook.medicine4.GalleryActivity
-import om.androidbook.medicine4.databinding.ActivityCameraBinding
+import om.androidbook.medicine4.databinding.ActivityMainCameraBinding
 import java.io.IOException
 import java.io.InputStream
 
@@ -23,7 +23,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private var imageUri: Uri? = null
-    private val binding by lazy { ActivityCameraBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityMainCameraBinding.inflate(layoutInflater) }
     private lateinit var visionClient: ImageAnnotatorClient
 
     private val requestPermissionLauncher =
