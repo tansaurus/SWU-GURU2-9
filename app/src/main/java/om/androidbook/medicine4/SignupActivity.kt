@@ -5,17 +5,29 @@ import android.os.Bundle
 import android.widget.Toast
 import om.androidbook.medicine4.databinding.ActivitySignupBinding
 import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 
 import kotlin.math.sign
 
 class SignupActivity : AppCompatActivity() {
     lateinit var signupBinding: ActivitySignupBinding
-    var DB:DatabaseHelper?=null
+
+    var DB:DBHelper?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(signupBinding.root)
-        DB = DatabaseHelper(this)
+        DB = DBHelper(this, "DRUG_INFO", null, 2)
+
+        signupBinding.ImageplusButton.setOnClickListener { //버튼 이벤트
+
+            val intent = Intent(Intent.ACTION_PICK) //갤러리 호출
+            intent.type = "image/*"
+            activityResult.launch(intent)
+        }
 
         signupBinding.joinButton.setOnClickListener{
             val name = signupBinding.inputname.text.toString()
@@ -39,7 +51,7 @@ class SignupActivity : AppCompatActivity() {
                             "가입되었습니다",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@SignupActivity, MainActivity::class.java)
+                        val intent = Intent(this@SignupActivity, MapActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(
@@ -58,4 +70,18 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
+
+    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+
+            if(it.resultCode == RESULT_OK && it.data!=null){
+
+                val uri = it.data!!.data
+
+                Glide.with(this)
+                    .load(uri)
+                    .into(signupBinding.profileAvatar)
+            }
+    }
+
 }

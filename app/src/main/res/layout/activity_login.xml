@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/bigTitleImageView"
@@ -25,8 +25,10 @@
         android:layout_height="27dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="54dp"
+        android:layout_marginRight="54dp"
         android:layout_marginTop="196dp"
         android:background="@drawable/email_edit_text_background"
         android:drawableStart="@drawable/baseline_perm_identity_24"
@@ -42,9 +44,11 @@
         android:layout_width="300dp"
         android:layout_height="27dp"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="54dp"
+        android:layout_marginRight="54dp"
         android:layout_marginTop="235dp"
         android:background="@drawable/password_edit_text_background"
         android:drawableStart="@drawable/baseline_password_24"
