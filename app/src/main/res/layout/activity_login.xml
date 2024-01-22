@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context=".LoginActivity">
 
-    <ImageView
+    <View
         android:id="@+id/bigTitleImageView"
-        android:layout_width="0dp"
-        android:layout_height="101dp"
+        android:layout_width="wrap_content"
+        android:layout_height="119dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="34dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="34dp"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="37dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/title_big_image"
         app:srcCompat="@drawable/title_big_image" />
 
     <EditText
@@ -25,10 +25,8 @@
         android:layout_height="27dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="54dp"
-        android:layout_marginRight="54dp"
         android:layout_marginTop="196dp"
         android:background="@drawable/email_edit_text_background"
         android:drawableStart="@drawable/baseline_perm_identity_24"
@@ -44,11 +42,9 @@
         android:layout_width="300dp"
         android:layout_height="27dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="54dp"
-        android:layout_marginRight="54dp"
         android:layout_marginTop="235dp"
         android:background="@drawable/password_edit_text_background"
         android:drawableStart="@drawable/baseline_password_24"

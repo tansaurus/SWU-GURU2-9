@@ -7,19 +7,32 @@
     android:background="@drawable/mypage_background"
     tools:context=".MypageProfileEditFragment">
 
-    <!-- 프로필 사진 (클릭 시 사진 변경) -->
+    <!-- 타이틀 로고 사진 -->
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="102dp"
+        android:src="@drawable/title_small_image" />
+
+    <!-- 프로필 사진 -->
     <ImageView
         android:id="@+id/profileImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="113dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="113dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="107dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="399dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="113dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginRight="113dp"
+        android:layout_marginBottom="427dp"
         android:src="@drawable/profile_background" />
 
     <!-- 저장 버튼 -->
@@ -41,8 +54,8 @@
         android:layout_height="209dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="297dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="371dp"
         android:src="@drawable/my_info_title_image" />
 
     <!-- 이메일 정보 (사용자 이메일로 text 변경) -->
