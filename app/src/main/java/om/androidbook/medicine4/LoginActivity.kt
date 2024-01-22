@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(loginBinding.root)
-        DB = DBHelper(this, "DRUG_INFO", null, 2)
+        DB = DBHelper(this, "DRUG_INFO", null, 3)
 
         loginBinding.loginButton!!.setOnClickListener{
             val email = loginBinding.emailAddressEditText!!.text.toString()
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                 if(checkEM == true){
                     Toast.makeText(this@LoginActivity, "로그인 되었습니다.", Toast.LENGTH_SHORT)
                         .show()
-                    val intent = Intent(applicationContext, HomeFragment::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
+                    val intent = Intent(applicationContext, MainCameraActivity::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
                     startActivity(intent)
                 }
                 else{

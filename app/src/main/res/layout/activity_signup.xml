@@ -8,150 +8,6 @@
     tools:context=".SignupActivity">
 
 
-    <EditText
-        android:id="@+id/inputPN"
-        android:layout_width="294dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="448dp"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/password_edit_text_background"
-
-        android:drawablePadding="10dp"
-        android:ems="5"
-        android:inputType="phone"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/PN_ET"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="426dp"
-        android:layout_marginRight="288dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="연락처"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/profileImage"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="486dp"
-        android:layout_marginRight="264dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="프로필 사진"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/inputBR"
-        android:layout_width="294dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="384dp"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/password_edit_text_background"
-
-        android:drawablePadding="10dp"
-        android:ems="5"
-        android:inputType="datetime"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/BR_ET"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="363dp"
-        android:layout_marginRight="277dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="생년월일"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/inputPW"
-        android:layout_width="294dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="322dp"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/password_edit_text_background"
-
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:inputType="text|textPassword"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/passwordET"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="302dp"
-        android:layout_marginRight="278dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="비밀번호"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/inputEM"
-        android:layout_width="294dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="263dp"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/password_edit_text_background"
-
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:inputType="text|textEmailAddress"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/edit_EM"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="242dp"
-        android:layout_marginRight="289dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="이메일"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
-
     <View
         android:id="@+id/logo"
         android:layout_width="211dp"
@@ -178,20 +34,6 @@
         android:textAppearance="@style/signup_text"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="183dp"
-        android:layout_marginRight="299dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/name"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/inputname"
@@ -200,9 +42,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="205dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="246dp"
+        android:layout_marginRight="57dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
@@ -210,29 +52,153 @@
         android:inputType="text"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <TextView
+        android:id="@+id/PN_ET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="467dp"
+        android:layout_marginRight="285dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="연락처"
+        android:textAlignment="center"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/inputBR"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="425dp"
+        android:layout_marginRight="57dp"
+        android:background="@drawable/password_edit_text_background"
 
-    <ImageView
-        android:id="@+id/profileAvatar"
-        android:layout_width="80.17dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="83dp"
-        android:background="@drawable/avatar"
-        android:clipToOutline="true" />
+        android:drawablePadding="10dp"
+        android:ems="5"
+        android:inputType="datetime"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ImageplusButton"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="85dp"
-        android:background="@drawable/shape"
-        android:clipToOutline="true"
+    <TextView
+        android:id="@+id/BR_ET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="404dp"
+        android:layout_marginRight="272dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="생년월일"
+        android:textAlignment="center"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputPW"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="363dp"
+        android:layout_marginRight="57dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:inputType="text|textPassword"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/passwordET"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="343dp"
+        android:layout_marginRight="275dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="비밀번호"
+        android:textAlignment="center"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputEM"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginRight="57dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:inputType="text|textEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/edit_EM"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginRight="285dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textAlignment="center"
+        android:text="이메일"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginRight="296dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/name"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inputPN"
+        android:layout_width="294dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="489dp"
+        android:layout_marginRight="57dp"
+        android:background="@drawable/password_edit_text_background"
+
+        android:drawablePadding="10dp"
+        android:ems="5"
+        android:inputType="phone"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
