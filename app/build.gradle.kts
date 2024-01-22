@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(fileTree(mapOf("dir" to "libs", "includes" to listOf("*.aar", "*.jar"))))
     implementation(files("libs/libDaumMapAndroid.jar"))
+    implementation("androidx.emoji2:emoji2-emojipicker:1.4.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

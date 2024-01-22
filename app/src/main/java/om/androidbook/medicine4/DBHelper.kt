@@ -1,5 +1,6 @@
 package om.androidbook.medicine4
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -160,6 +161,62 @@ class DBHelper(
         return result != -1L
     }
 
+    @SuppressLint("Range")
+    fun getRecognizedDrugsList(): List<Medicine> {
+        val medicinesList = mutableListOf<Medicine>()
+        val db = this.readableDatabase
+        val cursor = db.query("recognized_medicines", null, null, null, null, null, null)
 
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
+                val drugName = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
+                val therapeuticGroup = cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))
+                val maxDailyDosage = cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))
+                val ingredientName = cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))
+                val contraindications = cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))
 
+                val medicine = Medicine(id, drugName, therapeuticGroup, maxDailyDosage, ingredientName, contraindications)
+                medicinesList.add(medicine)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return medicinesList
+    }
+
+    fun getRecentMedicines(): List<Medicine> {
+        val list = mutableListOf<Medicine>()
+        val db = this.readableDatabase
+        // 예시 쿼리: 가장 최근 검색된 1개의 약 정보를 가져옵니다.
+        val cursor = db.query("recognized_medicines", null, null, null, null, null, "search_time DESC", "1")
+
+        if (cursor.moveToFirst()) {
+            do {
+                // 여기서 컬럼 인덱스 또는 이름을 사용하여 Medicine 객체 생성
+                // 예: cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
+                // ...
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return list
+    }
+
+    // 검색 기록을 불러오는 메소드
+    fun getSearchHistory(): List<Medicine> {
+        val list = mutableListOf<Medicine>()
+        val db = this.readableDatabase
+        // 예시 쿼리: 모든 검색 기록을 가져옵니다.
+        val cursor = db.query("recognized_medicines", null, null, null, null, null, "search_time DESC")
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Medicine 객체 생성
+                // ...
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return list
+    }
 }
