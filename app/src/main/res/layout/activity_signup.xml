@@ -211,7 +211,8 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
 
-    <RelativeLayout
+
+    <ImageView
         android:id="@+id/profileAvatar"
         android:layout_width="80.17dp"
         android:layout_height="80dp"

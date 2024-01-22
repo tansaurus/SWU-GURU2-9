@@ -5,17 +5,30 @@ import android.os.Bundle
 import android.widget.Toast
 import om.androidbook.medicine4.databinding.ActivitySignupBinding
 import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 
 import kotlin.math.sign
 
 class SignupActivity : AppCompatActivity() {
     lateinit var signupBinding: ActivitySignupBinding
     var DB:DatabaseHelper?=null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(signupBinding.root)
         DB = DatabaseHelper(this)
+
+        signupBinding.ImageplusButton.setOnClickListener { //버튼 이벤트
+
+            val intent = Intent(Intent.ACTION_PICK) //갤러리 호출
+            intent.type = "image/*"
+            activityResult.launch(intent)
+        }
 
         signupBinding.joinButton.setOnClickListener{
             val name = signupBinding.inputname.text.toString()
@@ -58,4 +71,18 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
+
+    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+
+            if(it.resultCode == RESULT_OK && it.data!=null){
+
+                val uri = it.data!!.data
+
+                Glide.with(this)
+                    .load(uri)
+                    .into(signupBinding.profileAvatar)
+            }
+    }
+
 }
