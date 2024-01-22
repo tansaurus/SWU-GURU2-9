@@ -24,39 +24,16 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("""
-            CREATE TABLE IF NOT EXISTS recognized_medicines (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                DRUG_NAME TEXT,
-                THERAPEUTIC_GROUP TEXT,
-                MAX_DAILY_DOSAGE TEXT,
-                INGREDIENT_NAME TEXT,
-                CONTRAINDICATIONS TEXT
-            )
-        """)
     }
 
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < 2) {
-            // 이전 버전이 2보다 낮은 경우, 스키마를 업데이트합니다.
-            db?.execSQL("ALTER TABLE member RENAME TO member_temp") // 기존 테이블을 임시로 이름 변경
-            db?.execSQL("CREATE TABLE member (" +
-                    "EMAIL TEXT PRIMARY KEY," + // EMAIL로 변경
-                    "MANAGER INTEGER NOT NULL," + // 새로운 컬럼 추가
-                    // 기존 컬럼들 유지
-                    "NAME TEXT," +
-                    "BIRTH TEXT," +
-                    "PHONENUMBER TEXT" +
-                    ")")
-            db?.execSQL("INSERT INTO member (EMAIL, MANAGER, NAME, BIRTH, PHONENUMBER) SELECT USERID, 0, NAME, BIRTH, PHONENUMBER FROM member_temp")
-            db?.execSQL("DROP TABLE IF EXISTS member_temp") // 임시 테이블 삭제
-        }
     }
+
 
 
 
@@ -147,19 +124,24 @@ class DBHelper(
     fun insertData(name: String, email: String, password: String, birth: String, phonenumber: String): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues().apply {
-            put("name", name)
-            put("email", email)
-            put("password", password)
-            put("birth", birth)
-            put("phonenumber", phonenumber)
+            put("USERNAME", name)
+            put("EMAIL", email)
+            put("PASSWORD", password)
+            put("AGE", birth)
+            put("PHONE", phonenumber)
+            put("MANAGER", 1) // MANAGER 열에 기본값으로 1 설정
         }
 
-        val result = db.insert("users", null, contentValues)
+        val result = db.insert("member", null, contentValues)
         db.close()
 
         // insert 메서드는 새로 추가된 행의 row ID를 반환하며, 오류 발생 시 -1을 반환합니다.
         return result != -1L
     }
+
+
+
+
 
     @SuppressLint("Range")
     fun getRecognizedDrugsList(): List<Medicine> {
