@@ -7,16 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".ImageDisplayActivity">
 
-    <ImageView
-        android:id="@+id/logolist"
-        android:layout_width="211dp"
-        android:layout_height="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="102dp"
-        android:background="@drawable/logo" />
+    <!-- res/layout/activity_main.xml -->
 
     <TextView
         android:id="@+id/medicinelistTx"
@@ -25,16 +16,30 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginStart="-9dp"
+        android:layout_marginLeft="-9dp"
+        android:layout_marginTop="146dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="약 목록"
         android:textAppearance="@style/name"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <!-- res/layout/activity_main.xml -->
+    <TextView
+        android:id="@+id/medicinelistTx2"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginLeft="-9dp"
+        android:layout_marginTop="295dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="검색 기록"
+        android:textAppearance="@style/name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/pillIcon"
@@ -42,14 +47,14 @@
         android:layout_height="33dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="119dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="146dp"
         android:background="@drawable/pill" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mediclinelistView"
-        android:layout_width="411dp"
-        android:layout_height="223dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -70,11 +75,21 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_marginTop="417dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="326dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/layout" />
+
+    <ImageView
+        android:id="@+id/serchicon"
+        android:layout_width="37dp"
+        android:layout_height="33dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="293dp"
+        android:background="@drawable/searchicon" />
 
 </RelativeLayout>
 

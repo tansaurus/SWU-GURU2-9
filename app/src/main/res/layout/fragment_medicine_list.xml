@@ -45,6 +45,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
         android:text="아이템 텍스트"
+        android:textStyle="bold"
         android:textSize="20sp" />
 
 

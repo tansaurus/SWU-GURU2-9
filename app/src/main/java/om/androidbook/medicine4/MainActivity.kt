@@ -29,5 +29,6 @@ class StartActivity : AppCompatActivity() {
             finish()
 
         }, 500) // 시간 0.5초 이후 실행
+
     }
 }
