@@ -109,7 +109,7 @@ class DBHelper(
         var res = false
 
         try {
-            cursor = db.rawQuery("SELECT * FROM members WHERE userid = ?", arrayOf(email))
+            cursor = db.rawQuery("SELECT * FROM member WHERE EMAIL = ?", arrayOf(email))
             res = cursor.moveToFirst() // 커서를 첫 번째 행으로 이동. 결과가 있으면 true, 없으면 false 반환
         } catch (e: Exception) {
             e.printStackTrace()

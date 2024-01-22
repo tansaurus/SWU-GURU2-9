@@ -48,7 +48,7 @@ class SignupActivity : AppCompatActivity() {
                             "가입되었습니다",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@SignupActivity, MapActivity::class.java)
+                        val intent = Intent(this@SignupActivity, LoginActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(
