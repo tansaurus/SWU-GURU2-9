@@ -19,11 +19,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(signupBinding.root)
         DB = DBHelper(this, "DRUG_INFO", null, 3)
 
-        signupBinding.ImageplusButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            activityResult.launch(intent)
-        }
+
 
         signupBinding.joinButton.setOnClickListener {
             val name = signupBinding.inputname.text.toString()
@@ -68,13 +64,5 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == RESULT_OK && it.data != null) {
-            val uri = it.data!!.data
-            Glide.with(this)
-                .load(uri)
-                .into(signupBinding.profileAvatar)
-        }
-    }
+//  
 }
