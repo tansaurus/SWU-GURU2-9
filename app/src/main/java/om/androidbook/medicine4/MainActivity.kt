@@ -1,56 +1,34 @@
-package om.androidbook.medicine4
+package om.androidbook.medicine4;
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import om.androidbook.medicine4.LoginActivity
+import om.androidbook.medicine4.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class StartActivity : AppCompatActivity() {
 
-    private lateinit var dbHelper: DBHelper
-    private lateinit var recentMedicinesRecyclerView: RecyclerView
-    private lateinit var searchHistoryRecyclerView: RecyclerView
-    private lateinit var recentMedicinesAdapter: MedicineAdapter
-    private lateinit var searchHistoryAdapter: MedicineAdapter
+    private lateinit var binding: ActivityMainBinding // ViewBinding을 사용하기 위한 바인딩 선언
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_medicinelist)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // DBHelper 초기화
-        dbHelper = DBHelper(this, "DRUG_INFO.db", null, 1)
+        // 일정 시간 지연 이후 실행하기 위한 코드
+        Handler(Looper.getMainLooper()).postDelayed({
 
-        // RecyclerView 및 Adapter 초기화
-        recentMedicinesRecyclerView = findViewById(R.id.mediclinelistView)
-        searchHistoryRecyclerView = findViewById(R.id.serchView)
-        recentMedicinesAdapter = MedicineAdapter(mutableListOf()) { medicine ->
-            // 여기에 삭제 로직 구현
-        }
-        searchHistoryAdapter = MedicineAdapter(mutableListOf()) { medicine ->
-            // 여기에 삭제 로직 구현
-        }
+            // 일정 시간이 지나면 MainActivity로 이동
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
 
-        // RecyclerView 설정
-        recentMedicinesRecyclerView.layoutManager = LinearLayoutManager(this)
-        recentMedicinesRecyclerView.adapter = recentMedicinesAdapter
+            // 이전 키를 눌렀을 때 스플래스 스크린 화면으로 이동을 방지하기 위해
+            // 이동한 다음 사용안함으로 finish 처리
+            finish()
 
-        searchHistoryRecyclerView.layoutManager = LinearLayoutManager(this)
-        searchHistoryRecyclerView.adapter = searchHistoryAdapter
+        }, 500) // 시간 0.5초 이후 실행
 
-        // 데이터 로딩
-        loadRecentMedicines()
-        loadSearchHistory()
-    }
-
-    private fun loadRecentMedicines() {
-        val recentMedicines = dbHelper.getRecentMedicines()
-        recentMedicinesAdapter.clear() // clear 메서드로 수정
-        recentMedicinesAdapter.addAll(recentMedicines) // addAll 메서드로 수정
-    }
-
-    private fun loadSearchHistory() {
-        val searchHistory = dbHelper.getSearchHistory()
-        searchHistoryAdapter.clear() // clear 메서드로 수정
-        searchHistoryAdapter.addAll(searchHistory) // addAll 메서드로 수정
     }
 }
