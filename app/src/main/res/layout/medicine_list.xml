@@ -9,14 +9,7 @@
     android:padding="16dp">
 
 
-    <ImageView
-        android:id="@+id/bigTitleImageView"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"/>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/listdetaliButton"
@@ -44,12 +37,12 @@
 
     <TextView
         android:id="@+id/itemTextView"
-        android:layout_width="180dp"
+        android:layout_width="250dp"
         android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
         android:text="아이템 텍스트"
         android:textSize="20sp" />
