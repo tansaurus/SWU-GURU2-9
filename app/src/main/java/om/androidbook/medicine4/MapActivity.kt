@@ -47,6 +47,7 @@ class MapActivity : AppCompatActivity() {
     private var keyword = ""        // 검색 키워드
     private var uLongitude: Double = -1.0
     private var uLatitude: Double = -1.0
+    private var isLocationUpdated = false  // 위치 정보 업데이트 여부를 나타내는 플래그
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,12 +97,12 @@ class MapActivity : AppCompatActivity() {
             searchKeyword(keyword, pageNumber)
         }
 
-        checkLocationPermission()
+        checkLocationPermission() // 위치 권한 확인
     }
 
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
-        if (uLatitude == -1.0 || uLongitude == -1.0) {
+        if (!isLocationUpdated) {  // 위치 정보가 업데이트되지 않았으면
             Toast.makeText(this, "위치 정보를 불러오는 중입니다.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -167,30 +168,20 @@ class MapActivity : AppCompatActivity() {
     private fun startTracking() {
         mapView.currentLocationTrackingMode =
             MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-        val lm: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val userNowLocation: Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        // 위치 정보 업데이트 리스너
         val locationListener = LocationListener { location ->
-            // 현재 위치 업데이트
             uLatitude = location.latitude
             uLongitude = location.longitude
+            isLocationUpdated = true  // 위치 정보 업데이트됨
         }
-        val uLatitude = userNowLocation?.latitude
-        val uLongitude = userNowLocation?.longitude
-        val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude!!, uLongitude!!)
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, locationListener)
         } else {
             Toast.makeText(this, "위치 권한이 필요합니다", Toast.LENGTH_SHORT).show()
         }
-
-        val marker = MapPOIItem()
-        marker.itemName = "현 위치"
-        marker.mapPoint = uNowPosition
-        marker.markerType = MapPOIItem.MarkerType.BluePin
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
-        mapView.addPOIItem(marker)
     }
 
 
