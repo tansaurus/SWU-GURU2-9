@@ -9,12 +9,12 @@ import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
     lateinit var loginBinding: ActivityLoginBinding
-    var DB:DatabaseHelper?=null
+    var DB:DBHelper?=null
     override fun onCreate(savedInstanceState: Bundle?){
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(loginBinding.root)
-        DB = DatabaseHelper(this)
+        DB = DBHelper(this, "DRUG_INFO", null, 2)
 
         loginBinding.loginButton!!.setOnClickListener{
             val email = loginBinding.emailAddressEditText!!.text.toString()
@@ -41,5 +41,7 @@ class LoginActivity : AppCompatActivity() {
             val signupIntent = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(signupIntent)
         }
+
+
     }
 }

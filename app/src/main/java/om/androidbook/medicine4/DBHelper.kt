@@ -23,16 +23,42 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        // 초기 생성 시 필요한 로직
+        db?.execSQL("""
+            CREATE TABLE IF NOT EXISTS recognized_medicines (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                DRUG_NAME TEXT,
+                THERAPEUTIC_GROUP TEXT,
+                MAX_DAILY_DOSAGE TEXT,
+                INGREDIENT_NAME TEXT,
+                CONTRAINDICATIONS TEXT
+            )
+        """)
     }
 
+
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // 데이터베이스 업그레이드 로직
+        if (oldVersion < 2) {
+            // 이전 버전이 2보다 낮은 경우, 스키마를 업데이트합니다.
+            db?.execSQL("ALTER TABLE member RENAME TO member_temp") // 기존 테이블을 임시로 이름 변경
+            db?.execSQL("CREATE TABLE member (" +
+                    "EMAIL TEXT PRIMARY KEY," + // EMAIL로 변경
+                    "MANAGER INTEGER NOT NULL," + // 새로운 컬럼 추가
+                    // 기존 컬럼들 유지
+                    "NAME TEXT," +
+                    "BIRTH TEXT," +
+                    "PHONENUMBER TEXT" +
+                    ")")
+            db?.execSQL("INSERT INTO member (EMAIL, MANAGER, NAME, BIRTH, PHONENUMBER) SELECT USERID, 0, NAME, BIRTH, PHONENUMBER FROM member_temp")
+            db?.execSQL("DROP TABLE IF EXISTS member_temp") // 임시 테이블 삭제
+        }
     }
+
+
+
 
     @Throws(IOException::class)
     private fun copyDatabase(context: Context) {
@@ -60,87 +86,80 @@ class DBHelper(
         return null
     }
 
-}
+    fun addRecognizedDrug(drugName: String, therapeuticGroup: String, maxDailyDosage: String, ingredientName: String, contraindications: String) {
+        val values = ContentValues().apply {
+            put("DRUG_NAME", drugName)
+            put("THERAPEUTIC_GROUP", therapeuticGroup)
+            put("MAX_DAILY_DOSAGE", maxDailyDosage)
+            put("INGREDIENT_NAME", ingredientName)
+            put("CONTRAINDICATIONS", contraindications)
+        }
 
-class DatabaseHelper(context: Context):
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
+        val db = this.writableDatabase
 
-    companion object{
-        private const val DATABASE_NAME = "UserDatabase.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "users"
-        private const val COLUMN_USERNAME = "name"
-        private const val COLUMN_EMAIL = "email"
-        private const val COLUMN_PASSWORD = "password"
-        private const val COLUMN_BIRTH = "birth"
-        private const val COLUMN_PHONENUMBER  = "phonenumber"
+        // 트랜잭션 시작
+        db.beginTransaction()
 
+        try {
+            db.insert("recognized_medicines", null, values)
+            // 변경 사항 커밋
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+            // 오류 발생 시 처리
+        } finally {
+            // 트랜잭션 종료
+            db.endTransaction()
+            db.close()
+        }
     }
 
-    override fun onCreate(MyDB: SQLiteDatabase){
-        MyDB.execSQL("create Table users(email textEmailAddress primary key, name TEXT, password password, birth datetime, phonenumber phone)")
+
+    fun getRecognizedDrugs(): Cursor {
+        val db = this.readableDatabase
+        return db.query("recognized_medicines", null, null, null, null, null, null)
     }
 
-    override fun onUpgrade(MyDB: SQLiteDatabase, i: Int, i1: Int){
-        MyDB.execSQL("drop Table if exists users")
+    fun deleteRecognizedDrug(id: Int) {
+        val db = this.writableDatabase
+        db.delete("recognized_medicines", "id = ?", arrayOf(id.toString()))
+        db.close()
     }
 
-    /* override fun onCreate(MyDB: SQLiteDatabase?) {
-         val createTableQuery = ("CREATE TABLE $TABLE_NAME("+
-                 "$COLUMN_EMAIL textEmailAddress PRIMARY KEY, "+
-                 "$COLUMN_USERNAME TEXT,"+
-                 "$COLUMN_PHONENUMBER PHONE,"+
-                 "$COLUMN_BIRTH DATETIME,"+
-                 "$COLUMN_PASSWORD TEXT)")
-         MyDB?.execSQL(createTableQuery)
-     }
+    fun checkEM(email: String): Boolean {
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        var res = false
 
-     override fun onUpgrade(MyDB: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-         val dropTableQuery = "DROP TABLE IF EXISTS $TABLE_NAME"
-         MyDB?.execSQL(dropTableQuery)
-         onCreate(MyDB)
-     }*/
+        try {
+            cursor = db.rawQuery("SELECT * FROM members WHERE userid = ?", arrayOf(email))
+            res = cursor.moveToFirst() // 커서를 첫 번째 행으로 이동. 결과가 있으면 true, 없으면 false 반환
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor?.close() // 커서가 null이 아닐 경우에만 close 호출
+            db.close()
+        }
 
-    fun insertData(name: String?, email: String?, password: String?, birth: String?, phonenumber: String?):Boolean{
-        val MyDB = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put("name",name)
-        contentValues.put("email",email)
-        contentValues.put("password",password)
-        contentValues.put("birth",birth)
-        contentValues.put("phonenumber",phonenumber)
-        val result = MyDB.insert("users", null, contentValues)
-        return if (result == -1L) false else true
-    }
-
-    /*  fun insertData(name: String, email: String, password: String, birth: String, phonenumber: String): Long{
-          val values = ContentValues().apply {
-              put(COLUMN_USERNAME, name)
-              put(COLUMN_PHONENUMBER, phonenumber)
-              put(COLUMN_EMAIL, email)
-              put(COLUMN_PASSWORD, password)
-              put(COLUMN_BIRTH, birth)
-          }
-          val db = writableDatabase
-          return db.insert(TABLE_NAME, null, values)
-      }*/
-
-    fun checkEM(email: String):Boolean{
-        val MyDB = this.writableDatabase
-        var res = true
-        val cursor = MyDB.rawQuery("Select * from users where email=?", arrayOf(email))
-        if(cursor.count <= 0) res = false
         return res
     }
 
-    fun readUser(username: String, phonenumber: String, id: String, password: String): Boolean{
-        val db = readableDatabase
-        val selection = "$COLUMN_USERNAME = ? AND $COLUMN_PHONENUMBER = ? AND $COLUMN_EMAIL = ? AND $COLUMN_PASSWORD = ?"
-        val selectionArgs = arrayOf(username, phonenumber, id, password)
-        val cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null)
+    fun insertData(name: String, email: String, password: String, birth: String, phonenumber: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("name", name)
+            put("email", email)
+            put("password", password)
+            put("birth", birth)
+            put("phonenumber", phonenumber)
+        }
 
-        val userExists = cursor.count > 0
-        cursor.close()
-        return userExists
+        val result = db.insert("users", null, contentValues)
+        db.close()
+
+        // insert 메서드는 새로 추가된 행의 row ID를 반환하며, 오류 발생 시 -1을 반환합니다.
+        return result != -1L
     }
+
+
+
 }
