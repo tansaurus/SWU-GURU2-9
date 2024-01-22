@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backButton"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/backicon" />
+
+    <ImageView
+        android:id="@+id/medicineImageView"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="559dp"
+        app:srcCompat="@drawable/bottle" />
+
+    <TextView
+        android:id="@+id/scheduleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+
+        android:layout_marginTop="93dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="513dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="-5sp"
+        android:text="일정 등록"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scheduleTXT"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="179dp"
+        android:gravity="top"
+        android:text="제목"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/schedulecontent"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="395dp"
+        android:background="@drawable/inputcontent"
+        android:drawableLeft="@drawable/comment"
+        android:drawablePadding="5dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/scheduledateTXT"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="292dp"
+        android:gravity="top"
+        android:text="날짜"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/scheduledate"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="329dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="282dp"
+        android:background="@drawable/inputcontent"
+        android:drawableLeft="@drawable/calendar3"
+        android:drawablePadding="5dp"
+        android:ems="8"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/scheduleDetailTXT"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="400dp"
+        android:gravity="top"
+        android:text="상세 내용"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+
+    <EditText
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="97dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="431dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="131dp"
+        android:background="@drawable/inputcontent"
+        android:drawableLeft="@drawable/pencil"
+        android:drawablePadding="5dp"
+        android:ems="30"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cha_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="575dp"
+        android:background="@drawable/yellobuuton"
+        android:text="등록"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+
+
+
+    <!--        android:layout_width="0dp"-->
+<!--        android:layout_height="116dp"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:ems="10"-->
+<!--        android:id="@+id/contextEditText"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/diaryTextView"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:hint="내용을 입력하세요." android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginRight="8dp" android:layout_marginStart="8dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"-->
+<!--        android:visibility="invisible"/>-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/cha_Btn"-->
+<!--        android:layout_width="180dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginRight="8dp"-->
+<!--        android:text="수정"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/del_Btn"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:text="삭제"-->
+<!--        android:layout_width="176dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/del_Btn"-->
+<!--        app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn" app:layout_constraintEnd_toEndOf="@+id/save_Btn"-->
+<!--        android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:visibility="invisible"></Button>-->
+</RelativeLayout>
