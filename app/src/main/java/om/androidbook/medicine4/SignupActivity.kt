@@ -9,43 +9,40 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 
-import kotlin.math.sign
-
 class SignupActivity : AppCompatActivity() {
     lateinit var signupBinding: ActivitySignupBinding
-
-    var DB:DBHelper?=null
+    var DB: DBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(signupBinding.root)
-        DB = DBHelper(this, "DRUG_INFO", null, 2)
+        DB = DBHelper(this, "DRUG_INFO", null, 3)
 
-        signupBinding.ImageplusButton.setOnClickListener { //버튼 이벤트
-
-            val intent = Intent(Intent.ACTION_PICK) //갤러리 호출
+        signupBinding.ImageplusButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             activityResult.launch(intent)
         }
 
-        signupBinding.joinButton.setOnClickListener{
+        signupBinding.joinButton.setOnClickListener {
             val name = signupBinding.inputname.text.toString()
             val email = signupBinding.inputEM.text.toString()
-            val password =signupBinding.inputPW.text.toString()
+            val password = signupBinding.inputPW.text.toString()
             val birth = signupBinding.inputBR.text.toString()
             val phonenumber = signupBinding.inputPN.text.toString()
-            if(name =="" || email == "" || password == "" || birth == "" || phonenumber == "") {
+
+            if (name == "" || email == "" || password == "" || birth == "" || phonenumber == "") {
                 Toast.makeText(
                     this@SignupActivity,
                     "회원정보를 전부 입력해주세요.",
                     Toast.LENGTH_SHORT
                 ).show()
-            }else {
+            } else {
                 val checkEM = DB!!.checkEM(email)
-                if (checkEM == false) {
+                if (!checkEM) {
                     val insert = DB!!.insertData(name, email, password, birth, phonenumber)
-                    if (insert == true) {
+                    if (insert) {
                         Toast.makeText(
                             this@SignupActivity,
                             "가입되었습니다",
@@ -72,16 +69,12 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()){
-
-            if(it.resultCode == RESULT_OK && it.data!=null){
-
-                val uri = it.data!!.data
-
-                Glide.with(this)
-                    .load(uri)
-                    .into(signupBinding.profileAvatar)
-            }
+        ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK && it.data != null) {
+            val uri = it.data!!.data
+            Glide.with(this)
+                .load(uri)
+                .into(signupBinding.profileAvatar)
+        }
     }
-
 }
