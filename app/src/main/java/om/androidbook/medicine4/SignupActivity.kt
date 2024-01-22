@@ -6,7 +6,6 @@ import android.widget.Toast
 import om.androidbook.medicine4.databinding.ActivitySignupBinding
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 
@@ -52,7 +51,7 @@ class SignupActivity : AppCompatActivity() {
                             "가입되었습니다",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@SignupActivity, MainActivity::class.java)
+                        val intent = Intent(this@SignupActivity, MapActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(
