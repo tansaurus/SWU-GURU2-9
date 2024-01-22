@@ -9,4 +9,5 @@ buildscript {
         // ...
         classpath("com.google.gms:google-services:4.4.0")  // Google 서비스 플러그인 버전은 최신 버전으로
     }
+
 }
