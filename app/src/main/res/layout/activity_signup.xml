@@ -42,31 +42,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="246dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="229dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="text"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/PN_ET"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="467dp"
-        android:layout_marginRight="285dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="연락처"
-        android:textAlignment="center"
-        android:textAppearance="@style/name"
-        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/inputBR"
@@ -75,9 +59,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="425dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="408dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
@@ -87,18 +71,18 @@
 
     <TextView
         android:id="@+id/BR_ET"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="17dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="404dp"
-        android:layout_marginRight="272dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="387dp"
+        android:layout_marginRight="260dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="생년월일"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textAppearance="@style/name"
         android:textStyle="bold" />
 
@@ -109,9 +93,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="363dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="346dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
@@ -121,17 +105,17 @@
 
     <TextView
         android:id="@+id/passwordET"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="17dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="343dp"
-        android:layout_marginRight="275dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="326dp"
+        android:layout_marginRight="274dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="비밀번호"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textAppearance="@style/name"
         android:textStyle="bold" />
 
@@ -142,9 +126,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="304dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
@@ -154,33 +138,33 @@
 
     <TextView
         android:id="@+id/edit_EM"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="17dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="283dp"
-        android:layout_marginRight="285dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="266dp"
+        android:layout_marginRight="284dp"
         android:gravity="center_horizontal|center_vertical"
-        android:textAlignment="center"
         android:text="이메일"
+        android:textAlignment="textStart"
         android:textAppearance="@style/name"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="17dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="224dp"
-        android:layout_marginRight="296dp"
-        android:textAlignment="center"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="207dp"
+        android:layout_marginRight="295dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/name"
+        android:text="이름"
+        android:textAlignment="textStart"
         android:textAppearance="@style/name"
         android:textStyle="bold" />
 
@@ -191,15 +175,31 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="489dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="472dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="phone"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/PN_ET"
+        android:layout_width="5dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="451dp"
+        android:layout_marginRight="260dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="연락처"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/name"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/joinButton"
@@ -209,10 +209,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="594dp"
-        android:layout_marginRight="38dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="544dp"
+        android:layout_marginRight="42dp"
         android:background="@drawable/join_button_background"
+        android:textAlignment="center"
         tools:ignore="SpeakableTextPresentCheck" />
 
 

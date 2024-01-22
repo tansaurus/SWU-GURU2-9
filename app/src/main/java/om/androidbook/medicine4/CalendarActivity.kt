@@ -29,11 +29,11 @@ class CalendarActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_calendar)
         calendarView = findViewById<CalendarView>(R.id.calendarView)
         diaryTextView = findViewById<TextView>(R.id.diaryTextView)
-        save_Btn = findViewById<Button>(R.id.save_Btn)
-        del_Btn = findViewById<Button>(R.id.del_Btn)
+//        save_Btn = findViewById<Button>(R.id.save_Btn)
+//        del_Btn = findViewById<Button>(R.id.del_Btn)
         cha_Btn = findViewById<Button>(R.id.cha_Btn)
-        textView2 = findViewById<TextView>(R.id.textView2)
-        contextEditText = findViewById<EditText>(R.id.contextEditText)
+//        textView2 = findViewById<TextView>(R.id.textView2)
+//        contextEditText = findViewById<EditText>(R.id.contextEditText)
 
         calendarView.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
             diaryTextView.visibility = View.VISIBLE
