@@ -1,20 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- 카메라 프리뷰를 위한 뷰 -->
-    <SurfaceView
-        android:id="@+id/cameraPreview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+
+    <View
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:background="#54000000"
+        />
+
+    <View
+        android:id="@+id/Camerabar"
+        android:layout_width="404dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-70dp"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="674dp"
+        android:background="#D9D9D9" />
+
+    <!-- 뒤로 가기 버튼 -->
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BackButton"
+        android:layout_width="195dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="207dp"
+        android:layout_marginBottom="679dp"
+        android:background="@drawable/back"
+        android:clipToOutline="true" />
     <!-- 촬영 버튼 -->
-    <Button
-        android:id="@+id/btnCapture"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ImageplusButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="촬영"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="20dp"/>
-</FrameLayout>
+        android:layout_height="82dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/checkbutton"
+        android:clipToOutline="true" />
+</RelativeLayout>

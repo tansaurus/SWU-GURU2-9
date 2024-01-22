@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="홈"
+        android:icon="@drawable/home_selector"/>
+    <item
+        android:id="@+id/pharmacyFragment"
+        android:title="약국 위치"
+        android:icon="@drawable/location_selector"/>
+    <item
+        android:id="@+id/uploadFragment"
+        android:title="업로드"
+        android:icon="@drawable/upload_icon"/>
+    <item
+        android:id="@+id/managementFragment"
+        android:title="복약 관리"
+        android:icon="@drawable/management_selector"/>
+
+    <item
+        android:id="@+id/mypageFragment"
+        android:title="마이페이지"
+        android:icon="@drawable/mypage_selector"/>
+</menu>

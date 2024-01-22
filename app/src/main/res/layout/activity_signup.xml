@@ -15,14 +15,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="448dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="5"
-        android:inputType="phone" />
+        android:inputType="phone"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/PN_ET"
@@ -61,14 +62,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="384dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="5"
-        android:inputType="datetime" />
+        android:inputType="datetime"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/BR_ET"
@@ -93,14 +95,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="322dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="10"
-        android:inputType="text|textPassword" />
+        android:inputType="text|textPassword"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/passwordET"
@@ -124,14 +127,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="263dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="10"
-        android:inputType="text|textEmailAddress" />
+        android:inputType="text|textEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/edit_EM"
@@ -155,8 +159,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="106dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="102dp"
         android:background="@drawable/logo" />
 
     <TextView
@@ -196,14 +200,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="205dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/password_edit_text_background"
 
         android:drawablePadding="10dp"
         android:ems="5"
-        android:inputType="text" />
+        android:inputType="text"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 
     <RelativeLayout
         android:id="@+id/profileAvatar"
@@ -212,30 +218,21 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="161dp"
-        android:layout_marginBottom="142dp"
-        android:background="@drawable/avatar"
-        android:clipToOutline="true" />
-
-    <View
-        android:id="@+id/profileAvatar2"
-        android:layout_width="59.17dp"
-        android:layout_height="59dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="83dp"
         android:background="@drawable/avatar"
         android:clipToOutline="true" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ImageplusButton"
-        android:layout_width="31dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="85dp"
         android:background="@drawable/shape"
-        android:clipToOutline="true" />
+        android:clipToOutline="true"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/joinButton"
@@ -245,10 +242,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="618dp"
-        android:layout_marginRight="26dp"
-        android:background="@drawable/join_button_background" />
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="594dp"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/join_button_background"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </RelativeLayout>
