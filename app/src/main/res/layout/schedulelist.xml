@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/scheduletheme"
+    android:padding="16dp">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/minusButton"
+
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/minus"
+        android:clipToOutline="true" />
+
+    <TextView
+        android:id="@+id/ScheduleTextView"
+        android:layout_width="251dp"
+        android:layout_height="46dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:text="아이템 텍스트"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/ScheduleBar"
+        android:layout_width="10dp"
+        android:layout_height="89dp"
+        android:background="@drawable/schedulebar"
+        android:elevation="21.82dp" />
+
+</FrameLayout>

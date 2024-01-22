@@ -9,6 +9,7 @@ import android.widget.CalendarView.OnDateChangeListener
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
@@ -25,7 +26,7 @@ class CalendarActivity : AppCompatActivity() {
     private lateinit var contextEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calendar)
+        setContentView(R.layout.fragment_calendar)
         calendarView = findViewById<CalendarView>(R.id.calendarView)
         diaryTextView = findViewById<TextView>(R.id.diaryTextView)
         save_Btn = findViewById<Button>(R.id.save_Btn)
@@ -44,6 +45,8 @@ class CalendarActivity : AppCompatActivity() {
             diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
             contextEditText.setText("")
             checkDay(year, month, dayOfMonth)
+            val drawable = ContextCompat.getDrawable(this, R.drawable.date_selected)
+            view.findViewById<View>(R.id.diaryTextView).background = drawable
         })
         save_Btn.setOnClickListener(View.OnClickListener {
             saveDiary(fname)
@@ -128,4 +131,5 @@ class CalendarActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 }
