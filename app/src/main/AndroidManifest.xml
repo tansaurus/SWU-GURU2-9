@@ -31,7 +31,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".FoundPWActivity"
+            android:name=".FindPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".NaviActivity"
@@ -59,7 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".MedicinelistActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".StartActivity"
             android:exported="true"
