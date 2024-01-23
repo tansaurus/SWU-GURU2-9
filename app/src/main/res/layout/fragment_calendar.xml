@@ -31,13 +31,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="invisible" />
 
+
     <TextView
         android:layout_width="80dp"
         android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="355dp"
+        android:layout_marginLeft="282dp"
+        android:layout_marginTop="333dp"
         android:text="일정 등록"
         android:textSize="18sp" />
 
@@ -47,32 +48,39 @@
         android:layout_height="22dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="358dp"
+        android:layout_marginLeft="359dp"
+        android:layout_marginTop="336dp"
         android:background="@drawable/plus" />
 
-
-
     <FrameLayout
-        android:layout_width="412dp"
-        android:layout_height="270dp"
+        android:id="@+id/listToMove"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="395dp"
         android:background="@drawable/layout"
         android:padding="16dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/schedulelistButton"
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="175dp"
+            android:background="@drawable/drag"
+            android:textAlignment="center"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/schedulelistView"
             android:layout_width="match_parent"
-            android:layout_height="282dp"
+            android:layout_height="242dp"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp" />
+            android:layout_marginTop="15dp" />
+
 
     </FrameLayout>
-
-
 
 
 </RelativeLayout>
