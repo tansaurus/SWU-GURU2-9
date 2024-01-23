@@ -160,7 +160,7 @@ class UploadFragment : Fragment() {
 
                 recognizer.process(image)
                     .addOnSuccessListener { visionText ->
-                        // 인식된 텍스트와 이미지 URI를 ImageDisplayActivity로 전달합니다.
+                        // 인식된 텍스트와 이미지 URI를 ImageDisplayActivity로 전달
                         val detectedText = visionText.text
                         val intent = Intent(requireContext(), ImageDisplayActivity::class.java).apply {
                             putExtra("DetectedText", detectedText)
