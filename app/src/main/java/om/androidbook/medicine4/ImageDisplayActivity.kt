@@ -19,9 +19,15 @@ class ImageDisplayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image_display)
 
         dbHelper = DBHelper(this, "DRUG_INFO", null, 2)
-        val recognizedText = intent.getStringExtra("DetectedText") ?: "기본 텍스트" // 여기에 OCR로 인식된 텍스트를 넣습니다.
         textView = findViewById(R.id.textView)
-        searchDrugInfo(recognizedText)
+        val recognizedText = intent.getStringExtra("DetectedText")
+        if (!recognizedText.isNullOrEmpty()) {
+            searchDrugInfo(recognizedText)
+        } else {
+            textView.text = "인식된 텍스트가 없습니다."
+        }
+
+
         val imageView = findViewById<ImageView>(R.id.imageview)
         // 인텐트에서 이미지 URI 및 텍스트 데이터를 가져옵니다.
         val imageUri = intent.getStringExtra("imageUri")
