@@ -79,10 +79,9 @@
         android:background="@drawable/inputcontent"
         android:drawableLeft="@drawable/comment"
         android:drawablePadding="5dp"
-        android:inputType="textPassword"
         android:ems="10"
-        android:textAlignment="center"
-        />
+        android:inputType="text"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/scheduledateTXT"
@@ -115,6 +114,7 @@
         android:drawableLeft="@drawable/calendar3"
         android:drawablePadding="5dp"
         android:ems="8"
+        android:inputType="datetime|date"
         android:textAlignment="center" />
 
 
@@ -150,6 +150,7 @@
         android:drawableLeft="@drawable/pencil"
         android:drawablePadding="5dp"
         android:ems="30"
+        android:inputType="text"
         android:textAlignment="center" />
 
     <androidx.appcompat.widget.AppCompatButton
