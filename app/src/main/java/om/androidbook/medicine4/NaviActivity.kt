@@ -12,6 +12,8 @@ private const val TAG_PHARMACY = "phamacy_fragment"
 private const val TAG_UPLOAD = "upload_fragment"
 private const val TAG_MANAGEMENT = "management_fragment"
 private const val TAG_MYPAGE = "mypage_fragment"
+private const val TAG_PROFILE_EDIT = "mypage_profile_edit_fragment"
+private const val TAG_BOOKMARK ="mypage_bookmark_fragment"
 
 
 class NaviActivity : AppCompatActivity() {
@@ -96,5 +98,43 @@ class NaviActivity : AppCompatActivity() {
         }
 
         fragTransaction.commitAllowingStateLoss()
+    }
+
+    fun changeMyPageFragment(tag: String, fragment: Fragment){
+        val manager: FragmentManager = supportFragmentManager
+        val fragTransaction = manager.beginTransaction()
+
+        val profileEdit = manager.findFragmentByTag(TAG_PROFILE_EDIT)
+        val bookmark = manager.findFragmentByTag(TAG_BOOKMARK)
+
+        if (manager.findFragmentByTag(tag) == null) {
+            // 프래그먼트가 없으면 생성해서 추가
+            fragTransaction.add(R.id.mainFrameLayout, fragment, tag)
+        }
+
+        if (profileEdit != null) {
+            fragTransaction.hide(profileEdit)
+        }
+
+        if (bookmark != null) {
+            fragTransaction.hide(bookmark)
+        }
+
+        if (tag == TAG_PROFILE_EDIT) {
+            if (profileEdit != null) {
+                fragTransaction.show(profileEdit)
+            }
+        } else if (tag == TAG_BOOKMARK) {
+            if (bookmark != null) {
+                fragTransaction.show(bookmark)
+            }
+        }
+
+        fragTransaction.commit()
+    }
+
+    fun goBackToMypage() {
+        // 마이페이지 메뉴로 이동
+        setFragment(TAG_MYPAGE, MypageFragment())
     }
 }
