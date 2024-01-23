@@ -186,19 +186,22 @@ class DBHelper(
     }
 
     // 검색 기록을 불러오는 메소드
-    fun getSearchHistory(): List<Medicine> {
-        val list = mutableListOf<Medicine>()
+    @SuppressLint("Range")
+    fun getSearchHistory(): List<String> {
+        val searchHistory = mutableListOf<String>()
         val db = this.readableDatabase
-        // 예시 쿼리: 모든 검색 기록을 가져옵니다.
-        val cursor = db.query("recognized_medicines", null, null, null, null, null, "search_time DESC")
 
-        if (cursor.moveToFirst()) {
-            do {
-                // Medicine 객체 생성
-                // ...
-            } while (cursor.moveToNext())
+        val cursor = db.query("recognized_medicines", arrayOf("DRUG_NAME"), null, null, null, null, "SEARCH_TIME DESC")
+
+        while (cursor.moveToNext()) {
+            val searchText = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
+            searchHistory.add(searchText)
         }
+
         cursor.close()
-        return list
+        db.close()
+
+        return searchHistory
     }
+
 }
