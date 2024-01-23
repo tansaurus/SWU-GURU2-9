@@ -24,6 +24,14 @@ class MedicinelistActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // 검색 기록 데이터를 DB에서 불러옴
+        val searchHistoryData = dbHelper.getSearchHistory()
+
+        // 어댑터 생성 및 RecyclerView에 설정
+        val searchHistoryRecyclerView: RecyclerView = findViewById(R.id.serchView)
+        val searchHistoryAdapter = SearchHistoryAdapter(searchHistoryData)
+        searchHistoryRecyclerView.adapter = searchHistoryAdapter
+
         loadMedicines()
     }
 
