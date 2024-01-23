@@ -6,6 +6,18 @@
     android:background="@drawable/bookmark_background"
     tools:context=".MypageBookmarkFragment">
 
+    <!-- 타이틀 로고 사진 -->
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="102dp"
+        android:src="@drawable/title_small_image" />
+
     <!-- 저장 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"

@@ -11,5 +11,11 @@
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_marginTop">227dp</item>
         <item name="android:background">@drawable/bar</item>
+
+
+    </style>
+    <style name="schedule">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#848A94</item>
     </style>
 </resources>
