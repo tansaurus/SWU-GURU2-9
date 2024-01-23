@@ -35,18 +35,7 @@
         android:layout_marginBottom="427dp"
         android:src="@drawable/profile_background" />
 
-    <!-- 저장 버튼 -->
-
-    <!-- 정보 타이틀 글씨 -->
-
-    <!-- 이메일 정보 (사용자 이메일로 text 변경) -->
-
-    <!-- 이름 정보 (사용자 이름으로 text 변경) -->
-
-    <!-- 전화번호 정보 (사용자 전화번호로 text 변경) -->
-
-    <!-- 생년월일 정보 (사용자 생년월일으로 text 변경) -->
-
+    <!-- 정보 레이아웃 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="358dp"
         android:layout_height="271dp"
@@ -60,6 +49,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="106dp">
 
+        <!-- 저장 버튼 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/saveButton"
             android:layout_width="90dp"
@@ -73,6 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
+        <!-- 이메일 정보 (사용자 이메일로 text 변경) -->
         <TextView
             android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
@@ -89,6 +80,22 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="12dp" />
 
+        <TextView
+            android:id="@+id/emailTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="이메일"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/emailTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="12dp" />
+
+        <!-- 이름 정보 (사용자 이름으로 text 변경) -->
         <EditText
             android:id="@+id/editTextText"
             android:layout_width="wrap_content"
@@ -121,6 +128,7 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="12dp" />
 
+        <!-- 전화번호 정보 (사용자 전화번호로 text 변경) -->
         <EditText
             android:id="@+id/editTextPhone"
             android:layout_width="wrap_content"
@@ -153,6 +161,7 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="12dp" />
 
+        <!-- 생년월일 정보 (사용자 생년월일으로 text 변경) -->
         <EditText
             android:id="@+id/editTextDate"
             android:layout_width="wrap_content"
@@ -184,22 +193,6 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="12dp" />
-
-        <TextView
-            android:id="@+id/emailTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="이메일"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/emailTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="12dp" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
