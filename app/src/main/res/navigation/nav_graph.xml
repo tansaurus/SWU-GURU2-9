@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/slideUpFragment"
         android:name="om.androidbook.medicine4.Slide_UpFragment"
-        android:label="SlideUpFragment"
+        android:label="Slide_UpFragment"
         tools:layout="@layout/fragment_calendar" />
 
 
