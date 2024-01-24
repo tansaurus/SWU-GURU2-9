@@ -20,13 +20,13 @@ class Slide_UpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val slideUpAnimation = AnimatorInflater.loadAnimator(requireContext(), R.animator.slide_up_animation)
-        slideUpAnimation.setTarget(view?.findViewById(R.id.listToMove))
+        //val slideUpAnimation = AnimatorInflater.loadAnimator(requireContext(), R.animator.slide_up_animation)
+        //slideUpAnimation.setTarget(view?.findViewById(R.id.listToMove))
 
-        val schedulelistButton = view.findViewById<Button>(R.id.schedulelistButton)
-        schedulelistButton.setOnClickListener {
-            slideUpAnimation.start()
-            schedulelistButton.visibility = View.INVISIBLE
-        }
+        //val schedulelistButton = view.findViewById<Button>(R.id.schedulelistButton)
+        //schedulelistButton.setOnClickListener {
+        //    slideUpAnimation.start()
+        //    schedulelistButton.visibility = View.INVISIBLE
+        //}
     }
 }
