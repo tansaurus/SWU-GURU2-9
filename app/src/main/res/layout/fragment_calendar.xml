@@ -1,98 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/screen3"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".CalendarFragment" >
-    <ImageView
-        android:id="@+id/titleImageView"
-        android:layout_width="211dp"
-        android:layout_height="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="102dp"
-        android:src="@drawable/title_small_image" />
+    android:orientation="vertical" >
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
 
-    <FrameLayout
-        android:id="@+id/starting_view"
-        android:layout_width="397dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-
-        android:tag="starting_view"
-        >
-        <CalendarView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/calendarView"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="24dp"
-
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="294dp"
-            android:layout_marginBottom="108dp"
-            android:text="일정 등록"
-            android:textAlignment="viewEnd"
-            android:textSize="18sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registerPageButton"
-            android:layout_width="21dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="297dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginBottom="108dp"
-            android:background="@drawable/plus" />
-        <Button
-            android:id="@+id/save_Btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="저장"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
-
-        <Button
-            android:text="수정"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/cha_Btn"
-            app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/del_Btn" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" android:visibility="invisible"/>
-        <Button
-            android:text="삭제"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/del_Btn"
-            app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn"
-            app:layout_constraintEnd_toEndOf="@+id/save_Btn"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:visibility="invisible"></Button>
-    </FrameLayout>
-
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="116dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/contextEditText"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" android:layout_marginTop="16dp"
+        android:hint="내용을 입력하세요." android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+        android:visibility="invisible"/>
 
     <TextView
         android:layout_width="0dp"
@@ -101,37 +35,60 @@
         app:layout_constraintTop_toTopOf="@+id/contextEditText"
         app:layout_constraintBottom_toBottomOf="@+id/contextEditText" app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-       android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="@+id/contextEditText" android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp" android:visibility="invisible"/>
 
-
-    <FrameLayout
-        android:id="@+id/ending_view"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="406dp"
-        android:background="@drawable/layout"
-        android:padding="16dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="달력일기장"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#9E28B3"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/schedulelistView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="50dp" />
 
-        <ImageView
-            android:id="@+id/pillschedule"
-            android:layout_width="48dp"
-            android:layout_height="36dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="0dp"
+    <Button
+        android:id="@+id/save_Btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="저장"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
 
-            android:background="@drawable/pill" />
+    <Button
+        android:text="수정"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cha_Btn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn" app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/del_Btn" android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp" android:visibility="invisible"/>
+    <Button
+        android:text="삭제"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/del_Btn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn"
+        app:layout_constraintEnd_toEndOf="@+id/save_Btn"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:visibility="invisible"></Button>
 
-    </FrameLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

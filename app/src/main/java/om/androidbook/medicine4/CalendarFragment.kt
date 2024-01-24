@@ -64,6 +64,20 @@ class CalendarFragment : Fragment() {
             contextEditText.visibility = View.INVISIBLE
             textView2.visibility = View.VISIBLE
         }
+
+        val registerButton = view.findViewById<Button>(R.id.registerPageButton)
+        registerButton.setOnClickListener {
+            // 등록 버튼 클릭 시 RegistrationFragment로 전환
+            val registrationFragment = ScheduleRegisterFragment()
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.mainFrameLayout, registrationFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+
+
+
+        }
     }
     fun checkedDay(cYear: Int, cMonth: Int, cDay: Int) {
         fname = "$cYear-${cMonth + 1}-$cDay.txt"
