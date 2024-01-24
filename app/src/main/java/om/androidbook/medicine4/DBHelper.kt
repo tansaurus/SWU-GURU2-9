@@ -103,7 +103,10 @@ class DBHelper(
         db.close()
     }
 
-    fun checkEM(email: String): Boolean {
+
+
+
+   fun checkEM(email: String): Boolean {
         val db = this.readableDatabase
         var cursor: Cursor? = null
         var res = false
@@ -120,6 +123,60 @@ class DBHelper(
 
         return res
     }
+
+
+    fun foundPW(email: String, phonenumber: String): String? {
+        // 데이터베이스 읽기 모드로 열기
+        val db = this.readableDatabase
+
+        // 커서 및 결과 변수 초기화
+        var cursor: Cursor? = null
+        var password: String? = null
+
+        try {
+            // SQL 쿼리 실행: 이메일과 전화번호가 일치하는 회원이 있는지 확인
+            cursor = db.rawQuery("SELECT * FROM member WHERE EMAIL = ? AND PHONE = ?", arrayOf(email, phonenumber))
+
+            // 커서의 첫 번째 행으로 이동하고 결과 확인
+            if (cursor.moveToFirst()) {
+                // PASSWORD 열의 인덱스를 가져오기
+                val passwordColumnIndex = cursor.getColumnIndex("PASSWORD")
+
+                // PASSWORD 열이 존재하면 해당 값을 읽어옴
+                if (passwordColumnIndex != -1) {
+                    password = cursor.getString(passwordColumnIndex)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            // 커서가 null이 아닐 경우에만 close 호출
+            cursor?.close()
+
+            // 데이터베이스 닫기
+            db.close()
+        }
+
+        // 결과 반환 (이메일과 전화번호에 대한 비밀번호 값 또는 null)
+        return password
+    }
+
+
+
+
+    fun getUserInfoByEmail(email: String): Cursor? {
+        val db = this.readableDatabase
+        val columns = arrayOf("USERNAME", "PHONE", "AGE") // 필요한 열 목록
+
+        try {
+            return db.query("member", columns, "EMAIL = ?", arrayOf(email), null, null, null)
+        } catch (e: Exception) {
+            // 예외 처리
+            e.printStackTrace()
+        }
+        return null
+    }
+
 
     fun insertData(name: String, email: String, password: String, birth: String, phonenumber: String): Boolean {
         val db = this.writableDatabase
