@@ -124,6 +124,7 @@ class DBHelper(
         return res
     }
 
+
     fun foundPW(email: String, phonenumber: String): String? {
         // 데이터베이스 읽기 모드로 열기
         val db = this.readableDatabase
@@ -158,6 +159,22 @@ class DBHelper(
 
         // 결과 반환 (이메일과 전화번호에 대한 비밀번호 값 또는 null)
         return password
+    }
+
+
+
+
+    fun getUserInfoByEmail(email: String): Cursor? {
+        val db = this.readableDatabase
+        val columns = arrayOf("USERNAME", "PHONE", "AGE") // 필요한 열 목록
+
+        try {
+            return db.query("member", columns, "EMAIL = ?", arrayOf(email), null, null, null)
+        } catch (e: Exception) {
+            // 예외 처리
+            e.printStackTrace()
+        }
+        return null
     }
 
 
