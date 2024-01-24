@@ -46,18 +46,6 @@
         android:background="@drawable/edit_profile_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <!-- 즐겨찾기 버튼 (클릭 시 즐겨찾기 목록 화면으로 이동) -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bookmarkButton"
-        android:layout_width="172dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="462dp"
-        android:background="@drawable/bookmark_button_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <!-- 로그아웃 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logoutButton"
