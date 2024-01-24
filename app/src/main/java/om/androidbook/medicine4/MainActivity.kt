@@ -1,12 +1,17 @@
 package om.androidbook.medicine4;
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import om.androidbook.medicine4.LoginActivity
 import om.androidbook.medicine4.databinding.ActivityMainBinding
+import android.Manifest
+
 
 class StartActivity : AppCompatActivity() {
 
@@ -31,4 +36,5 @@ class StartActivity : AppCompatActivity() {
         }, 500) // 시간 0.5초 이후 실행
 
     }
+
 }

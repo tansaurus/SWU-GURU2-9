@@ -51,8 +51,8 @@ class MapActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
-
+        setContentView(R.layout.activity_navi)
+        startTracking() // 위치 권한 확인
         // 리사이클러 뷰
         mapView = findViewById(R.id.mapView)
         recyclerView = findViewById(R.id.rv_list)
@@ -97,7 +97,7 @@ class MapActivity : AppCompatActivity() {
             searchKeyword(keyword, pageNumber)
         }
 
-        checkLocationPermission() // 위치 권한 확인
+
     }
 
     // 키워드 검색 함수

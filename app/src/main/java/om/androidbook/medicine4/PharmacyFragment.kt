@@ -34,7 +34,7 @@ class PharmacyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pharmacy, container, false)
+        return inflater.inflate(R.layout.activity_map, container, false)
     }
 
     companion object {
