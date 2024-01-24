@@ -23,11 +23,6 @@ class MypageFragment : Fragment() {
             mActivity.changeMyPageFragment("TAG_PROFILE_EDIT", MypageProfileEditFragment())
         }
 
-        // 즐겨찾기 버튼 클릭
-        val bookmarkButton = rootView.findViewById(R.id.bookmarkButton) as AppCompatButton
-        bookmarkButton.setOnClickListener{
-            mActivity.changeMyPageFragment("TAG_BOOKMARK", MypageBookmarkFragment())
-        }
         return rootView
     }
 }

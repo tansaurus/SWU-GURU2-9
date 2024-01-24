@@ -13,8 +13,6 @@ private const val TAG_UPLOAD = "upload_fragment"
 private const val TAG_MANAGEMENT = "management_fragment"
 private const val TAG_MYPAGE = "mypage_fragment"
 private const val TAG_PROFILE_EDIT = "mypage_profile_edit_fragment"
-private const val TAG_BOOKMARK ="mypage_bookmark_fragment"
-
 
 class NaviActivity : AppCompatActivity() {
 
@@ -105,7 +103,6 @@ class NaviActivity : AppCompatActivity() {
         val fragTransaction = manager.beginTransaction()
 
         val profileEdit = manager.findFragmentByTag(TAG_PROFILE_EDIT)
-        val bookmark = manager.findFragmentByTag(TAG_BOOKMARK)
 
         if (manager.findFragmentByTag(tag) == null) {
             // 프래그먼트가 없으면 생성해서 추가
@@ -116,17 +113,9 @@ class NaviActivity : AppCompatActivity() {
             fragTransaction.hide(profileEdit)
         }
 
-        if (bookmark != null) {
-            fragTransaction.hide(bookmark)
-        }
-
         if (tag == TAG_PROFILE_EDIT) {
             if (profileEdit != null) {
                 fragTransaction.show(profileEdit)
-            }
-        } else if (tag == TAG_BOOKMARK) {
-            if (bookmark != null) {
-                fragTransaction.show(bookmark)
             }
         }
 
