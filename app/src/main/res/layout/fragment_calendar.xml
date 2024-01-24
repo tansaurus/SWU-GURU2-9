@@ -8,17 +8,28 @@
     android:orientation="vertical"
     tools:context=".CalendarFragment" >
 
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="102dp"
+        android:src="@drawable/title_small_image" />
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="383dp"
-        android:layout_height="364dp"
+        android:layout_width="403dp"
+        android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
+        android:layout_marginTop="70dp"
         tools:layout_editor_absoluteY="100dp" />
 
     <TextView
@@ -37,29 +48,25 @@
         android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="282dp"
-        android:layout_marginTop="333dp"
+        android:layout_marginLeft="291dp"
+        android:layout_marginTop="377dp"
         android:text="일정 등록"
         android:textSize="18sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cha_Btn"
+        android:id="@+id/registerPageButton"
         android:layout_width="24dp"
         android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="359dp"
-        android:layout_marginTop="336dp"
+
+        android:layout_marginLeft="374dp"
+        android:layout_marginTop="380dp"
         android:background="@drawable/plus" />
 
     <FrameLayout
         android:id="@+id/listToMove"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="395dp"
+        android:layout_height="800dp"
+        android:layout_marginTop="406dp"
         android:background="@drawable/layout"
         android:padding="16dp">
 
@@ -67,6 +74,7 @@
             android:id="@+id/schedulelistButton"
             android:layout_width="25dp"
             android:layout_height="15dp"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="175dp"
             android:background="@drawable/drag"
             android:textAlignment="center"
@@ -74,8 +82,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/schedulelistView"
-            android:layout_width="match_parent"
-            android:layout_height="242dp"
+            android:layout_width="379dp"
+            android:layout_height="624dp"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="15dp" />
 

@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/mainFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="514dp"
+        android:layout_marginTop="70dp">
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
