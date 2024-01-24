@@ -10,11 +10,15 @@ import kotlin.math.log
 class LoginActivity : AppCompatActivity() {
     lateinit var loginBinding: ActivityLoginBinding
     var DB:DBHelper?=null
+    companion object{
+        var loggedInUserEmail: String? = null
+    }
     override fun onCreate(savedInstanceState: Bundle?){
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(loginBinding.root)
         DB = DBHelper(this, "DRUG_INFO", null, 3)
+
 
         loginBinding.loginButton!!.setOnClickListener{
             val email = loginBinding.emailAddressEditText!!.text.toString()
@@ -26,10 +30,14 @@ class LoginActivity : AppCompatActivity() {
             ).show() else{
                 val checkEM = DB!!.checkEM(email)
                 if(checkEM == true){
+                    loggedInUserEmail = email
                     Toast.makeText(this@LoginActivity, "로그인 되었습니다.", Toast.LENGTH_SHORT)
                         .show()
                     val intent = Intent(applicationContext, NaviActivity::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
                     startActivity(intent)
+
+
+
                 }
                 else{
                     Toast.makeText(this@LoginActivity, "회원정보가 존재하지 않습니다.", Toast.LENGTH_SHORT)
@@ -41,6 +49,12 @@ class LoginActivity : AppCompatActivity() {
             val signupIntent = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(signupIntent)
         }
+
+        loginBinding.forgotButton.setOnClickListener{
+            val signupIntent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(signupIntent)
+        }
+
 
 
     }
