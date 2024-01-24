@@ -31,7 +31,7 @@ class MapActivity : AppCompatActivity() {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com/"
         const val API_KEY = "KakaoAK f501f9cd2c5a00368858a7569f862fc2"  // REST API 키
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
     private lateinit var mapView: MapView
