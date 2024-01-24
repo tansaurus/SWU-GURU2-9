@@ -10,7 +10,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        buildConfigField("String", "CLOUD_VISION_API_KEY", "\"AIzaSyA6N8bKZBa5P0Wq8hrtgjfy9Z8twhBfgO4\"")
+
         applicationId = "om.androidbook.medicine4"
         minSdk = 26
         targetSdk = 33

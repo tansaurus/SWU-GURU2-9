@@ -1,15 +1,20 @@
 package om.androidbook.medicine4
 
+import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import om.androidbook.medicine4.databinding.ActivitySignupBinding
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 
 class SignupActivity : AppCompatActivity() {
+
     lateinit var signupBinding: ActivitySignupBinding
     var DB: DBHelper? = null
 
