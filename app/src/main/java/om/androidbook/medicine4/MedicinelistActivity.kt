@@ -16,7 +16,7 @@ class MedicinelistActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_medicinelist)
+        setContentView(R.layout.fragment_medicine_list)
 
         dbHelper = DBHelper(this, "DRUG_INFO", null, 2)
         recyclerView = findViewById(R.id.mediclinelistView)
