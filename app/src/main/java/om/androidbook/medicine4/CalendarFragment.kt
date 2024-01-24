@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
@@ -78,6 +80,8 @@ class CalendarFragment : Fragment() {
 
 
         }
+
+
     }
     fun checkedDay(cYear: Int, cMonth: Int, cDay: Int) {
         fname = "$cYear-${cMonth + 1}-$cDay.txt"
