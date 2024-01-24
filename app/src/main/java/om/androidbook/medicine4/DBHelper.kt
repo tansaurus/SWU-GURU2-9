@@ -134,7 +134,7 @@ class DBHelper(
 
         try {
             // SQL 쿼리 실행: 이메일과 전화번호가 일치하는 회원이 있는지 확인
-            cursor = db.rawQuery("SELECT * FROM member WHERE EMAIL = ? AND PASSWORD = ?", arrayOf(email, phonenumber))
+            cursor = db.rawQuery("SELECT * FROM member WHERE EMAIL = ? AND PHONE = ?", arrayOf(email, phonenumber))
 
             // 커서의 첫 번째 행으로 이동하고 결과 확인
             if (cursor.moveToFirst()) {

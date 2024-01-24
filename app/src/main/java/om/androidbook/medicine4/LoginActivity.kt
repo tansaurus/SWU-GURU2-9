@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginBinding.forgotButton.setOnClickListener{
-            val signupIntent = Intent(this@LoginActivity, FoundPWActivity::class.java)
+            val signupIntent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             startActivity(signupIntent)
         }
 
