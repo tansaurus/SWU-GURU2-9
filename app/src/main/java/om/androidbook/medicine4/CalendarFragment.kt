@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
+
 class CalendarFragment : Fragment() {
 
     private var fname: String = ""
@@ -70,7 +71,7 @@ class CalendarFragment : Fragment() {
         val registerButton = view.findViewById<Button>(R.id.registerPageButton)
         registerButton.setOnClickListener {
             // 등록 버튼 클릭 시 RegistrationFragment로 전환
-            val registrationFragment = ScheduleRegisterFragment()
+            val registrationFragment = SchedulRegisterFragment()
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.mainFrameLayout, registrationFragment)
