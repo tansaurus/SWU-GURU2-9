@@ -5,14 +5,20 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import om.androidbook.medicine4.databinding.ActivityLoginBinding
+import java.security.MessageDigest
 import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var loginBinding: ActivityLoginBinding
+    private lateinit var loginBinding: ActivityLoginBinding
+    private lateinit var yourTextView: TextView
+
     var DB:DBHelper?=null
     companion object{
         var loggedInUserEmail: String? = null
@@ -25,7 +31,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(loginBinding.root)
         DB = DBHelper(this, "DRUG_INFO", null, 3)
         checkPermissions()
-
+        yourTextView = findViewById(R.id.yourTextView)
+        getAppKeyHash()
         loginBinding.loginButton!!.setOnClickListener{
             val email = loginBinding.emailAddressEditText!!.text.toString()
             val password = loginBinding.passwordEditText!!.text.toString()
@@ -92,4 +99,20 @@ class LoginActivity : AppCompatActivity() {
             // 예: 모든 권한이 부여되었는지 확인, 부여되지 않은 권한에 대한 처리 등
         }
     }
+    fun getAppKeyHash() {
+        try {
+            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val something = String(Base64.encode(md.digest(), 0))
+                // Assuming you have a TextView to display 'something'
+                // Replace 'yourTextView' with your actual TextView ID
+                yourTextView.text = something
+            }
+        } catch (e: Exception) {
+            Log.e("name not found", e.toString())
+        }
+    }
+
 }
