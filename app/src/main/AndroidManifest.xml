@@ -26,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Medicine4"
         android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
         <activity
             android:name=".FindPasswordActivity"
@@ -73,7 +74,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="80b92e86ebb528d89dec6d4c359a3bbc" />
+            android:value="68479987d0a21721ac061ede9f184056" />
     </application>
 
 </manifest>
