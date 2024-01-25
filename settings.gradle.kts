@@ -10,9 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven ("https://naver.jfrog.io/artifactory/maven")
     }
 }
-
 rootProject.name = "Medicine4"
 include(":app")
- 

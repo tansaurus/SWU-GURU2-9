@@ -44,9 +44,6 @@
             android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainCameraActivity"
             android:exported="false" />
         <activity
@@ -72,9 +69,10 @@
             </intent-filter>
         </activity>
 
+
         <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="68479987d0a21721ac061ede9f184056" />
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="a4t0230wi5" />
     </application>
 
 </manifest>

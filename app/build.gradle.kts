@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
 }
 
@@ -21,6 +22,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        dataBinding = true
     }
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
@@ -64,6 +66,8 @@ dependencies {
     implementation("androidx.emoji2:emoji2-emojipicker:1.4.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.test:monitor:1.6.1")
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
     testImplementation("junit:junit:4.13.2")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -78,6 +82,10 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.mlkit:text-recognition-korean:16.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
+    implementation("com.naver.maps:map-sdk:3.17.0")
+    // 네이버 지도 위치 추적+
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
 
 
 
