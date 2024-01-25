@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PharmacyFragment">
-
+    android:id="@+id/relativeLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- 타이틀 로고 사진 -->
     <ImageView
         android:id="@+id/titleImageView"
@@ -52,7 +51,7 @@
         android:textSize="14sp"
         app:layout_constraintTop_toTopOf="@+id/btn_search" />
 
-    <Button
+    <com.naver.maps.map.widget.LocationButtonView
         android:id="@+id/btn_search"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"

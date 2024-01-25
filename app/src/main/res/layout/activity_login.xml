@@ -122,4 +122,8 @@
         android:layout_marginRight="38dp"
         android:background="@drawable/kakao_login_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/yourTextView"/>
 </RelativeLayout>
