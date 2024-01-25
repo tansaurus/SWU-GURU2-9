@@ -1,8 +1,11 @@
 package om.androidbook.medicine4
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,18 +17,28 @@ import kotlinx.coroutines.withContext
 class ImageDisplayActivity : AppCompatActivity() {
     private lateinit var dbHelper: DBHelper
     private lateinit var textView: TextView
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_display)
 
         dbHelper = DBHelper(this, "DRUG_INFO", null, 2)
-        textView = findViewById(R.id.textView)
+        textView = findViewById(R.id.drugNameTextView)
         val recognizedText = intent.getStringExtra("DetectedText")
-        if (!recognizedText.isNullOrEmpty()) {
-            searchDrugInfo(recognizedText)
-        } else {
+        if (recognizedText.isNullOrEmpty()) {
             textView.text = "인식된 텍스트가 없습니다."
         }
+        else{
+            searchDrugInfo(recognizedText)
+        }
+//
+//
+//
+//        if (!recognizedText.isNullOrEmpty()) {
+//            searchDrugInfo(recognizedText)
+//        } else {
+//            textView.text = "인식된 텍스트가 없습니다."
+//        }
 
 
         val imageView = findViewById<ImageView>(R.id.imageview)
@@ -40,6 +53,47 @@ class ImageDisplayActivity : AppCompatActivity() {
             imageView.setImageResource(R.drawable.ic_launcher_foreground) // 예시로 default_image라는 리소스 이름을 사용했습니다.
         }
         addRecognizedDrug()
+        val goodHealthButton = findViewById<Button>(R.id.goodHealthButton)
+        val dangerButton = findViewById<Button>(R.id.dangerButton)
+
+
+        val therapeuticGroupTextView = findViewById<TextView>(R.id.therapeuticGroupTextView)
+
+        val maxDailyDosageTextView = findViewById<TextView>(R.id.maxDailyDosageTextView)
+        val ingredientNameTextView = findViewById<TextView>(R.id.ingredientNameTextView)
+        val contraindicationsTextView = findViewById<TextView>(R.id.contraindicationsTextView)
+        val bluegoodHealthButton = findViewById<Button>(R.id.selectgoodButton)
+        val bluedangerButton = findViewById<Button>(R.id.selectdangerButton)
+
+
+        goodHealthButton.setOnClickListener {
+
+            therapeuticGroupTextView.visibility = View.VISIBLE
+            maxDailyDosageTextView.visibility = View.VISIBLE
+            dangerButton.visibility = View.VISIBLE
+            bluegoodHealthButton.visibility = View.VISIBLE
+
+            ingredientNameTextView.visibility = View.GONE
+            contraindicationsTextView.visibility = View.GONE
+
+            bluedangerButton.visibility = View.GONE
+            goodHealthButton.visibility = View.GONE
+
+        }
+
+        // 복용금기 보이기 버튼 클릭 시
+        dangerButton.setOnClickListener {
+            contraindicationsTextView.visibility = View.VISIBLE
+            ingredientNameTextView.visibility = View.VISIBLE
+            bluedangerButton.visibility = View.VISIBLE
+            goodHealthButton.visibility = View.VISIBLE
+
+            maxDailyDosageTextView.visibility = View.GONE
+            therapeuticGroupTextView.visibility = View.GONE
+
+            dangerButton.visibility = View.GONE
+            bluegoodHealthButton.visibility = View.GONE
+        }
 
     }
     @SuppressLint("Range")
@@ -47,22 +101,42 @@ class ImageDisplayActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val cursor = dbHelper.getDrugInfo(this@ImageDisplayActivity, drugName)
             val result = if (cursor != null && cursor.moveToFirst()) {
+
+                val drugName = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
+                val therapeuticGroup = cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))
+                val maxDailyDosage = cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))
+                val ingredientName = cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))
+                val contraindications = cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))
                 // 데이터베이스에서 정보를 읽어와서 문자열로 변환
-                val info = "약품명: ${cursor.getString(cursor.getColumnIndex("DRUG_NAME"))}\n\n" +
-                        "효능군: ${cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))}\n\n" +
-                        "1일 최대투여량: ${cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))}\n\n" +
-                        "같이 복용하면 안되는 성분명: ${cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))}\n\n" +
-                        "금기사유: ${cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))}"
+//                val info = "약품명: ${cursor.getString(cursor.getColumnIndex("DRUG_NAME"))}\n\n" +
+//                        "효능군: ${cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))}\n\n" +
+//                        "1일 최대투여량: ${cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))}\n\n" +
+//                        "같이 복용하면 안되는 성분명: ${cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))}\n\n" +
+//                        "금기사유: ${cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))}"
                 cursor.close()
-                info
+                val drugNameTextView = findViewById<TextView>(R.id.drugNameTextView)
+                drugNameTextView.text = "약품명: $drugName"
+
+                val therapeuticGroupTextView =
+                    findViewById<TextView>(R.id.therapeuticGroupTextView)
+                therapeuticGroupTextView.text = "효능군: $therapeuticGroup"
+
+                val maxDailyDosageTextView = findViewById<TextView>(R.id.maxDailyDosageTextView)
+                maxDailyDosageTextView.text = "1일 최대투여량: $maxDailyDosage"
+
+                val ingredientNameTextView = findViewById<TextView>(R.id.ingredientNameTextView)
+                ingredientNameTextView.text = "같이 복용하면 안되는 성분명: $ingredientName"
+
+                val contraindicationsTextView =
+                    findViewById<TextView>(R.id.contraindicationsTextView)
+                contraindicationsTextView.text = "금기사유: $contraindications"
+
+
             } else {
                 "약품 정보를 찾을 수 없습니다."
             }
 
-            // 메인 스레드에서 UI 업데이트
-            withContext(Dispatchers.Main) {
-                textView.text = "인식된 텍스트: $drugName\n\n$result"
-            }
+
         }
     }
     private fun addRecognizedDrug() {
@@ -75,6 +149,9 @@ class ImageDisplayActivity : AppCompatActivity() {
 
         // addRecognizedDrug 메소드 호출하여 약 정보를 데이터베이스에 추가
         dbHelper.addRecognizedDrug(drugName, therapeuticGroup, maxDailyDosage, ingredientName, contraindications)
+
+
     }
+
 
 }
