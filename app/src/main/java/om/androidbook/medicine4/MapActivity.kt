@@ -1,6 +1,7 @@
 package om.androidbook.medicine4
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -49,6 +50,7 @@ class MapActivity : AppCompatActivity() {
     private var uLatitude: Double = -1.0
     private var isLocationUpdated = false  // 위치 정보 업데이트 여부를 나타내는 플래그
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navi)
