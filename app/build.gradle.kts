@@ -16,6 +16,14 @@ if (localPropertiesFile.exists()) {
 
 
 android {
+    signingConfigs{
+        getByName("debug"){
+            storeFile = file("D:\\AndroidStudio\\yageum\\SWU-GURU2-9\\app\\build\\outputs\\apk\\debug\\debug.keystore")
+            storePassword = "android"
+            keyAlias = "release"
+            keyPassword = "011005"
+        }
+    }
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
 
