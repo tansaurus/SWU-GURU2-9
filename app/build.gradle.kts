@@ -18,7 +18,7 @@ if (localPropertiesFile.exists()) {
 android {
     signingConfigs{
         getByName("debug"){
-            storeFile = file("D:\\AndroidStudio\\yageum\\SWU-GURU2-9\\app\\build\\outputs\\apk\\debug\\debug.keystore")
+            storeFile = file("\\build\\outputs\\apk\\debug\\debug.keystore")
             storePassword = "android"
             keyAlias = "release"
             keyPassword = "011005"
