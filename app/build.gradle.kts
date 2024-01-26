@@ -14,15 +14,8 @@ if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.inputStream())
 }
 
+
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("C:\\Users\\pacif\\.android\\debug.keystore")
-            storePassword = "android"
-            keyAlias = "release"
-            keyPassword = "011005"
-        }
-    }
 
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
@@ -36,7 +29,7 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // Google API 키를 BuildConfig로 주입
-        buildConfigField("String", "GOOGLE_API_KEY", "\"${properties.getProperty("google_api_key")}\"")
+
     }
 
     buildFeatures {

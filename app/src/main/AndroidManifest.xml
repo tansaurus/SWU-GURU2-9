@@ -72,7 +72,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="app.BulidConfig.GOOGLE_API_KEY" />
+            android:value="${google_api_key}"  />
 
     </application>
 
