@@ -1,8 +1,6 @@
 package om.androidbook.medicine4
 
 
-
-import PharmacyFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,7 +9,7 @@ import om.androidbook.medicine4.databinding.ActivityNaviBinding
 
 
 private const val TAG_HOME = "home_fragment"
-private const val TAG_PHARMACY = "phamacy_fragment"
+private const val TAG_PHARMACY = "pharmacy_fragment"
 private const val TAG_UPLOAD = "upload_fragment"
 private const val TAG_MANAGEMENT = "management_fragment"
 private const val TAG_MYPAGE = "mypage_fragment"
@@ -33,7 +31,7 @@ class NaviActivity : AppCompatActivity() {
         binding.navigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeFragment -> setFragment(TAG_HOME, HomeFragment())
-                R.id.pharmacyFragment -> setFragment(TAG_PHARMACY, PharmacyFragment() as Fragment)
+                R.id.pharmacyFragment -> setFragment(TAG_PHARMACY, PharmacyFragment())
                 R.id.uploadFragment -> setFragment(TAG_UPLOAD, UploadFragment())
                 R.id.managementFragment -> setFragment(TAG_MANAGEMENT, CalendarFragment())
                 R.id.mypageFragment -> setFragment(TAG_MYPAGE, MypageFragment())

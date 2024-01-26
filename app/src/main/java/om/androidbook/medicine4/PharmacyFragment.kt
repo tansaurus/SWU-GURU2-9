@@ -1,3 +1,5 @@
+package om.androidbook.medicine4
+
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
@@ -113,11 +115,11 @@ class PharmacyFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCal
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setLocationBias(
                         RectangularBounds.newInstance(
-                            LatLng(currentLatLng.latitude - 0.05, currentLatLng.longitude - 0.05), // 5km 범위
-                            LatLng(currentLatLng.latitude + 0.05, currentLatLng.longitude + 0.05)
+                            LatLng(currentLatLng.latitude - 0.005, currentLatLng.longitude - 0.005), // 1km 범위
+                            LatLng(currentLatLng.latitude + 0.005, currentLatLng.longitude + 0.005)
                         )
                     )
-                    .setQuery("pharmacy")
+                    .setQuery("약국")
                     .build()
 
                 // 검색 수행
