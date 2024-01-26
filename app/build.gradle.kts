@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.gms.google-services")
 
 }
 
@@ -16,8 +17,11 @@ android {
         minSdk = 26
         targetSdk = 33
         versionCode = 1
+        multiDexEnabled = true
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resValue("string", "google_maps_key",
+        ((project.findProperty("GOOGLE_MAPS_API_KEY") ?: "").toString()))
     }
     buildFeatures {
         buildConfig = true
@@ -58,7 +62,6 @@ dependencies {
     implementation("com.google.android.engage:engage-core:1.3.1")
     implementation("androidx.privacysandbox.tools:tools-core:1.0.0-alpha06")
     implementation("com.google.mlkit:vision-common:17.3.0")
-    implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(fileTree(mapOf("dir" to "libs", "includes" to listOf("*.aar", "*.jar"))))
@@ -68,6 +71,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("androidx.test:monitor:1.6.1")
     implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("com.google.ar.sceneform:rendering:1.17.1")
     testImplementation("junit:junit:4.13.2")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -82,12 +86,12 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.mlkit:text-recognition-korean:16.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
-    implementation("com.naver.maps:map-sdk:3.17.0")
-    // 네이버 지도 위치 추적+
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
-
-
-
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.libraries.places:places:3.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-analytics")
 
 
 }

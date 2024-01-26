@@ -2,63 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/relativeLayout"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!-- 타이틀 로고 사진 -->
-    <ImageView
-        android:id="@+id/titleImageView"
-        android:layout_width="211dp"
-        android:layout_height="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="102dp"
-        android:src="@drawable/title_small_image" />
+    android:layout_height="match_parent">
 
-    <net.daum.mf.map.api.MapView
+    <!-- Google MapView -->
+    <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="353dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp" />
+        android:layout_height="match_parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="100dp" />
+    <!-- 여기에 추가 UI 요소를 배치할 수 있습니다. 예를 들면, 검색 버튼이나 정보 표시 부분 등 -->
 
-    <EditText
-        android:id="@+id/et_search_field"
-        android:layout_width="318dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="장소 입력"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="@+id/btn_search" />
-
-    <com.naver.maps.map.widget.LocationButtonView
-        android:id="@+id/btn_search"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="10dp"
-        android:text="검색" />
 </RelativeLayout>
