@@ -16,7 +16,6 @@ if (localPropertiesFile.exists()) {
 
 
 android {
-
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
 
