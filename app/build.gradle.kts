@@ -1,13 +1,20 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("com.google.gms.google-services")
+}
 
+// local.properties 파일에서 API 키를 로드하는 부분
+val properties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.inputStream())
 }
 
 android {
-
     signingConfigs {
         getByName("debug") {
             storeFile = file("C:\\Users\\pacif\\.android\\debug.keystore")
@@ -16,11 +23,11 @@ android {
             keyPassword = "011005"
         }
     }
+
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
 
     defaultConfig {
-
         applicationId = "om.androidbook.medicine4"
         minSdk = 26
         targetSdk = 33
@@ -28,12 +35,16 @@ android {
         multiDexEnabled = true
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Google API 키를 BuildConfig로 주입
+        buildConfigField("String", "GOOGLE_API_KEY", "\"${properties.getProperty("google_api_key")}\"")
     }
+
     buildFeatures {
         buildConfig = true
         viewBinding = true
         dataBinding = true
     }
+
     packaging {
         resources {
             pickFirsts.add("META-INF/DEPENDENCIES")
@@ -42,6 +53,7 @@ android {
             pickFirsts.add("META-INF/LGPL2.1")
         }
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -52,19 +64,15 @@ android {
         }
     }
 
-
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
