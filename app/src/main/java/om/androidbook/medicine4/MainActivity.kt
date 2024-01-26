@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat
 import om.androidbook.medicine4.LoginActivity
 import om.androidbook.medicine4.databinding.ActivityMainBinding
 import android.Manifest
+import com.google.android.gms.maps.MapsInitializer
+import com.google.android.libraries.places.api.Places
 
 
 class StartActivity : AppCompatActivity() {
@@ -21,6 +23,7 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Places.initialize(applicationContext, "GOOGLE_MAPS_API_KEY")
 
         // 일정 시간 지연 이후 실행하기 위한 코드
         Handler(Looper.getMainLooper()).postDelayed({
