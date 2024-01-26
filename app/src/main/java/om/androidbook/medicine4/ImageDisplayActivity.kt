@@ -1,6 +1,7 @@
 package om.androidbook.medicine4
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -31,14 +32,12 @@ class ImageDisplayActivity : AppCompatActivity() {
         else{
             searchDrugInfo(recognizedText)
         }
-//
-//
-//
-//        if (!recognizedText.isNullOrEmpty()) {
-//            searchDrugInfo(recognizedText)
-//        } else {
-//            textView.text = "인식된 텍스트가 없습니다."
-//        }
+
+        if (!recognizedText.isNullOrEmpty()) {
+            searchDrugInfo(recognizedText)
+        } else {
+            textView.text = "인식된 텍스트가 없습니다."
+        }
 
 
         val imageView = findViewById<ImageView>(R.id.imageview)
@@ -95,6 +94,13 @@ class ImageDisplayActivity : AppCompatActivity() {
             bluegoodHealthButton.visibility = View.GONE
         }
 
+        // 홈으로 돌아가는 버튼
+        val backHomeButton = findViewById<Button>(R.id.backHomeButton)
+        // 클릭시 홈으로 이동
+        backHomeButton.setOnClickListener {
+            val intent = Intent(applicationContext, NaviActivity::class.java)
+            startActivity(intent)
+        }
     }
     @SuppressLint("Range")
     private fun searchDrugInfo(drugName: String) {
@@ -115,25 +121,26 @@ class ImageDisplayActivity : AppCompatActivity() {
 //                        "금기사유: ${cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))}"
                 cursor.close()
                 val drugNameTextView = findViewById<TextView>(R.id.drugNameTextView)
-                drugNameTextView.text = "약품명: $drugName"
+                drugNameTextView.text = "$drugName" // 약품명
 
                 val therapeuticGroupTextView =
                     findViewById<TextView>(R.id.therapeuticGroupTextView)
-                therapeuticGroupTextView.text = "효능군: $therapeuticGroup"
+                therapeuticGroupTextView.text = "이런 약이에요 - "
 
                 val maxDailyDosageTextView = findViewById<TextView>(R.id.maxDailyDosageTextView)
-                maxDailyDosageTextView.text = "1일 최대투여량: $maxDailyDosage"
+                maxDailyDosageTextView.text = "효능군: $therapeuticGroup \n\n1일 최대투여량: $maxDailyDosage"   // 효능군, 1일 최대투여량
 
                 val ingredientNameTextView = findViewById<TextView>(R.id.ingredientNameTextView)
-                ingredientNameTextView.text = "같이 복용하면 안되는 성분명: $ingredientName"
+                ingredientNameTextView.text = "같이 복용하면 안되는 성분이 있어요 - "
 
                 val contraindicationsTextView =
                     findViewById<TextView>(R.id.contraindicationsTextView)
-                contraindicationsTextView.text = "금기사유: $contraindications"
+                contraindicationsTextView.text = "병용금기 성분명: $ingredientName \n\n금기사유: $contraindications"  //병용금기 성분명, 금기사유
 
 
             } else {
-                "약품 정보를 찾을 수 없습니다."
+                val drugNameTextView = findViewById<TextView>(R.id.drugNameTextView)
+                drugNameTextView.text = "약품 정보를 찾을 수 없습니다"
             }
 
 
