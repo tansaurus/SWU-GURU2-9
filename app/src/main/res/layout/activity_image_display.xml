@@ -2,19 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/mypage_background">
 
     <!-- 이미지 표시 -->
 
     <!-- 텍스트 표시 -->
+
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="349dp"
-        android:layout_height="160dp"
+        android:layout_width="296dp"
+        android:layout_height="123dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="101dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="95dp"
         android:scaleType="fitCenter" />
 
     <ImageView
@@ -34,170 +37,161 @@
     <TextView
         android:id="@+id/drugNameTextView"
         style="@style/Widget.AppCompat.TextView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_width="332dp"
+        android:layout_height="104dp"
         android:layout_below="@id/imageview"
-        android:layout_marginTop="13dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
         android:fontFamily="@font/sejonghospitalbold"
         android:text=""
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/ingredientNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="455dp"
+        android:layout_marginEnd="38dp"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:text=""
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/selectdangerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="281dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/bluedanger"
+        android:visibility="invisible" />
+
     <ImageView
         android:id="@+id/infoImage"
         android:layout_width="101dp"
         android:layout_height="39dp"
-
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="340dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="371dp"
         android:src="@drawable/bottle" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/dangerButton"
-
-        android:layout_width="101dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="228dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginRight="81dp"
+        android:layout_marginLeft="281dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginRight="28dp"
         android:background="@drawable/danger" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goodHealthButton"
-
-        android:layout_width="101dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginRight="226dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginRight="281dp"
         android:background="@drawable/dup"
         android:text=""
         android:textAlignment="viewEnd"
-        android:visibility="invisible"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/selectdangerButton"
-
-        android:layout_width="101dp"
-        android:layout_height="39dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="228dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginRight="81dp"
-        android:background="@drawable/bluedanger"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/selectgoodButton"
-
-        android:layout_width="101dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginRight="226dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginRight="281dp"
         android:background="@drawable/bluedup"
         android:text=""
         android:textAlignment="viewEnd" />
 
-    <ImageView
-        android:id="@+id/serchView"
-        android:layout_width="415dp"
-        android:layout_height="241dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="387dp"
-        android:layout_marginEnd="-6dp"
-        android:background="@drawable/layout" />
-
-    <TextView
-        android:id="@+id/ingredientNameTextView"
-        android:layout_width="318dp"
-        android:layout_height="87dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="424dp"
-        android:layout_marginEnd="37dp"
-        android:fontFamily="@font/sejonghospital"
-        android:text=""
-        android:textSize="18sp"
-        android:visibility="invisible" />
-
     <TextView
         android:id="@+id/therapeuticGroupTextView"
-        android:layout_width="318dp"
-        android:layout_height="87dp"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="424dp"
-        android:layout_marginEnd="37dp"
-        android:fontFamily="@font/sejonghospital"
-        android:textSize="18sp" />
+        android:layout_centerInParent="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="455dp"
+        android:layout_marginEnd="38dp"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/contraindicationsTextView"
-        android:layout_width="318dp"
-        android:layout_height="87dp"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="45dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="513dp"
+        android:layout_marginEnd="36dp"
         android:fontFamily="@font/sejonghospital"
-        android:textAlignment="center"
         android:textSize="18sp"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/maxDailyDosageTextView"
-        android:layout_width="318dp"
-        android:layout_height="87dp"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="45dp"
-
+        android:layout_centerInParent="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="513dp"
+        android:layout_marginEnd="37dp"
         android:fontFamily="@font/sejonghospital"
         android:text=""
         android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backHomeButton"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/back_home_button_background"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="viewEnd" />
 
 </RelativeLayout>

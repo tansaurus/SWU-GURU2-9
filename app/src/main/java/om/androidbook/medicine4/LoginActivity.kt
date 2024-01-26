@@ -31,8 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(loginBinding.root)
         DB = DBHelper(this, "DRUG_INFO", null, 3)
         checkPermissions()
-        yourTextView = findViewById(R.id.yourTextView)
-        getAppKeyHash()
+
         loginBinding.loginButton!!.setOnClickListener{
             val email = loginBinding.emailAddressEditText!!.text.toString()
             val password = loginBinding.passwordEditText!!.text.toString()
@@ -99,20 +98,6 @@ class LoginActivity : AppCompatActivity() {
             // 예: 모든 권한이 부여되었는지 확인, 부여되지 않은 권한에 대한 처리 등
         }
     }
-    fun getAppKeyHash() {
-        try {
-            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-            for (signature in info.signatures) {
-                val md: MessageDigest = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                val something = String(Base64.encode(md.digest(), 0))
-                // Assuming you have a TextView to display 'something'
-                // Replace 'yourTextView' with your actual TextView ID
-                yourTextView.text = something
-            }
-        } catch (e: Exception) {
-            Log.e("name not found", e.toString())
-        }
-    }
+
 
 }

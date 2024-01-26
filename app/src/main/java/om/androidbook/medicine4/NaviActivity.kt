@@ -1,7 +1,6 @@
 package om.androidbook.medicine4
 
 
-import PharmacyFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,7 +9,7 @@ import om.androidbook.medicine4.databinding.ActivityNaviBinding
 
 
 private const val TAG_HOME = "home_fragment"
-private const val TAG_PHARMACY = "phamacy_fragment"
+private const val TAG_PHARMACY = "pharmacy_fragment"
 private const val TAG_UPLOAD = "upload_fragment"
 private const val TAG_MANAGEMENT = "management_fragment"
 private const val TAG_MYPAGE = "mypage_fragment"
