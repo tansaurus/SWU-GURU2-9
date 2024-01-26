@@ -15,15 +15,6 @@ if (localPropertiesFile.exists()) {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("C:\\Users\\pacif\\.android\\debug.keystore")
-            storePassword = "android"
-            keyAlias = "release"
-            keyPassword = "011005"
-        }
-    }
-
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
 
