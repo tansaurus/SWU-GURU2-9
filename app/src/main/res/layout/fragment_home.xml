@@ -18,7 +18,7 @@
         android:layout_marginRight="102dp"
         android:src="@drawable/title_small_image" />
 
-    <!-- 이름 (유저 이름으로 text 변경) -->
+    <!-- 홈 화면 문구 -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -27,10 +27,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="33dp"
         android:layout_marginTop="113dp"
-        android:text="김슈니님, 잊지마세요!"
+        android:text="매일매일, 야금야금!"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/sejonghospitalbold"
+        android:textSize="20sp" />
 
     <!-- 복용 약 리스트 -->
     <androidx.recyclerview.widget.RecyclerView
@@ -46,4 +46,30 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="174dp"
         android:layout_marginEnd="1dp" />
+
+    <!-- 매일 복용 약이 없을 경우 안내 문구 (있을 경우 visibility="invisible" 수정) -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="319dp"
+        android:fontFamily="@font/sejonghospital"
+        android:textSize="16sp"
+        android:visibility="visible"
+        android:text="매일 먹어야 하는 약을 추가해보세요." />
+
+    <!-- 복용 약 추가 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerPageButton"
+        android:layout_width="21dp"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/plus" />
 </RelativeLayout>
