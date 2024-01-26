@@ -1,13 +1,21 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("com.google.gms.google-services")
 
 }
 
 android {
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("C:\\Users\\pacif\\.android\\debug.keystore")
+            storePassword = "android"
+            keyAlias = "release"
+            keyPassword = "011005"
+        }
+    }
     namespace = "om.androidbook.medicine4"
     compileSdk = 34
 
@@ -20,17 +28,19 @@ android {
         multiDexEnabled = true
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resValue("string", "google_maps_key",
-        ((project.findProperty("GOOGLE_MAPS_API_KEY") ?: "").toString()))
     }
     buildFeatures {
         buildConfig = true
         viewBinding = true
         dataBinding = true
     }
-    packagingOptions {
-        exclude("META-INF/DEPENDENCIES")
-        exclude("META-INF/INDEX.LIST")
+    packaging {
+        resources {
+            pickFirsts.add("META-INF/DEPENDENCIES")
+            pickFirsts.add("META-INF/INDEX.LIST")
+            pickFirsts.add("META-INF/AL2.0")
+            pickFirsts.add("META-INF/LGPL2.1")
+        }
     }
     buildTypes {
         release {
@@ -86,12 +96,12 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.mlkit:text-recognition-korean:16.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
-    implementation("com.google.android.gms:play-services-location:21.1.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.libraries.places:places:3.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.gms:google-services:4.4.0")
+
 
 
 }

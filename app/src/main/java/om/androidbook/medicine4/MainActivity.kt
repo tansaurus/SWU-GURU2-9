@@ -1,21 +1,22 @@
-package om.androidbook.medicine4;
+package om.androidbook.medicine4
 
+import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
+import com.google.android.gms.tasks.Task
+import com.google.android.libraries.places.api.Places
+import com.google.cloud.location.Location
 import om.androidbook.medicine4.LoginActivity
 import om.androidbook.medicine4.databinding.ActivityMainBinding
-import android.Manifest
-import com.google.android.gms.maps.MapsInitializer
-import com.google.android.libraries.places.api.Places
+import java.io.File
 
 
-class StartActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding // ViewBinding을 사용하기 위한 바인딩 선언
 
@@ -23,7 +24,8 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Places.initialize(applicationContext, "GOOGLE_MAPS_API_KEY")
+        Places.initialize(applicationContext, getString(R.string.google_api_key))
+
 
         // 일정 시간 지연 이후 실행하기 위한 코드
         Handler(Looper.getMainLooper()).postDelayed({
@@ -37,7 +39,8 @@ class StartActivity : AppCompatActivity() {
             finish()
 
         }, 500) // 시간 0.5초 이후 실행
-
     }
+
+
 
 }
