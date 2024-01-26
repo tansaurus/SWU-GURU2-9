@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddDailyMedicineActivity">
+
+    <!-- 타이틀 로고 사진 -->
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="102dp"
+        android:src="@drawable/title_small_image" />
+
+    <!-- 돌아가기 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backButton"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/backicon"
+        android:backgroundTint="#789BC7" />
+
+    <!-- 입력 레이아웃 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="348dp"
+        android:layout_height="378dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="211dp">
+
+        <!-- 복용약 이름 입력 -->
+        <TextView
+            android:id="@+id/dailyMedicineNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/sejonghospitalbold"
+            android:text="복용약"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/dailyMedicineNameEditText"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/dailyMedicineNameEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/daily_medicine_input_background"
+            android:ems="10"
+            android:hint="종합비타민"
+            android:inputType="text"
+            android:paddingStart="30dp"
+            android:textColorHint="#EDEDED"
+            app:layout_constraintBottom_toTopOf="@+id/dailyMedicineDoseTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <!-- 복용량 입력 -->
+        <TextView
+            android:id="@+id/dailyMedicineDoseTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/sejonghospitalbold"
+            android:text="하루 복용량"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/dailyMedicineDoseEditText"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/dailyMedicineDoseEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="148dp"
+            android:background="@drawable/daily_medicine_input_background"
+            android:ems="10"
+            android:hint="1"
+            android:inputType="number"
+            android:paddingStart="30dp"
+            android:textColorHint="#EDEDED"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <!-- 등록 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registrationButton"
+            android:layout_width="116dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="84dp"
+            android:background="@drawable/add_daily_medicine_button_background"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dailyMedicineDoseEditText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

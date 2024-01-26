@@ -63,7 +63,8 @@
         android:layout_marginTop="408dp"
         android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
-
+        android:hint="YYMMDD"
+        android:textColorHint="#EDEDED"
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="datetime"
@@ -179,7 +180,8 @@
         android:layout_marginTop="472dp"
         android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
-
+        android:hint="01012345678"
+        android:textColorHint="#EDEDED"
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="phone"
