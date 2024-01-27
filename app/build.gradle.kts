@@ -9,8 +9,10 @@ plugins {
 
 android {
     signingConfigs{
+
         create("release"){
             storeFile = file("\\build\\outputs\\release.jks")
+
             storePassword = "android"
             keyAlias = "release"
             keyPassword = "011005"
