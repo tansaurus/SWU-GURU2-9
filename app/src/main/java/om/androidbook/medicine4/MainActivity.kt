@@ -1,19 +1,14 @@
 package om.androidbook.medicine4
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
-import com.google.android.gms.tasks.Task
 import com.google.android.libraries.places.api.Places
-import com.google.cloud.location.Location
-import om.androidbook.medicine4.LoginActivity
 import om.androidbook.medicine4.databinding.ActivityMainBinding
-import java.io.File
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,9 +19,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Places.initialize(applicationContext, getString(R.string.google_api_key))
+        val apiKey = getString(R.string.google_api_key)
 
 
+        // Log an error if apiKey is not set.
+        if (apiKey.isEmpty() || apiKey == "DEFAULT_API_KEY") {
+            finish()
+            return
+        }
+        Places.initialize(applicationContext, apiKey)
         // 일정 시간 지연 이후 실행하기 위한 코드
         Handler(Looper.getMainLooper()).postDelayed({
 
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             finish()
 
         }, 500) // 시간 0.5초 이후 실행
+
     }
 
 
