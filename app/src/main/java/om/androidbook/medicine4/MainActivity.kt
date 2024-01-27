@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             // 이동한 다음 사용안함으로 finish 처리
             finish()
 
-        }, 500) // 시간 0.5초 이후 실행
+        }, 3000) // 시간 3초 이후 실행
     }
 
 
