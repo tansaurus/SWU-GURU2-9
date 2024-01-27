@@ -24,7 +24,7 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
-        private const val DATABASE_VERSION = 3
+        private const val DATABASE_VERSION = 4
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -52,6 +52,21 @@ class DBHelper(
             outputStream.flush()
             outputStream.close()
         }
+    }
+
+    fun insertDose(useremail: String, name: String, count: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("NAME", name)
+            put("EMAIL", useremail)
+            put("COUNT", count)
+        }
+
+        val result = db.insert("does_info", null, contentValues)
+        db.close()
+
+        // insert 메서드는 새로 추가된 행의 row ID를 반환하며, 오류 발생 시 -1을 반환합니다.
+        return result != -1L
     }
 
     fun getDrugInfo(context: Context, drugName: String): Cursor? {
