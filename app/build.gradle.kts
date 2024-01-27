@@ -1,4 +1,3 @@
-import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -7,18 +6,13 @@ plugins {
     id("com.google.gms.google-services")
 }
 
-// local.properties 파일에서 API 키를 로드하는 부분
-val properties = Properties()
-val localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    properties.load(localPropertiesFile.inputStream())
-}
-
 
 android {
     signingConfigs{
-        getByName("debug"){
-            storeFile = file("\\debug.keystore")
+
+        create("release"){
+            storeFile = file("\\build\\outputs\\release.jks")
+
             storePassword = "android"
             keyAlias = "release"
             keyPassword = "011005"
@@ -35,7 +29,6 @@ android {
         multiDexEnabled = true
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        // Google API 키를 BuildConfig로 주입
 
     }
 
@@ -55,12 +48,17 @@ android {
     }
 
     buildTypes {
+        debug {
+
+        }
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
 
@@ -108,8 +106,10 @@ dependencies {
     implementation("com.google.android.libraries.places:places:3.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.gms:google-services:4.4.0")
-
+    implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+    implementation("com.google.flogger:flogger:0.6")
 
 
 }
