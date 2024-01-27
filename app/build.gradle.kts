@@ -13,7 +13,7 @@ android {
         create("release"){
             storeFile = file("\\build\\outputs\\release.jks")
 
-            storePassword = "android"
+            storePassword = "011005"
             keyAlias = "release"
             keyPassword = "011005"
         }

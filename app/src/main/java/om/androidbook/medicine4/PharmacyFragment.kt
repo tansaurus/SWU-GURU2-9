@@ -23,8 +23,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.PlaceTypes.ESTABLISHMENT
+import com.google.android.libraries.places.api.model.PlaceTypes.PHARMACY
 import com.google.android.libraries.places.api.model.RectangularBounds
-import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
@@ -32,7 +33,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import om.androidbook.medicine4.R
 
 class PharmacyFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCallback {
 
@@ -120,14 +120,13 @@ class PharmacyFragment : Fragment(), OnMapReadyCallback, OnMapsSdkInitializedCal
                 // 필요한 Place 필드를 정의합니다.
                 val placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-
+                val oneKmInDegrees = 0.009
                 // 약국을 검색하기 위한 쿼리를 구성합니다.
                 val request = FindAutocompletePredictionsRequest.builder()
                     .setLocationBias(RectangularBounds.newInstance(
-                        LatLng(currentLatLng.latitude - 0.005, currentLatLng.longitude - 0.005), // 5km 범위
-                        LatLng(currentLatLng.latitude + 0.005, currentLatLng.longitude + 0.005)))
+                        LatLng(currentLatLng.latitude - oneKmInDegrees, currentLatLng.longitude - oneKmInDegrees), // 1km 범위
+                        LatLng(currentLatLng.latitude + oneKmInDegrees, currentLatLng.longitude + oneKmInDegrees)))
                     .setQuery("약국")
-                    .setTypeFilter(TypeFilter.ESTABLISHMENT)
                     .setCountries("KR") // 한국 내에서만 검색
                     .build()
 
