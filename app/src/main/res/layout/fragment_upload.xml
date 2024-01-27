@@ -29,7 +29,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="252dp"
-        android:layout_marginRight="215dp"
+        android:layout_marginRight="210dp"
         android:background="@drawable/camera_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -41,7 +41,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="217dp"
+        android:layout_marginLeft="210dp"
         android:layout_marginTop="251dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/gallery_button_background"

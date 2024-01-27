@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Medicine4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimaryDark">#789BC7</item>
+        <item name="android:statusBarColor" tools:targetApi="1">?attr/colorPrimaryDark</item>
     </style>
     <style name="Theme.Medicine4" parent="Base.Theme.Medicine4" />
     <style name="signup_text">
