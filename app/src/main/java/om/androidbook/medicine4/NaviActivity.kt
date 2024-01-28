@@ -113,33 +113,4 @@ class NaviActivity : AppCompatActivity() {
 
         fragTransaction.commitAllowingStateLoss()
     }
-
-    fun changeMyPageFragment(tag: String, fragment: Fragment){
-        val manager: FragmentManager = supportFragmentManager
-        val fragTransaction = manager.beginTransaction()
-
-        val profileEdit = manager.findFragmentByTag(TAG_PROFILE_EDIT)
-
-        if (manager.findFragmentByTag(tag) == null) {
-            // 프래그먼트가 없으면 생성해서 추가
-            fragTransaction.add(R.id.mainFrameLayout, fragment, tag)
-        }
-
-        if (profileEdit != null) {
-            fragTransaction.hide(profileEdit)
-        }
-
-        if (tag == TAG_PROFILE_EDIT) {
-            if (profileEdit != null) {
-                fragTransaction.show(profileEdit)
-            }
-        }
-
-        fragTransaction.commit()
-    }
-
-    fun goBackToMypage() {
-        // 마이페이지 메뉴로 이동
-        setFragment(TAG_MYPAGE, MypageFragment())
-    }
 }
