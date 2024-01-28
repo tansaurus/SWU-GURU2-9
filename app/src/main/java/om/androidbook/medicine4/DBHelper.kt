@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 import java.io.FileOutputStream
 import java.io.IOException
@@ -22,26 +23,108 @@ class DBHelper(
     }
 
     companion object {
-        private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
-        private const val DATABASE_VERSION = 5
+        private const val DATABASE_NAME = "DRUG_INFO.db"
+        private const val DATABASE_VERSION = 6
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+        if (db != null) {
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS Authority (
+          AUTH_ID INTEGER NOT NULL UNIQUE,
+          AUTH_TYPE TEXT NOT NULL,
+          AUTH_ROLE TEXT NOT NULL,
+          PRIMARY KEY (AUTH_ID)
+        );
+    """)
+
+            // Cart 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS Cart (
+          AUTH_ID TEXT NOT NULL UNIQUE,
+          CART_QUANTITY TEXT NOT NULL,
+          PRIMARY KEY (AUTH_ID),
+          FOREIGN KEY (AUTH_ID) REFERENCES member(AUTH_ID)
+        );
+    """)
+
+            // OrderTable 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS OrderTable (
+          AUTH_ID TEXT NOT NULL,
+          DRUG_DATE DATE NOT NULL,
+          ORDER_COMMENT TEXT,
+          FOREIGN KEY (AUTH_ID) REFERENCES member(AUTH_ID)
+        );
+    """)
+
+            // DrugSearch 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS DrugSearch (
+          SEARCH_ID INTEGER NOT NULL UNIQUE,
+          AUTH_ID TEXT NOT NULL,
+          DRUG_NAME TEXT NOT NULL,
+          PRIMARY KEY (SEARCH_ID),
+          FOREIGN KEY (AUTH_ID) REFERENCES member(AUTH_ID),
+          FOREIGN KEY (DRUG_NAME) REFERENCES drug_info(DRUG_NAME)
+        );
+    """)
+
+            // drug_info 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS drug_info (
+          DRUG_NAME TEXT,
+          THERAPEUTIC_GROUP TEXT,
+          MAX_DAILY_DOSAGE TEXT,
+          INGREDIENT_NAME TEXT,
+          CONTRAINDICATIONS TEXT
+        );
+    """)
+
+            // member 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS member (
+          EMAIL TEXT PRIMARY KEY,
+          AUTH_ID TEXT,
+          PASSWORD TEXT,
+          USERNAME TEXT,
+          AGE INTEGER,
+          GENDER TEXT,
+          PHONE TEXT,
+          ENROLL_DATE TEXT,
+          LAST_UPDATE TEXT,
+          MANAGER INTEGER
+        );
+    """)
+
+            // dose_info 테이블 생성
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS dose_info(
+          AUTH_ID TEXT NOT NULL,
+          NAME TEXT NOT NULL PRIMARY KEY,
+          COUNT INTEGER NOT NULL,
+          EMAIL TEXT NOT NULL,
+          FOREIGN KEY (AUTH_ID) REFERENCES member(AUTH_ID)
+        );
+    """)
+
+        }
     }
 
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < newVersion) {
-            db.execSQL(
-                "CREATE TABLE IF NOT EXISTS dose_info (" +
-                        "NAME TEXT NOT NULL, " +
-                        "COUNT INTEGER NOT NULL, " +
-                        "EMAIL TEXT NOT NULL, " +
-                        "PRIMARY KEY(NAME));"
-                    )
-            }
-        }
+        // 기존 테이블 삭제
+        db.execSQL("DROP TABLE IF EXISTS Authority")
+        db.execSQL("DROP TABLE IF EXISTS Cart")
+        db.execSQL("DROP TABLE IF EXISTS OrderTable")
+        db.execSQL("DROP TABLE IF EXISTS DrugSearch")
+        db.execSQL("DROP TABLE IF EXISTS drug_info")
+        db.execSQL("DROP TABLE IF EXISTS member")
+        db.execSQL("DROP TABLE IF EXISTS dose_info")
 
+        // 새로운 테이블 생성
+        onCreate(db)
+    }
 
     @Throws(IOException::class)
     private fun copyDatabase(context: Context) {
@@ -62,6 +145,7 @@ class DBHelper(
     fun insertDose(useremail: String, name: String, count: String): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues().apply {
+            put("AUTH_ID", getAuthIdForEmail(useremail)) // 사용자 이메일에 해당하는 AUTH_ID를 설정
             put("NAME", name)
             put("EMAIL", useremail)
             put("COUNT", count)
@@ -70,63 +154,49 @@ class DBHelper(
         val result = db.insert("dose_info", null, contentValues)
         db.close()
 
-        // insert 메서드는 새로 추가된 행의 row ID를 반환하며, 오류 발생 시 -1을 반환합니다.
         return result != -1L
     }
+
+    // 사용자 이메일에 해당하는 AUTH_ID를 찾는 메소드
+    fun getAuthIdForEmail(useremail: String): Int {
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            // member 테이블에서 주어진 이메일에 해당하는 AUTH_ID 검색
+            cursor = db.rawQuery("SELECT AUTH_ID FROM member WHERE EMAIL = ?", arrayOf(useremail))
+            if (cursor != null && cursor.moveToFirst()) {
+                // AUTH_ID 열의 인덱스를 찾고, 해당 값 반환
+                val authIdIndex = cursor.getColumnIndex("AUTH_ID")
+                if (authIdIndex != -1) {
+                    return cursor.getInt(authIdIndex)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor?.close() // 커서가 null이 아닐 경우에만 close 호출
+        }
+        return -1 // 사용자를 찾을 수 없는 경우 또는 오류 발생 시 -1 반환
+    }
+
+
 
     fun getDrugInfo(context: Context, drugName: String): Cursor? {
         try {
             val db = this.readableDatabase
-            return db.query("drug_info", null, "DRUG_NAME LIKE ?", arrayOf("%$drugName%"), null, null, null) // 쿼리 업데이트
+            val query = "SELECT * FROM drug_info WHERE DRUG_NAME LIKE ?"
+            Log.d("DBHelper", "Executing query: $query with drugName: $drugName")
+            return db.query("drug_info", null, "DRUG_NAME LIKE ?", arrayOf("%$drugName%"), null, null, null)
         } catch (e: Exception) {
+            Log.e("DBHelper", "Error while getting drug info", e)
             Toast.makeText(context, "Error while getting drug info: ${e.message}", Toast.LENGTH_LONG).show()
         }
         return null
     }
 
-    fun addRecognizedDrug(drugName: String, therapeuticGroup: String, maxDailyDosage: String, ingredientName: String, contraindications: String) {
-        val values = ContentValues().apply {
-            put("DRUG_NAME", drugName)
-            put("THERAPEUTIC_GROUP", therapeuticGroup)
-            put("MAX_DAILY_DOSAGE", maxDailyDosage)
-            put("INGREDIENT_NAME", ingredientName)
-            put("CONTRAINDICATIONS", contraindications)
-        }
-
-        val db = this.writableDatabase
-
-        // 트랜잭션 시작
-        db.beginTransaction()
-
-        try {
-            db.insert("recognized_medicines", null, values)
-            // 변경 사항 커밋
-            db.setTransactionSuccessful()
-        } catch (e: Exception) {
-            // 오류 발생 시 처리
-        } finally {
-            // 트랜잭션 종료
-            db.endTransaction()
-            db.close()
-        }
-    }
 
 
-    fun getRecognizedDrugs(): Cursor {
-        val db = this.readableDatabase
-        return db.query("recognized_medicines", null, null, null, null, null, null)
-    }
-
-    fun deleteRecognizedDrug(id: Int) {
-        val db = this.writableDatabase
-        db.delete("recognized_medicines", "id = ?", arrayOf(id.toString()))
-        db.close()
-    }
-
-
-
-
-   fun checkEM(email: String): Boolean {
+    fun checkEM(email: String): Boolean {
         val db = this.readableDatabase
         var cursor: Cursor? = null
         var res = false
@@ -228,7 +298,7 @@ class DBHelper(
 
         if (cursor.moveToFirst()) {
             do {
-                val id = cursor.getInt(cursor.getColumnIndex("id"))
+                val id = cursor.getInt(cursor.getColumnIndex("AUTH_ID"))
                 val drugName = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
                 val therapeuticGroup = cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))
                 val maxDailyDosage = cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))
@@ -262,23 +332,22 @@ class DBHelper(
         return list
     }
 
-    // 검색 기록을 불러오는 메소드
+
     @SuppressLint("Range")
-    fun getSearchHistory(): List<String> {
-        val searchHistory = mutableListOf<String>()
+    fun getAuthId(email: String, password: String): Int {
+        // 이메일과 비밀번호를 사용하여 사용자를 찾고 AUTH_ID를 반환하는 로직
         val db = this.readableDatabase
+        val query = "SELECT AUTH_ID FROM member WHERE email = ? AND password = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, password))
 
-        val cursor = db.query("recognized_medicines", arrayOf("DRUG_NAME"), null, null, null, null, "SEARCH_TIME DESC")
-
-        while (cursor.moveToNext()) {
-            val searchText = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
-            searchHistory.add(searchText)
+        if (cursor.moveToFirst()) {
+            val authId = cursor.getInt(cursor.getColumnIndex("AUTH_ID"))
+            cursor.close()
+            return authId
+        } else {
+            cursor.close()
+            return -1 // 사용자를 찾을 수 없는 경우
         }
-
-        cursor.close()
-        db.close()
-
-        return searchHistory
     }
 
 }

@@ -1,6 +1,7 @@
 package om.androidbook.medicine4
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var yourTextView: TextView
 
+
     var DB:DBHelper?=null
     companion object{
         var loggedInUserEmail: String? = null
@@ -32,31 +34,35 @@ class LoginActivity : AppCompatActivity() {
         DB = DBHelper(this, "DRUG_INFO", null, 3)
         checkPermissions()
 
-        loginBinding.loginButton!!.setOnClickListener{
-            val email = loginBinding.emailAddressEditText!!.text.toString()
-            val password = loginBinding.passwordEditText!!.text.toString()
-            if (email == "" || password == "")Toast.makeText(
-                this@LoginActivity,
-                "회원정보를 전부 입력해주세요",
-                 Toast.LENGTH_SHORT
-            ).show() else{
-                val checkEM = DB!!.checkEM(email)
-                if(checkEM == true){
+        loginBinding.loginButton.setOnClickListener {
+            val email = loginBinding.emailAddressEditText.text.toString()
+            val password = loginBinding.passwordEditText.text.toString()
+            if (email == "" || password == "") {
+                Toast.makeText(this, "회원정보를 전부 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                val authId = DB!!.getAuthId(email, password)
+                if (authId != -1) {
                     loggedInUserEmail = email
-                    Toast.makeText(this@LoginActivity, "로그인 되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(applicationContext, NaviActivity::class.java)  //HomeActivity대신에 로그인 하고 나올 화면
+                    setLoggedIn(applicationContext, true)
+                    isLoggedIn(applicationContext)
+                    Log.d("LoginActivity", "로그인 성공: $loggedInUserEmail")
+                    // Shared Preferences에 저장
+                    val sharedPref = getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+                    with(sharedPref.edit()) {
+                        putInt("AUTH_ID", authId)
+                        putString("LoggedInUserEmail", email)
+                        apply()
+                    }
+                    Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+                    // 다음 화면으로 이동
+                    val intent = Intent(applicationContext, NaviActivity::class.java)
                     startActivity(intent)
-
-
-
-                }
-                else{
-                    Toast.makeText(this@LoginActivity, "회원정보가 존재하지 않습니다.", Toast.LENGTH_SHORT)
-                        .show()
+                } else {
+                    Toast.makeText(this, "회원정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
         loginBinding.joinButton.setOnClickListener{
             val signupIntent = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(signupIntent)
@@ -98,6 +104,21 @@ class LoginActivity : AppCompatActivity() {
             // 예: 모든 권한이 부여되었는지 확인, 부여되지 않은 권한에 대한 처리 등
         }
     }
+
+    // 로그인 상태를 저장
+    private fun setLoggedIn(context: Context, isLoggedIn: Boolean) {
+        val sharedPref = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("LoggedIn", isLoggedIn)
+        editor.apply()
+    }
+
+    // 로그인 상태를 가져오기
+    fun isLoggedIn(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("LoggedIn", false) // 기본값은 로그아웃 상태 (false)
+    }
+
 
 
 }
