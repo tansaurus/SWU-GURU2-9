@@ -181,7 +181,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="datetime"
             android:text="1961.05.20"
             android:textColor="#7E7E7E"
             android:textSize="16sp"
