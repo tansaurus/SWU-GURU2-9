@@ -81,7 +81,7 @@ class ScheduleRegisterFragment : Fragment() {
             updateRecyclerView(selectedDate)
             scheduleAdapter.filterByDate(selectedDate)
 //            updateRecyclerView(selectedDate)
-//            DateView.setText(selectedDate)
+            DateView.text=""
         }
 
 
