@@ -32,7 +32,6 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/signup_text"
         android:textAppearance="@style/signup_text"
-        android:fontFamily="@font/sejonghospital"
         android:textStyle="bold" />
 
 
@@ -47,7 +46,6 @@
         android:layout_marginTop="229dp"
         android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
-        android:fontFamily="@font/sejonghospital"
 
         android:drawablePadding="10dp"
         android:ems="5"
@@ -64,13 +62,9 @@
         android:layout_marginLeft="64dp"
         android:layout_marginTop="408dp"
         android:layout_marginRight="56dp"
-        android:fontFamily="@font/sejonghospital"
         android:background="@drawable/password_edit_text_background"
-<<<<<<< HEAD
-=======
         android:hint="YYMMDD"
         android:textColorHint="#EDEDED"
->>>>>>> 6373797fd64a1809c37dd524177a746d5b0ed89e
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="datetime"
@@ -90,7 +84,6 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="생년월일"
         android:textAlignment="textStart"
-        android:fontFamily="@font/sejonghospital"
         android:textAppearance="@style/name"
         android:textStyle="bold" />
 
@@ -104,8 +97,8 @@
         android:layout_marginLeft="64dp"
         android:layout_marginTop="346dp"
         android:layout_marginRight="56dp"
-        android:fontFamily="@font/sejonghospital"
         android:background="@drawable/password_edit_text_background"
+
         android:drawablePadding="10dp"
         android:ems="10"
         android:inputType="text|textPassword"
@@ -122,7 +115,6 @@
         android:layout_marginTop="326dp"
         android:layout_marginRight="274dp"
         android:gravity="center_horizontal|center_vertical"
-        android:fontFamily="@font/sejonghospital"
         android:text="비밀번호"
         android:textAlignment="textStart"
         android:textAppearance="@style/name"
@@ -137,7 +129,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="287dp"
-        android:fontFamily="@font/sejonghospital"
         android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
 
@@ -157,7 +148,6 @@
         android:layout_marginTop="266dp"
         android:layout_marginRight="284dp"
         android:gravity="center_horizontal|center_vertical"
-        android:fontFamily="@font/sejonghospital"
         android:text="이메일"
         android:textAlignment="textStart"
         android:textAppearance="@style/name"
@@ -174,7 +164,6 @@
         android:layout_marginTop="207dp"
         android:layout_marginRight="295dp"
         android:gravity="center_horizontal|center_vertical"
-        android:fontFamily="@font/sejonghospital"
         android:text="이름"
         android:textAlignment="textStart"
         android:textAppearance="@style/name"
@@ -191,12 +180,8 @@
         android:layout_marginTop="472dp"
         android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
-<<<<<<< HEAD
-        android:fontFamily="@font/sejonghospital"
-=======
         android:hint="01012345678"
         android:textColorHint="#EDEDED"
->>>>>>> 6373797fd64a1809c37dd524177a746d5b0ed89e
         android:drawablePadding="10dp"
         android:ems="5"
         android:inputType="phone"
@@ -213,7 +198,6 @@
         android:layout_marginTop="451dp"
         android:layout_marginRight="260dp"
         android:gravity="center_horizontal|center_vertical"
-        android:fontFamily="@font/sejonghospital"
         android:text="연락처"
         android:textAlignment="textStart"
         android:textAppearance="@style/name"
