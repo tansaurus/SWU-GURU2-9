@@ -10,7 +10,7 @@ class NoNaviActivity : AppCompatActivity() {
         setContentView(R.layout.activity_nonavi)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainer, SchedulRegisterFragment())
+        fragmentTransaction.replace(R.id.fragmentContainer, ScheduleRegisterFragment())
         fragmentTransaction.commit()
 
         // addToBackStack을 사용하면 백 스택에 프래그먼트를 추가할 수 있습니다.

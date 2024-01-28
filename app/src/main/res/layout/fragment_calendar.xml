@@ -7,7 +7,105 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".CalendarFragment" >
+    tools:context=".ScheduleRegisterFragment" >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/schedulelistView"
+        android:layout_width="408dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="480dp" />
+
+    <EditText
+        android:id="@+id/contextEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="-14dp"
+        android:background="@drawable/inputcontent"
+        android:drawableLeft="@drawable/comment"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="날짜를 선택하고, 일정을 등록하세요"
+        android:inputType="text"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/sejonghospital"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/newEntryEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="-14dp"
+        android:background="@drawable/inputcontent"
+        android:drawableLeft="@drawable/comment"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:fontFamily="@font/sejonghospital"
+        android:hint="새로운 일정 내용"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="#CFCACA"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerButton"
+        android:layout_width="50dp"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="330dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="10dp"
+
+        android:fontFamily="@font/sejonghospitalbold"
+        android:text="등록"
+        android:background="@drawable/purplebar" />
+
+    <TextView
+        android:id="@+id/delupdateTextView"
+        android:layout_width="165dp"
+        android:layout_height="27dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="450dp"
+        android:fontFamily="@font/sejonghospital"
+        android:text="목록 터치시 삭제/수정"
+        android:textColor="#B2AFABAB"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/DateView"
+        android:layout_width="165dp"
+        android:layout_height="27dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="628dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/titleImageView"
@@ -19,68 +117,42 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="102dp"
         android:src="@drawable/title_small_image" />
-    <FrameLayout
-        android:id="@+id/starting_view"
-        android:layout_width="397dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-
-        android:tag="starting_view"
-        >
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="374dp"
-            android:layout_height="320dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-10dp"
-            android:layout_marginEnd="8dp"
-            tools:layout_editor_absoluteY="100dp" />
-
-        <TextView
-            android:id="@+id/diaryTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/calendarView"
-            android:layout_marginTop="-180dp"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:visibility="invisible" />
 
 
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="24dp"
-
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="294dp"
-            android:layout_marginBottom="108dp"
-            android:text="일정 등록"
-            android:textAlignment="viewEnd"
-            android:textSize="18sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registerPageButton"
-            android:layout_width="21dp"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="297dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginBottom="108dp"
-            android:background="@drawable/plus" />
-
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/ending_view"
+    <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="406dp"
-        android:background="@drawable/layout"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:id="@+id/diaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:layout_marginTop="-180dp"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="invisible" />
+
+
+<!--    <TextView-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="24dp"-->
+
+<!--        android:layout_marginStart="250dp"-->
+<!--        android:layout_marginTop="294dp"-->
+<!--        android:layout_marginBottom="108dp"-->
+<!--        android:text="일정 등록"-->
+<!--        android:textAlignment="viewEnd"-->
+<!--        android:textSize="18sp" />-->
+
+
+
+
+
 
 
         <!--        <androidx.appcompat.widget.AppCompatButton-->
@@ -93,20 +165,10 @@
         <!--            android:textAlignment="center"-->
         <!--            tools:ignore="SpeakableTextPresentCheck" />-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/schedulelistView"
-            android:layout_width="379dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="15dp" />
 
 
-    </FrameLayout>
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/contextEditText"/>
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -118,61 +180,12 @@
         android:layout_marginStart="8dp"
         android:visibility="invisible"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="달력일기장"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#9E28B3"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/save_Btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="저장"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-         />
 
-    <Button
-        android:text="수정"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/cha_Btn"
-        app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/del_Btn"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:visibility="invisible"/>
-    <Button
-        android:text="삭제"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/del_Btn"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn"
-        app:layout_constraintEnd_toEndOf="@+id/save_Btn"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:visibility="invisible">
 
-    </Button>
+
+
+
 
 </RelativeLayout>
