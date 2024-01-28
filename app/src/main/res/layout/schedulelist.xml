@@ -2,40 +2,55 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/scheduletheme"
+    android:layout_height="60dp"
+
     android:padding="16dp">
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageView
         android:id="@+id/minusButton"
 
         android:layout_width="30dp"
         android:layout_height="30dp"
 
         android:layout_marginLeft="320dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/minus"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/pill"
         android:clipToOutline="true" />
 
     <TextView
         android:id="@+id/ScheduleTextView"
-        android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_width="256dp"
+        android:layout_height="20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:text="아이템 텍스트"
-        android:textSize="20sp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ScheduleDateView"
+        android:layout_width="256dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:textAlignment="viewStart"
+        android:textSize="8sp"
         android:textStyle="bold" />
 
     <View
         android:id="@+id/ScheduleBar"
         android:layout_width="10dp"
         android:layout_height="89dp"
-        android:background="@drawable/schedulebar"
+        android:background="@drawable/listbar"
         android:elevation="21.82dp" />
 
 </FrameLayout>

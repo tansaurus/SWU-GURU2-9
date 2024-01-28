@@ -110,6 +110,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation("com.google.gms:google-services:4.4.0")
 
-
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("com.github.xabaras:RecyclerViewSwipeDecorator:1.4")
 
 }

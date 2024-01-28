@@ -10,5 +10,6 @@
     chevron-left
 </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_api_key">\"AIzaSyB35xr5X6F1-1pwjiLlzMY1xgPFM4chEJg\"</string>
 
 </resources>
