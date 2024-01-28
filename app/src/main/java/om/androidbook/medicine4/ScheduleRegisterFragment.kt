@@ -2,6 +2,8 @@ package om.androidbook.medicine4
 
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +31,9 @@ class ScheduleRegisterFragment : Fragment() {
     private var selectedYear: Int = 0
     private var selectedMonth: Int = 0
     private var selectedDayOfMonth: Int = 0
+    private var doubleBackToExitPressedOnce = false
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +41,7 @@ class ScheduleRegisterFragment : Fragment() {
         // Fragment의 레이아웃을 inflate하여 반환
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,6 +90,21 @@ class ScheduleRegisterFragment : Fragment() {
 //            updateRecyclerView(selectedDate)
             DateView.text=""
         }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                requireActivity().finish()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(requireContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
+        }
 
 
 
@@ -106,42 +128,8 @@ class ScheduleRegisterFragment : Fragment() {
         }
 
 
-
-
-//        deleteButton.setOnClickListener {
-//            val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(calendarView.date))
-//            val entry = contextEditText.text.toString()
-//
-//            if (deleteEntryFromDiary(formattedDate, entry)) {
-//                // 삭제 성공
-//                updateRecyclerView(formattedDate)
-//                contextEditText.setText("")
-//                Toast.makeText(requireContext(), "일정이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-//            } else {
-//                // 삭제 실패
-//                Toast.makeText(requireContext(), "일정 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        // 수정 버튼 클릭 시
-//        modifyButton.setOnClickListener {
-//            val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(calendarView.date))
-//            newEntryEditText.visibility = View.VISIBLE
-//            val oldEntry = contextEditText.text.toString()
-//            val newEntry = newEntryEditText.text.toString()
-//
-//            if (updateEntryInDiary(formattedDate, oldEntry, newEntry)) {
-//                // 수정 성공
-//                updateRecyclerView(formattedDate)
-//                contextEditText.setText("")
-//                newEntryEditText.setText("")
-//                Toast.makeText(requireContext(), "일정이 수정되었습니다.", Toast.LENGTH_SHORT).show()
-//            } else {
-//                // 수정 실패
-//                Toast.makeText(requireContext(), "일정 수정에 실패했습니다.", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
+
 
     private fun updateRecyclerView(selectedDate: String) {
         val entries = getEntriesForDate(selectedDate)
@@ -250,6 +238,5 @@ class ScheduleRegisterFragment : Fragment() {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
-
 
 }
