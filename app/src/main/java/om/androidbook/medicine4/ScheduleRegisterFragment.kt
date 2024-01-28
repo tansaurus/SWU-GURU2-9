@@ -47,7 +47,6 @@ class ScheduleRegisterFragment : Fragment() {
         val contextEditText = view.findViewById<EditText>(R.id.contextEditText)
         val newEntryEditText = view.findViewById<EditText>(R.id.newEntryEditText)
         val registerButton = view.findViewById<Button>(R.id.registerButton)
-
         val DateView = view.findViewById<TextView>(R.id.DateView)
         val currentDate = getCurrentDate()
         DateView.text = currentDate
@@ -81,7 +80,7 @@ class ScheduleRegisterFragment : Fragment() {
             updateRecyclerView(selectedDate)
             scheduleAdapter.filterByDate(selectedDate)
 //            updateRecyclerView(selectedDate)
-//            DateView.setText(selectedDate)
+            DateView.text=""
         }
 
 
@@ -91,6 +90,7 @@ class ScheduleRegisterFragment : Fragment() {
             val selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
                 GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
             )
+
 //            val selectedDate = contextEditText.text.toString() // 캘린더에서 선택된 날짜로 변경
             val entry = contextEditText.text.toString()
 

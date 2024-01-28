@@ -30,7 +30,7 @@
         android:drawableLeft="@drawable/comment"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="일정을 등록하세요"
+        android:hint="날짜를 먼저 선택하고, 일정을 등록하세요"
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +76,20 @@
         android:text="등록"
         android:background="@drawable/purplebar" />
 
+    <TextView
+        android:id="@+id/delupdateTextView"
+        android:layout_width="165dp"
+        android:layout_height="27dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="450dp"
+        android:fontFamily="@font/sejonghospital"
+        android:text="목록 터치시 삭제/수정"
+        android:textColor="#B2AFABAB"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/DateView"
