@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632184945027",
+    "project_id": "yageum",
+    "storage_bucket": "yageum.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632184945027:android:03305485b9114279075eb6",
+        "android_client_info": {
+          "package_name": "om.androidbook.medicine4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBFuupwOidlDn_-QrgM8T70HeKeM8AEPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
