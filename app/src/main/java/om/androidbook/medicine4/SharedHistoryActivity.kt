@@ -22,11 +22,6 @@ class SharedHistoryActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.serchView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // DBHelper를 사용하여 검색 기록을 불러옴
-        val searchHistory = dbHelper.getSearchHistory()
 
-        // SearchHistoryAdapter를 사용하여 RecyclerView에 데이터를 연결
-        searchHistoryAdapter = SearchHistoryAdapter(searchHistory)
-        recyclerView.adapter = searchHistoryAdapter
     }
 }

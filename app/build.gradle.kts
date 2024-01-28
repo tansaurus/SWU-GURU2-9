@@ -111,5 +111,12 @@ dependencies {
     implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
     implementation("com.google.flogger:flogger:0.6")
 
+<<<<<<< HEAD
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("com.github.xabaras:RecyclerViewSwipeDecorator:1.4")
 
 }
+=======
+
+}
+>>>>>>> 6373797fd64a1809c37dd524177a746d5b0ed89e

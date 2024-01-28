@@ -33,7 +33,7 @@ class NaviActivity : AppCompatActivity() {
                 R.id.homeFragment -> setFragment(TAG_HOME, HomeFragment())
                 R.id.pharmacyFragment -> setFragment(TAG_PHARMACY, PharmacyFragment())
                 R.id.uploadFragment -> setFragment(TAG_UPLOAD, UploadFragment())
-                R.id.managementFragment -> setFragment(TAG_MANAGEMENT, CalendarFragment())
+                R.id.managementFragment -> setFragment(TAG_MANAGEMENT, ScheduleRegisterFragment())
                 R.id.mypageFragment -> setFragment(TAG_MYPAGE, MypageFragment())
             }
             true
