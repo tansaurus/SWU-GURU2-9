@@ -16,6 +16,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="37dp"
         android:layout_marginRight="35dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/title_big_image"
         app:srcCompat="@drawable/title_big_image" />
 
@@ -26,8 +27,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="54dp"
-        android:layout_marginTop="196dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/email_edit_text_background"
         android:drawableStart="@drawable/baseline_perm_identity_24"
         android:drawablePadding="10dp"
@@ -44,8 +47,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="54dp"
-        android:layout_marginTop="235dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginRight="56dp"
         android:background="@drawable/password_edit_text_background"
         android:drawableStart="@drawable/baseline_password_24"
         android:drawablePadding="10dp"
@@ -63,9 +68,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="282dp"
-        android:layout_marginRight="38dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginRight="37dp"
         android:background="@drawable/login_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -78,8 +83,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_marginLeft="37dp"
-        android:layout_marginTop="331dp"
-        android:layout_marginRight="38dp"
+        android:layout_marginTop="371dp"
+        android:layout_marginRight="37dp"
         android:background="@drawable/join_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -92,35 +97,9 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="383dp"
-        android:layout_marginRight="161dp"
+        android:layout_marginTop="426dp"
+        android:layout_marginRight="160dp"
         android:background="@drawable/forgot_button_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/naverLoginButton"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="38dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="38dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="515dp"
-        android:background="@drawable/naver_login_button_background"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/kakaoLoginButton"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="562dp"
-        android:layout_marginRight="38dp"
-        android:background="@drawable/kakao_login_button_background"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

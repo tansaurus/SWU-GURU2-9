@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
 
 class DBHelper(
     context: Context,
@@ -24,18 +23,24 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"  // 변경된 데이터베이스 파일 이름
-        private const val DATABASE_VERSION = 3
+        private const val DATABASE_VERSION = 5
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
     }
 
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-    }
-
-
-
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < newVersion) {
+            db.execSQL(
+                "CREATE TABLE IF NOT EXISTS dose_info (" +
+                        "NAME TEXT NOT NULL, " +
+                        "COUNT INTEGER NOT NULL, " +
+                        "EMAIL TEXT NOT NULL, " +
+                        "PRIMARY KEY(NAME));"
+                    )
+            }
+        }
 
 
     @Throws(IOException::class)
@@ -52,6 +57,21 @@ class DBHelper(
             outputStream.flush()
             outputStream.close()
         }
+    }
+
+    fun insertDose(useremail: String, name: String, count: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("NAME", name)
+            put("EMAIL", useremail)
+            put("COUNT", count)
+        }
+
+        val result = db.insert("dose_info", null, contentValues)
+        db.close()
+
+        // insert 메서드는 새로 추가된 행의 row ID를 반환하며, 오류 발생 시 -1을 반환합니다.
+        return result != -1L
     }
 
     fun getDrugInfo(context: Context, drugName: String): Cursor? {
