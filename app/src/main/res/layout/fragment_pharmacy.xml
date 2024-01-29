@@ -1,15 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!-- 타이틀 로고 사진 -->
+    <ImageView
+        android:id="@+id/titleImageView"
+        android:layout_width="211dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="102dp"
+        android:src="@drawable/title_small_image" />
 
     <!-- Google MapView -->
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="87dp"
+        android:layout_marginBottom="76dp" />
 
-    <!-- 여기에 추가 UI 요소를 배치할 수 있습니다. 예를 들면, 검색 버튼이나 정보 표시 부분 등 -->
+    <!-- 약국 상세 정보 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pharmacyInfoLayout"
+        android:layout_width="340dp"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="119dp"
+        android:background="@drawable/pharmacy_info_background"
+        android:visibility="invisible">
+
+        <!-- 약국 이미지 -->
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/pharmacy_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 약국 이름 -->
+        <TextView
+            android:id="@+id/pharmacyNameTextView"
+            android:layout_width="210dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="22.7dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/sejonghospitalbold"
+            android:text="약국"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 약국 상세 주소 -->
+        <TextView
+            android:id="@+id/pharmacyAddressTextView"
+            android:layout_width="210dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/sejonghospital"
+            android:text="상세 주소"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pharmacyNameTextView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!-- 약국 전화번호 -->
+        <TextView
+            android:id="@+id/pharmacyCallTextView"
+            android:layout_width="210dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pharmacyAddressTextView"
+            android:drawableStart="@drawable/baseline_call_12"
+            android:drawableTint="#789BC7"
+            android:drawablePadding="7dp"
+            android:fontFamily="@font/sejonghospital"
+            android:text="전화번호"
+            android:textSize="11sp"
+            android:textColor="#789BC7"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
