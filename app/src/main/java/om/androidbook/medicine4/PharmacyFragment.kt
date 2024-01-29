@@ -2,6 +2,8 @@ package om.androidbook.medicine4
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Bundle
 import android.os.Handler
@@ -269,11 +271,14 @@ class PharmacyFragment : Fragment(), OnMapReadyCallback,
 
     private fun addMarkerForPlace(place: Place) {
         lifecycleScope.launchWhenCreated {
+            val originalMarker = BitmapFactory.decodeResource(resources, R.drawable.marker_background) // 원본 마커 이미지
+            val scaledMarker = Bitmap.createScaledBitmap(originalMarker, 128, 128, false) // 크기 조절
+
             val marker = googleMap.addMarker(
                 MarkerOptions()
                     .title(place.name)
                     .position(place.latLng!!)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                    .icon(BitmapDescriptorFactory.fromBitmap(scaledMarker))
             )
             // 마커의 태그로 placeId 설정
             if (marker != null) {
