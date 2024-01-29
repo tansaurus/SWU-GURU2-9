@@ -134,7 +134,12 @@ class ImageDisplayActivity : AppCompatActivity() {
                 val maxDailyDosage = cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))
                 val ingredientName = cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))
                 val contraindications = cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))
-
+                // 데이터베이스에서 정보를 읽어와서 문자열로 변환
+//                val info = "약품명: ${cursor.getString(cursor.getColumnIndex("DRUG_NAME"))}\n\n" +
+//                        "효능군: ${cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))}\n\n" +
+//                        "1일 최대투여량: ${cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))}\n\n" +
+//                        "같이 복용하면 안되는 성분명: ${cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))}\n\n" +
+//                        "금기사유: ${cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))}"
                 cursor.close()
                 val drugNameTextView = findViewById<TextView>(R.id.drugNameTextView)
                 drugNameTextView.text = "$drugName" // 약품명
