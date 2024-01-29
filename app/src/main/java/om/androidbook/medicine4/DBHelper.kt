@@ -24,7 +24,7 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"
-        private const val DATABASE_VERSION = 6
+        private const val DATABASE_VERSION = 8
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -124,6 +124,12 @@ class DBHelper(
 
         // 새로운 테이블 생성
         onCreate(db)
+
+        db.execSQL("DROP TABLE IF EXISTS Cart")
+        db.execSQL("DROP TABLE IF EXISTS Authority")
+        db.execSQL("DROP TABLE IF EXISTS DrugSearch")
+        db.execSQL("DROP TABLE IF EXISTS OrderTable")
+
     }
 
     @Throws(IOException::class)
@@ -290,47 +296,6 @@ class DBHelper(
 
 
 
-    @SuppressLint("Range")
-    fun getRecognizedDrugsList(): List<Medicine> {
-        val medicinesList = mutableListOf<Medicine>()
-        val db = this.readableDatabase
-        val cursor = db.query("recognized_medicines", null, null, null, null, null, null)
-
-        if (cursor.moveToFirst()) {
-            do {
-                val id = cursor.getInt(cursor.getColumnIndex("AUTH_ID"))
-                val drugName = cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
-                val therapeuticGroup = cursor.getString(cursor.getColumnIndex("THERAPEUTIC_GROUP"))
-                val maxDailyDosage = cursor.getString(cursor.getColumnIndex("MAX_DAILY_DOSAGE"))
-                val ingredientName = cursor.getString(cursor.getColumnIndex("INGREDIENT_NAME"))
-                val contraindications = cursor.getString(cursor.getColumnIndex("CONTRAINDICATIONS"))
-
-                val medicine = Medicine(id, drugName, therapeuticGroup, maxDailyDosage, ingredientName, contraindications)
-                medicinesList.add(medicine)
-            } while (cursor.moveToNext())
-        }
-
-        cursor.close()
-        db.close()
-        return medicinesList
-    }
-
-    fun getRecentMedicines(): List<Medicine> {
-        val list = mutableListOf<Medicine>()
-        val db = this.readableDatabase
-        // 예시 쿼리: 가장 최근 검색된 1개의 약 정보를 가져옵니다.
-        val cursor = db.query("recognized_medicines", null, null, null, null, null, "search_time DESC", "1")
-
-        if (cursor.moveToFirst()) {
-            do {
-                // 여기서 컬럼 인덱스 또는 이름을 사용하여 Medicine 객체 생성
-                // 예: cursor.getString(cursor.getColumnIndex("DRUG_NAME"))
-                // ...
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return list
-    }
 
 
     @SuppressLint("Range")
