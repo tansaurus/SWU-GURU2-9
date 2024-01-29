@@ -28,7 +28,22 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 "회원정보를 전부 입력해주세요",
                 Toast.LENGTH_SHORT
             ).show() else{
+                // 비밀번호 찾기
                 val foundPW = DB!!.foundPW(email, phonenumber)
+                var name: String? = null
+
+                // DB에서 현재 사용자의 정보 가져오기
+                val userInfoCursor = DB!!.getUserInfoByEmail(email.toString())
+                if(userInfoCursor != null && userInfoCursor.moveToFirst()) {
+
+                    val usernameIndex = userInfoCursor.getColumnIndex("USERNAME")
+                    if (usernameIndex != -1) {
+                        name = userInfoCursor.getString(usernameIndex)
+                    } else {
+                        name = null
+                    }
+                }
+
                 if(foundPW == null){
                     Toast.makeText(this@ForgotPasswordActivity, "이메일로 가입된 정보가 없습니다.", Toast.LENGTH_SHORT)
                         .show()
@@ -36,6 +51,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 else{
                     val intent = Intent(applicationContext, FindPasswordActivity::class.java)
                     intent.putExtra("password", foundPW)
+                    intent.putExtra("name", name)
                     startActivity(intent)
                 }
             }
