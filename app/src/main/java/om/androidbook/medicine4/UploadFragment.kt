@@ -9,12 +9,15 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,6 +30,7 @@ import java.io.IOException
 @Suppress("DEPRECATION")
 class UploadFragment : Fragment() {
 
+    private var doubleBackToExitPressedOnce = false
     companion object {
         private const val REQUEST_CODE_CAMERA_PERMISSION = 100
     }
@@ -56,6 +60,21 @@ class UploadFragment : Fragment() {
         // 갤러리 버튼 클릭 시 이벤트
         btnGallery.setOnClickListener {
             openGallery()
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                requireActivity().finishAffinity()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(requireContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
         }
     }
 

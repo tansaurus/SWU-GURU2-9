@@ -4,12 +4,15 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -49,7 +52,7 @@ class PharmacyFragment : Fragment(), OnMapReadyCallback,
     private lateinit var pharmacyAddressTextView: TextView
     private lateinit var pharmacyCallTextView: TextView
     private var lastClickedMarker: Marker? = null
-
+    private var doubleBackToExitPressedOnce = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +67,21 @@ class PharmacyFragment : Fragment(), OnMapReadyCallback,
         pharmacyAddressTextView = view.findViewById<TextView>(R.id.pharmacyAddressTextView)
         pharmacyCallTextView = view.findViewById<TextView>(R.id.pharmacyCallTextView)
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                requireActivity().finishAffinity()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(requireContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
+        }
         return view
     }
     override fun onMapsSdkInitialized(renderer: MapsInitializer.Renderer) {

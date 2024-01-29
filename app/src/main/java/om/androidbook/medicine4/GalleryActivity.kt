@@ -2,22 +2,23 @@ package om.androidbook.medicine4
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import java.io.IOException
-import java.util.Arrays
 
 class GalleryActivity : AppCompatActivity() {
 
+    private var doubleBackToExitPressedOnce = false
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -34,6 +35,22 @@ class GalleryActivity : AppCompatActivity() {
 
         // 갤러리 열기
         openGallery()
+        onBackPressedDispatcher.addCallback(this@GalleryActivity) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                isEnabled = false // 콜백을 비활성화
+                finishAffinity()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(this@GalleryActivity, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
+        }
     }
 
     private fun openGallery() {
