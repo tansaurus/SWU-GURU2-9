@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.libraries.places.api.Places
 import om.androidbook.medicine4.databinding.ActivityMainBinding
@@ -14,7 +16,7 @@ import om.androidbook.medicine4.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding // ViewBinding을 사용하기 위한 바인딩 선언
-
+    private var doubleBackToExitPressedOnce = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,6 +42,22 @@ class MainActivity : AppCompatActivity() {
             finish()
 
         }, 3000) // 시간 3초 이후 실행
+        onBackPressedDispatcher.addCallback(this@MainActivity) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                isEnabled = false // 콜백을 비활성화
+                finishAffinity()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(this@MainActivity, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
+        }
 
     }
 

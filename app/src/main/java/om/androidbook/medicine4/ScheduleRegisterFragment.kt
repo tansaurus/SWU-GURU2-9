@@ -93,7 +93,7 @@ class ScheduleRegisterFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (doubleBackToExitPressedOnce) {
                 // 앱 종료 로직을 추가할 수 있습니다.
-                requireActivity().finish()
+                requireActivity().finishAffinity()
             } else {
                 // 첫 번째 뒤로가기 버튼 클릭
                 Toast.makeText(requireContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()

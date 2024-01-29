@@ -2,23 +2,26 @@ package om.androidbook.medicine4
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ImageDisplayActivity : AppCompatActivity() {
     private lateinit var dbHelper: DBHelper
     private lateinit var textView: TextView
+    private var doubleBackToExitPressedOnce = false
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,6 +105,23 @@ class ImageDisplayActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, NaviActivity::class.java)
             startActivity(intent)
         }
+        onBackPressedDispatcher.addCallback(this@ImageDisplayActivity) {
+            if (doubleBackToExitPressedOnce) {
+                // 앱 종료 로직을 추가할 수 있습니다.
+                isEnabled = false // 콜백을 비활성화
+                finishAffinity()
+            } else {
+                // 첫 번째 뒤로가기 버튼 클릭
+                Toast.makeText(this@ImageDisplayActivity, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                doubleBackToExitPressedOnce = true
+
+                // 2초 동안 변수 초기화를 위한 핸들러
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+            }
+        }
+
     }
     @SuppressLint("Range")
     private fun searchDrugInfo(drugName: String) {

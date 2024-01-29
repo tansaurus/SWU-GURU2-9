@@ -1,17 +1,10 @@
 package om.androidbook.medicine4
 
-import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import om.androidbook.medicine4.databinding.ActivitySignupBinding
-import android.content.Intent
-import android.content.pm.PackageManager
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 
 class SignupActivity : AppCompatActivity() {
 
@@ -23,7 +16,6 @@ class SignupActivity : AppCompatActivity() {
         signupBinding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(signupBinding.root)
         DB = DBHelper(this, "DRUG_INFO", null, 3)
-
 
 
         signupBinding.joinButton.setOnClickListener {
@@ -67,7 +59,11 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
 //
 }
+
+
+
