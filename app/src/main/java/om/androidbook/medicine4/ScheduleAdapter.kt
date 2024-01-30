@@ -13,36 +13,26 @@ class ScheduleAdapter(private val onItemClickListener: OnItemClickListener) :
     private var entries: List<ScheduleEntry> = emptyList()
     private var filteredEntries: List<ScheduleEntry> = emptyList()
     private var selectedDate: String = ""
+    private var selectedUserEmail: String = ""
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.schedulelist, parent, false)
         return ScheduleViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
-
         val entry = filteredEntries[position]
-
+        holder.emailTextView.text = entry.email
         holder.dateTextView.text = entry.date
         holder.entriesTextView.text = entry.entries.joinToString("\n")
-//        holder.dateTextView.text = entry.date
-//        holder.entriesTextView.text = entry.entries.joinToString("\n")
 
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(entry)
         }
-
-        // 삭제 버튼 클릭 시
-//        holder.deleteButton.setOnClickListener {
-//            onItemClickListener.onDeleteClick(entry)
-//        }
-//
-//        // 수정 버튼 클릭 시
-//        holder.updateButton.setOnClickListener {
-//            onItemClickListener.onUpdateClick(entry)
-//        }
     }
 
     override fun getItemCount(): Int {
+        Log.d("ItemCountDebug", "Item Count: ${filteredEntries.size}")
         return filteredEntries.size
     }
 
@@ -52,6 +42,17 @@ class ScheduleAdapter(private val onItemClickListener: OnItemClickListener) :
         notifyDataSetChanged()
     }
 
+    fun filterByDate(selectedDate: String, userEmail: String) {
+        this.selectedDate = selectedDate
+        this.selectedUserEmail = userEmail
+        Log.d("FilterDebug", "Selected Date: $selectedDate, User Email: $userEmail")
+        updateFilteredEntries()
+        notifyDataSetChanged()
+    }
+    private fun updateFilteredEntries() {
+        filteredEntries = entries.filter { it.date == selectedDate && it.email == selectedUserEmail }.toMutableList()
+        notifyDataSetChanged()
+    }
     interface OnItemClickListener {
         fun onItemClick(entry: ScheduleEntry)
         fun onDeleteClick(entry: ScheduleEntry)
@@ -59,19 +60,8 @@ class ScheduleAdapter(private val onItemClickListener: OnItemClickListener) :
     }
 
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val emailTextView: TextView = itemView.findViewById(R.id.ScheduleEmailView)
         val dateTextView: TextView = itemView.findViewById(R.id.ScheduleDateView)
         val entriesTextView: TextView = itemView.findViewById(R.id.ScheduleTextView)
-
-    }
-    fun filterByDate(selectedDate: String) {
-        this.selectedDate = selectedDate
-        updateFilteredEntries()
-        notifyDataSetChanged()
-        Log.d("ScheduleAdapter", "filterByDate - Selected Date: $selectedDate, Filtered Entries: $filteredEntries")
-    }
-
-    private fun updateFilteredEntries() {
-        filteredEntries = entries.filter { it.date == selectedDate }
-        Log.d("ScheduleAdapter", "updateFilteredEntries - Selected Date: $selectedDate, Filtered Entries: $filteredEntries")
     }
 }

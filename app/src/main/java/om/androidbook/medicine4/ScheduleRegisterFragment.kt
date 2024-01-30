@@ -26,8 +26,9 @@ import java.util.Locale
 class ScheduleRegisterFragment : Fragment() {
 
     private lateinit var calendarView: CalendarView
-    private lateinit var scheduleManager: ScheduleManagement
+    private lateinit var scheduleManager: DBHelper
     private lateinit var scheduleAdapter: ScheduleAdapter
+    private lateinit var userEmail: String
     private var selectedYear: Int = 0
     private var selectedMonth: Int = 0
     private var selectedDayOfMonth: Int = 0
@@ -38,37 +39,26 @@ class ScheduleRegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Fragment의 레이아웃을 inflate하여 반환
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ScheduleManager 초기화
-        scheduleManager = ScheduleManagement(requireContext())
+        scheduleManager = DBHelper(requireContext(), "DRUG_INFO.db", null, 9)
+        userEmail = LoginActivity().getLoggedInUserEmail(requireContext()) ?: ""
 
         calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val recyclerView = view.findViewById<RecyclerView>(R.id.schedulelistView)
         val contextEditText = view.findViewById<EditText>(R.id.contextEditText)
         val newEntryEditText = view.findViewById<EditText>(R.id.newEntryEditText)
         val registerButton = view.findViewById<Button>(R.id.registerButton)
-
-        // 선택 날짜를 기본적으로 오늘 날짜로 초기화
-        val today = Calendar.getInstance()
-        selectedYear = today.get(Calendar.YEAR)
-        selectedMonth = today.get(Calendar.MONTH)
-        selectedDayOfMonth = today.get(Calendar.DAY_OF_MONTH)
-
         val DateView = view.findViewById<TextView>(R.id.DateView)
         val currentDate = getCurrentDate()
         DateView.text = currentDate
 
-        // ScheduleAdapter 초기화
         scheduleAdapter = ScheduleAdapter(object : ScheduleAdapter.OnItemClickListener {
             override fun onItemClick(entry: ScheduleEntry) {
-                // 아이템 클릭 시 수행할 동작
                 showOptionsDialog(entry)
             }
 
@@ -80,15 +70,10 @@ class ScheduleRegisterFragment : Fragment() {
                 showEditDialog(entry)
             }
         })
-        scheduleManager = ScheduleManagement(requireContext())
+
         recyclerView.adapter = scheduleAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // 일정 나타내기
         updateRecyclerView(currentDate)
-        scheduleAdapter.filterByDate(currentDate)
-
-        DateView.text = currentDate
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             selectedYear = year
@@ -98,69 +83,58 @@ class ScheduleRegisterFragment : Fragment() {
                 GregorianCalendar(year, month, dayOfMonth).time
             )
             updateRecyclerView(selectedDate)
-            scheduleAdapter.filterByDate(selectedDate)
-
-            DateView.text=""
+            scheduleAdapter.filterByDate(selectedDate, userEmail)
+            DateView.text = ""
         }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (doubleBackToExitPressedOnce) {
-                // 앱 종료 로직을 추가할 수 있습니다.
                 requireActivity().finishAffinity()
             } else {
-                // 첫 번째 뒤로가기 버튼 클릭
                 Toast.makeText(requireContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
                 doubleBackToExitPressedOnce = true
 
-                // 2초 동안 변수 초기화를 위한 핸들러
                 Handler(Looper.getMainLooper()).postDelayed({
                     doubleBackToExitPressedOnce = false
                 }, 2000)
             }
         }
 
-
-
-        // 등록 버튼을 눌렀을 때
         registerButton.setOnClickListener {
             val selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
                 GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
             )
-//            val selectedDate = contextEditText.text.toString() // 캘린더에서 선택된 날짜로 변경
             val entry = contextEditText.text.toString()
 
-            // 입력하지 않은 일정이 있을 경우 토스트 메시지를 띄우고 리턴
-            if (entry.isEmpty()) {
-                Toast.makeText(requireContext(), "일정을 입력해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            if (entry.isNotEmpty()) {
+                val existingEntries = getEntriesForDateAndUser(userEmail, selectedDate)
+
+                // 이미 해당 날짜에 일정이 존재하는지 확인
+                if (!existingEntries.any { it.entries.contains(entry) }) {
+                    // 중복되지 않은 경우에만 추가
+                    scheduleManager.saveDiaryEntryForUser(userEmail, selectedDate, entry)
+                    updateRecyclerView(selectedDate)
+                    DateView.setText("")
+                    Toast.makeText(requireContext(), "일정이 추가되었습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "이미 같은 일정이 존재합니다.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "일정을 입력하세요.", Toast.LENGTH_SHORT).show()
             }
 
-            // 해당 날짜의 일정 목록에 추가
-            saveEntryToDiary(selectedDate, entry)
-            updateRecyclerView(selectedDate)
-
-            DateView.setText("")
-            Toast.makeText(requireContext(), "일정이 추가되었습니다.", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 
-
     private fun updateRecyclerView(selectedDate: String) {
-        val entries = getEntriesForDate(selectedDate)
+        val entries = scheduleManager.getDiaryEntriesForUserAndDate(userEmail, selectedDate)
+            .map { ScheduleEntry(userEmail, selectedDate, mutableListOf(it)) }
         scheduleAdapter.submitList(entries)
     }
 
-    private fun saveEntryToDiary(date: String, entry: String) {
-        scheduleManager.saveDiaryEntry(date, entry)
-    }
-
-    private fun deleteEntryFromDiary(date: String, entry: String): Boolean {
-        return scheduleManager.deleteDiaryEntry(date, entry)
-    }
-
-    private fun updateEntryInDiary(date: String, oldEntry: String, newEntry: String): Boolean {
-        return scheduleManager.updateDiaryEntry(date, oldEntry, newEntry)
+    private fun getEntriesForDateAndUser(email: String, date: String): List<ScheduleEntry> {
+        return scheduleManager.getDiaryEntriesForUserAndDate(email, date)
+            .map { ScheduleEntry(email, date, mutableListOf(it)) }
     }
 
     private fun showOptionsDialog(entry: ScheduleEntry) {
@@ -181,38 +155,26 @@ class ScheduleRegisterFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("일정 수정")
 
-        // 다이얼로그에 표시할 뷰 설정 (여기에서는 EditText를 사용)
         val input = EditText(requireContext())
         input.setText(entry.entries.joinToString("\n"))
         builder.setView(input)
 
-        // 확인 버튼 설정
         builder.setPositiveButton("확인") { dialog, _ ->
-            // 다이얼로그에서 입력한 내용 가져오기
             val updatedEntry = input.text.toString()
 
-            // 업데이트할 내용이 비어있지 않은 경우에만 업데이트 수행
             if (updatedEntry.isNotEmpty()) {
-                // ScheduleManager에서 업데이트 수행
                 val date = entry.date
                 val originalEntry = entry.entries[0]
-                scheduleManager.updateDiaryEntry(date, originalEntry, updatedEntry)
-
-                // RecyclerView 업데이트
+                scheduleManager.updateDiaryEntryForUser(userEmail, date, originalEntry, updatedEntry)
                 updateRecyclerView(date)
             }
-
-            // 다이얼로그 닫기
             dialog.dismiss()
         }
 
-        // 취소 버튼 설정
         builder.setNegativeButton("취소") { dialog, _ ->
-            // 다이얼로그 닫기
             dialog.cancel()
         }
 
-        // 다이얼로그 표시
         builder.show()
     }
 
@@ -221,36 +183,24 @@ class ScheduleRegisterFragment : Fragment() {
         builder.setTitle("일정 삭제")
         builder.setMessage("정말로 이 일정을 삭제하시겠습니까?")
 
-        // 확인 버튼 설정
         builder.setPositiveButton("확인") { dialog, _ ->
-            // ScheduleManager에서 삭제 수행
             val date = entry.date
             val entryToDelete = entry.entries[0]
-            scheduleManager.deleteDiaryEntry(date, entryToDelete)
-
-            // RecyclerView 업데이트
+            scheduleManager.deleteDiaryEntryForUserAndDate(userEmail, date, entryToDelete)
             updateRecyclerView(date)
-
-            // 다이얼로그 닫기
             dialog.dismiss()
         }
 
-        // 취소 버튼 설정
         builder.setNegativeButton("취소") { dialog, _ ->
-            // 다이얼로그 닫기
             dialog.cancel()
         }
 
-        // 다이얼로그 표시
         builder.show()
     }
-    private fun getEntriesForDate(date: String): List<ScheduleEntry> {
-        return scheduleManager.getDiaryEntries(date)
-            .map { ScheduleEntry(date, mutableListOf(it)) }
-    }
+
     private fun getCurrentDate(): String {
-        val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val calendar = Calendar.getInstance()
         return dateFormat.format(calendar.time)
     }
 

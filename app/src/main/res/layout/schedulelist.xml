@@ -17,6 +17,20 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/pill"
         android:clipToOutline="true" />
+    <TextView
+        android:id="@+id/ScheduleEmailView"
+        android:layout_width="256dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/sejonghospitalbold"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/ScheduleTextView"
