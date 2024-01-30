@@ -13,13 +13,10 @@ private const val TAG_PHARMACY = "pharmacy_fragment"
 private const val TAG_UPLOAD = "upload_fragment"
 private const val TAG_MANAGEMENT = "management_fragment"
 private const val TAG_MYPAGE = "mypage_fragment"
-private const val TAG_PROFILE_EDIT = "mypage_profile_edit_fragment"
 
 class NaviActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNaviBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +42,14 @@ class NaviActivity : AppCompatActivity() {
     private fun setFragment(tag: String, fragment: Fragment) {
         val manager: FragmentManager = supportFragmentManager
         val fragTransaction = manager.beginTransaction()
+
+        // 애니메이션 추가
+        fragTransaction.setCustomAnimations(
+            R.anim.slide_in_right,
+            R.anim.slide_out_left,
+            R.anim.slide_in_right,
+            R.anim.slide_out_left
+        )
 
         if (manager.findFragmentByTag(tag) == null) {
             fragTransaction.add(R.id.mainFrameLayout, fragment, tag)

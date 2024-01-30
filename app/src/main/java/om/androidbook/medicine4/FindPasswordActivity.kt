@@ -27,6 +27,15 @@ class FindPasswordActivity : AppCompatActivity() {
 
         FindPasswordBinding.passwordTextView.text = "$password"
 
+        // 사용자 닉네임 표시
+        val name = intent.getStringExtra("name")
+        val nameTextView: TextView = FindPasswordBinding.nameTextView
+
+        if (name != null) {
+            nameTextView.text = "$name 님의 비밀번호는"
+        } else {
+            nameTextView.text = "비밀번호는"
+        }
 
         FindPasswordBinding.backLoginButton.setOnClickListener{
             val signupIntent = Intent(this@FindPasswordActivity, LoginActivity::class.java)
