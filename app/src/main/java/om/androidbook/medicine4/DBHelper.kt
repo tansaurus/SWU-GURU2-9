@@ -163,8 +163,8 @@ class DBHelper(
         return result != -1L
     }
 
-    fun getDoseList(userEmail: String): List<dose> {
-        val doseList = mutableListOf<dose>()
+    fun getDoseList(userEmail: String): List<Dose> {
+        val doseList = mutableListOf<Dose>()
         val db = this.readableDatabase
 
         val cursor = db.rawQuery("SELECT * FROM dose_info WHERE EMAIL = ?", arrayOf(userEmail))
@@ -175,7 +175,7 @@ class DBHelper(
 
             do {
                 val name = cursor.getString(nameColumnIndex)
-                val dose = dose(name)
+                val dose = Dose(name)
                 doseList.add(dose)
             } while (cursor.moveToNext())
         }

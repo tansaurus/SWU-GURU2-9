@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,13 +35,16 @@ class HomeFragment : Fragment() {
 
         recyclerView = binding!!.bookmarkListRecyclerView
         homeAdapter = HomeAdapter(object : HomeAdapter.OnItemClickListener {
-            override fun onItemClick(dose: dose) {
+            override fun onItemClick(dose: Dose) {
                 // 리사이클러뷰 아이템 클릭 시 동작
                 // 예: 별도의 화면으로 이동하거나 작업 수행
             }
         })
+        val doseList = listOf(
+            Dose("aa"))
 
         recyclerView.adapter = homeAdapter
+        homeAdapter.setData(doseList.toString())
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // 복약 추가 버튼
@@ -73,9 +77,8 @@ class HomeFragment : Fragment() {
         val userEmail = LoginActivity.loggedInUserEmail
         val dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 6)
         if (userEmail != null) {
-            homeAdapter.setData(userEmail, dbHelper)
-        }
-    }
+            homeAdapter.setData(userEmail)
+        }    }
 
     override fun onDestroyView() {
         super.onDestroyView()
