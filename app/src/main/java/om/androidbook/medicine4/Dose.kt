@@ -1,5 +1,5 @@
 package om.androidbook.medicine4
 
-data class dose (
+data class Dose (
     var  name: String
 )
