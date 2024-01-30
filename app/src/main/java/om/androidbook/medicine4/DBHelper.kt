@@ -24,7 +24,7 @@ class DBHelper(
 
     companion object {
         private const val DATABASE_NAME = "DRUG_INFO.db"
-        private const val DATABASE_VERSION = 8
+        private const val DATABASE_VERSION = 11
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
