@@ -173,13 +173,6 @@ class DBHelper(
 
         return result != -1L
     }
-    fun deleteDose(name: String): Boolean {
-        val db = this.writableDatabase
-        val result = db.delete("dose_info", "NAME = ?", arrayOf(name))
-        db.close()
-
-        return result > 0
-    }
 
     fun getDoseList(userEmail: String): List<Dose> {
         val doseList = mutableListOf<Dose>()
