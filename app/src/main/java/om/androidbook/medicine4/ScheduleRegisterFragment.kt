@@ -55,6 +55,12 @@ class ScheduleRegisterFragment : Fragment() {
         val newEntryEditText = view.findViewById<EditText>(R.id.newEntryEditText)
         val registerButton = view.findViewById<Button>(R.id.registerButton)
 
+        // 선택 날짜를 기본적으로 오늘 날짜로 초기화
+        val today = Calendar.getInstance()
+        selectedYear = today.get(Calendar.YEAR)
+        selectedMonth = today.get(Calendar.MONTH)
+        selectedDayOfMonth = today.get(Calendar.DAY_OF_MONTH)
+
         val DateView = view.findViewById<TextView>(R.id.DateView)
         val currentDate = getCurrentDate()
         DateView.text = currentDate
@@ -77,7 +83,13 @@ class ScheduleRegisterFragment : Fragment() {
         scheduleManager = ScheduleManagement(requireContext())
         recyclerView.adapter = scheduleAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 일정 나타내기
         updateRecyclerView(currentDate)
+        scheduleAdapter.filterByDate(currentDate)
+
+        DateView.text = currentDate
+
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             selectedYear = year
             selectedMonth = month
@@ -87,7 +99,7 @@ class ScheduleRegisterFragment : Fragment() {
             )
             updateRecyclerView(selectedDate)
             scheduleAdapter.filterByDate(selectedDate)
-//            updateRecyclerView(selectedDate)
+
             DateView.text=""
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
@@ -116,8 +128,11 @@ class ScheduleRegisterFragment : Fragment() {
 //            val selectedDate = contextEditText.text.toString() // 캘린더에서 선택된 날짜로 변경
             val entry = contextEditText.text.toString()
 
-
-
+            // 입력하지 않은 일정이 있을 경우 토스트 메시지를 띄우고 리턴
+            if (entry.isEmpty()) {
+                Toast.makeText(requireContext(), "일정을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             // 해당 날짜의 일정 목록에 추가
             saveEntryToDiary(selectedDate, entry)

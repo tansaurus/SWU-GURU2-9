@@ -10,30 +10,44 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import om.androidbook.medicine4.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private var doubleBackToExitPressedOnce = false
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentHomeBinding? = null
+    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment using view binding
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerView = binding!!.bookmarkListRecyclerView
+        homeAdapter = HomeAdapter(object : HomeAdapter.OnItemClickListener {
+            override fun onItemClick(dose: dose) {
+                // 리사이클러뷰 아이템 클릭 시 동작
+                // 예: 별도의 화면으로 이동하거나 작업 수행
+            }
+        })
+
+        recyclerView.adapter = homeAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         // 복약 추가 버튼
-        val addDailyMedicineButton = binding.registerPageButton
+        val addDailyMedicineButton = binding?.registerPageButton
 
         // 복약 추가 버튼 클릭 시 이벤트
-        addDailyMedicineButton.setOnClickListener {
+        addDailyMedicineButton?.setOnClickListener {
             // 복약 추가 화면으로 이동
             val intent = Intent(requireContext(), AddDailyMedicineActivity::class.java)
             startActivity(intent)
@@ -54,11 +68,18 @@ class HomeFragment : Fragment() {
                 }, 2000)
             }
         }
+
+        // 사용자의 이메일을 얻어와서 해당 사용자의 약 정보를 얻어온 후 어댑터에 설정
+        val userEmail = LoginActivity.loggedInUserEmail
+        val dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 6)
+        if (userEmail != null) {
+            homeAdapter.setData(userEmail, dbHelper)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 
     companion object {

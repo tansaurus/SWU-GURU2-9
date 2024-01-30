@@ -88,7 +88,7 @@ class DBHelper(
           AUTH_ID TEXT,
           PASSWORD TEXT,
           USERNAME TEXT,
-          AGE INTEGER,
+          AGE STRING,
           GENDER TEXT,
           PHONE TEXT,
           ENROLL_DATE TEXT,
@@ -104,7 +104,7 @@ class DBHelper(
           NAME TEXT NOT NULL PRIMARY KEY,
           COUNT INTEGER NOT NULL,
           EMAIL TEXT NOT NULL,
-          FOREIGN KEY (AUTH_ID) REFERENCES member(AUTH_ID)
+          FOREIGN KEY (EMAIL) REFERENCES member(EMAIL)
         );
     """)
 
@@ -162,6 +162,28 @@ class DBHelper(
 
         return result != -1L
     }
+
+    fun getDoseList(userEmail: String): List<dose> {
+        val doseList = mutableListOf<dose>()
+        val db = this.readableDatabase
+
+        val cursor = db.rawQuery("SELECT * FROM dose_info WHERE EMAIL = ?", arrayOf(userEmail))
+
+        if (cursor.moveToFirst()) {
+            val nameColumnIndex = cursor.getColumnIndex("NAME")
+
+
+            do {
+                val name = cursor.getString(nameColumnIndex)
+                val dose = dose(name)
+                doseList.add(dose)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return doseList
+    }
+
 
     // 사용자 이메일에 해당하는 AUTH_ID를 찾는 메소드
     fun getAuthIdForEmail(useremail: String): Int {
