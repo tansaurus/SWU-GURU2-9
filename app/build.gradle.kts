@@ -110,8 +110,9 @@ dependencies {
     implementation("com.google.gms:google-services:4.4.0")
     implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
     implementation("com.google.flogger:flogger:0.6")
-    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("com.google.android.material:material:1.11.0")
     implementation ("com.github.xabaras:RecyclerViewSwipeDecorator:1.4")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 
 
 
