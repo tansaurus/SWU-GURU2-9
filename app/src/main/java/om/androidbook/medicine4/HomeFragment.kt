@@ -1,6 +1,5 @@
 package om.androidbook.medicine4
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -36,9 +34,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       
-
-        val deleteButton: Button = view.findViewById(R.id.deleteButton)
         dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 9)
         userEmail = LoginActivity().getLoggedInUserEmail(requireContext()) ?: ""
         recyclerView = binding!!.bookmarkListRecyclerView
@@ -47,11 +42,6 @@ class HomeFragment : Fragment() {
                 // 리사이클러뷰 아이템 클릭 시 동작
                 // 예: 별도의 화면으로 이동하거나 작업 수행
             }
-            override fun onDeleteButtonClick(dose: Dose) {
-                // 삭제 버튼 클릭 시 다이얼로그 표시
-                showDeleteDialog(dose)
-            }
-
         })
         val doseList = listOf(
             Dose("aa"))
@@ -68,12 +58,7 @@ class HomeFragment : Fragment() {
             // 복약 추가 화면으로 이동
             val intent = Intent(requireContext(), AddDailyMedicineActivity::class.java)
             startActivity(intent)
-
-            deleteButton.visibility = View.VISIBLE
-
-
         }
-
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (doubleBackToExitPressedOnce) {
@@ -106,33 +91,5 @@ class HomeFragment : Fragment() {
         // Factory method와 다르게 별도의 parameters 없이 바로 인스턴스 생성
         @JvmStatic
         fun newInstance() = HomeFragment()
-    }
-    private fun showDeleteDialog(dose: Dose) {
-
-
-        val deleteButton = view?.findViewById<Button>(R.id.deleteButton)
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("알림")
-        builder.setMessage("정말로 이 항목을 삭제하시겠습니까?")
-
-        builder.setPositiveButton("확인") { dialog, _ ->
-            // 해당 항목 삭제
-            val position = homeAdapter.getPosition(dose)
-            homeAdapter.removeAt(position)
-
-
-
-            deleteButton?.visibility = View.GONE
-
-            // 다이얼로그 닫기
-            dialog.dismiss()
-        }
-
-        builder.setNegativeButton("취소") { dialog, _ ->
-            // 다이얼로그 닫기
-            dialog.cancel()
-        }
-
-        builder.show()
     }
 }
