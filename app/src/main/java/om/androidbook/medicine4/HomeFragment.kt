@@ -21,7 +21,8 @@ class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var recyclerView: RecyclerView
-
+    private lateinit var userEmail: String
+    private lateinit var dbHelper: DBHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +35,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 9)
+        userEmail = LoginActivity().getLoggedInUserEmail(requireContext()) ?: ""
         recyclerView = binding!!.bookmarkListRecyclerView
         homeAdapter = HomeAdapter(object : HomeAdapter.OnItemClickListener {
             override fun onItemClick(dose: Dose) {
@@ -49,7 +52,7 @@ class HomeFragment : Fragment() {
             Dose("aa"))
 
         recyclerView.adapter = homeAdapter
-        homeAdapter.setData(doseList.toString())
+        homeAdapter.setData(userEmail, dbHelper)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // 복약 추가 버튼
@@ -79,11 +82,10 @@ class HomeFragment : Fragment() {
         }
 
         // 사용자의 이메일을 얻어와서 해당 사용자의 약 정보를 얻어온 후 어댑터에 설정
-        val userEmail = LoginActivity.loggedInUserEmail
+//        val userEmail = LoginActivity.loggedInUserEmail
         val dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 6)
-        if (userEmail != null) {
-            homeAdapter.setData(userEmail)
-        }    }
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
