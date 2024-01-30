@@ -2,7 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="70dp"
 
     android:padding="16dp">
 
@@ -28,7 +28,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="0dp"
         android:fontFamily="@font/sejonghospitalbold"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textSize="13sp"
         android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/sejonghospitalbold"
-        android:textAlignment="viewStart"
+        android:textAlignment="viewEnd"
         android:textSize="8sp"
         android:textStyle="bold" />
 
