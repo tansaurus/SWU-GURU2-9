@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.cloud.vision.v1.ImageAnnotatorClient
-import om.androidbook.medicine4.GalleryActivity
 import om.androidbook.medicine4.databinding.ActivityMainCameraBinding
 import java.io.IOException
 import java.io.InputStream
@@ -80,9 +79,7 @@ class CameraActivity : AppCompatActivity() {
         startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
     }
 
-    private fun displayText(text: String) {
-        // 텍스트를 화면에 표시하거나 필요한 처리를 수행하세요.
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
