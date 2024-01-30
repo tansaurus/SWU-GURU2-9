@@ -19,6 +19,16 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
             Log.d("tag", doseList.toString())
         }
     }
+    fun getPosition(dose: Dose): Int {
+        return doseList.indexOf(dose)
+    }
+
+    fun removeAt(position: Int) {
+        if (position >= 0 && position < doseList.size) {
+            doseList = doseList.toMutableList().apply { removeAt(position) }
+            notifyItemRemoved(position)
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.home_medicine_list, parent, false)
         return HomeViewHolder(itemView)
@@ -43,6 +53,8 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
     }
     interface OnItemClickListener {
         fun onItemClick(dose: Dose)
+        fun onDeleteButtonClick(dose: Dose)
+
     }
 
 }

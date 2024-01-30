@@ -1,5 +1,6 @@
 package om.androidbook.medicine4
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -38,6 +39,10 @@ class HomeFragment : Fragment() {
             override fun onItemClick(dose: Dose) {
                 // 리사이클러뷰 아이템 클릭 시 동작
                 // 예: 별도의 화면으로 이동하거나 작업 수행
+            }
+            override fun onDeleteButtonClick(dose: Dose) {
+                // 삭제 버튼 클릭 시 다이얼로그 표시
+                showDeleteDialog(dose)
             }
         })
         val doseList = listOf(
@@ -83,6 +88,27 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+    private fun showDeleteDialog(dose: Dose) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("알림")
+        builder.setMessage("정말로 이 항목을 삭제하시겠습니까?")
+
+        builder.setPositiveButton("확인") { dialog, _ ->
+            // 해당 항목 삭제
+            val position = homeAdapter.getPosition(dose)
+            homeAdapter.removeAt(position)
+
+            // 다이얼로그 닫기
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("취소") { dialog, _ ->
+            // 다이얼로그 닫기
+            dialog.cancel()
+        }
+
+        builder.show()
     }
 
     companion object {
