@@ -113,7 +113,7 @@ class ScheduleRegisterFragment : Fragment() {
             selectedMonth = today.get(Calendar.MONTH)
             selectedDayOfMonth = today.get(Calendar.DAY_OF_MONTH)
             scheduleAdapter.filterByDate(currentDate, userEmail)
-            
+
             val selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
                 GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
             )
@@ -125,6 +125,7 @@ class ScheduleRegisterFragment : Fragment() {
                 // 이미 해당 날짜에 일정이 존재하는지 확인
                 if (!existingEntries.any { it.entries.contains(entry) }) {
                     // 중복되지 않은 경우에만 추가
+
                     scheduleManager.saveDiaryEntryForUser(userEmail, selectedDate, entry)
                     updateRecyclerView(selectedDate)
                     DateView.setText("")
