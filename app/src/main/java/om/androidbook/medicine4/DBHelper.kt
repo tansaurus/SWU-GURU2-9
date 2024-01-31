@@ -195,6 +195,19 @@ class DBHelper(
         return doseList
     }
 
+    // ... (이전 코드 유지)
+
+    fun deleteDose(name: String, userEmail: String): Boolean {
+        val db = this.writableDatabase
+        val whereClause = "NAME = ? AND EMAIL = ?"
+        val whereArgs = arrayOf(name, userEmail)
+
+        val result = db.delete("dose_info", whereClause, whereArgs)
+        db.close()
+
+        return result > 0
+    }
+
 
     // 사용자 이메일에 해당하는 AUTH_ID를 찾는 메소드
     fun getAuthIdForEmail(useremail: String): Int {

@@ -37,7 +37,7 @@
         android:text="삭제"
         android:fontFamily="@font/sejonghospitalbold"
         tools:ignore="SpeakableTextPresentCheck"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <!-- 알림 예정 (알림 있는 경우에 visibility 속성 변경) -->
     <ImageView

@@ -1,5 +1,6 @@
 package om.androidbook.medicine4
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -42,9 +43,11 @@ class HomeFragment : Fragment() {
                 // 리사이클러뷰 아이템 클릭 시 동작
                 // 예: 별도의 화면으로 이동하거나 작업 수행
             }
+            override fun onDeleteButtonClick(dose: Dose) {
+                // 삭제 버튼 클릭 시 다이얼로그 표시
+                showDeleteDialog(dose)
+            }
         })
-        val doseList = listOf(
-            Dose("aa"))
 
         recyclerView.adapter = homeAdapter
         homeAdapter.setData(userEmail, dbHelper)
@@ -82,10 +85,30 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun showDeleteDialog(dose: Dose) {
+        // 다이얼로그 표시 또는 직접 아이템을 삭제하는 코드를 작성
+        // 예: AlertDialog를 사용하여 사용자에게 삭제 여부를 묻는 다이얼로그를 표시하고,
+        // 확인 버튼이 눌리면 데이터를 삭제하고 어댑터에 변경을 알림
+        AlertDialog.Builder(requireContext())
+            .setTitle("삭제 확인")
+            .setMessage("${dose.name}을(를) 삭제하시겠습니까?")
+            .setPositiveButton("확인") { _, _ ->
+                deleteDose(dose)
+            }
+            .setNegativeButton("취소", null)
+            .show()
+    }
+
+    private fun deleteDose(dose: Dose) {
+        dbHelper.deleteDose(dose.name, userEmail)
+        homeAdapter.setData(userEmail, dbHelper)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
+
 
     companion object {
         // Factory method와 다르게 별도의 parameters 없이 바로 인스턴스 생성
