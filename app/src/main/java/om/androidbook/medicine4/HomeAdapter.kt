@@ -1,5 +1,6 @@
 package om.androidbook.medicine4
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListener) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    private var doseList: List<dose> = emptyList()
+    private var doseList: List<Dose> = emptyList()
 
     fun setData(userEmail: String?, dbHelper:DBHelper? = null) {
         if (userEmail != null && dbHelper != null) {
             doseList = dbHelper.getDoseList(userEmail)
             notifyDataSetChanged()
+            Log.d("tag", doseList.toString())
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -40,9 +42,7 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
 
     }
     interface OnItemClickListener {
-        fun onItemClick(dose: dose)
+        fun onItemClick(dose: Dose)
     }
 
 }
-
-

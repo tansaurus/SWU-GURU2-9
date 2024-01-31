@@ -134,6 +134,14 @@ class LoginActivity : AppCompatActivity() {
         val sharedPref = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("LoggedIn", false) // 기본값은 로그아웃 상태 (false)
     }
+    fun getLoggedInUserEmail(context: Context): String? {
+        val sharedPref = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+        return if (sharedPref.getBoolean("LoggedIn", false)) {
+            sharedPref.getString("LoggedInUserEmail", null)
+        } else {
+            null
+        }
+    }
 
 
 

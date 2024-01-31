@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,8 @@ class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var recyclerView: RecyclerView
-
+    private lateinit var userEmail: String
+    private lateinit var dbHelper: DBHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,15 +34,20 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 9)
+        userEmail = LoginActivity().getLoggedInUserEmail(requireContext()) ?: ""
         recyclerView = binding!!.bookmarkListRecyclerView
         homeAdapter = HomeAdapter(object : HomeAdapter.OnItemClickListener {
-            override fun onItemClick(dose: dose) {
+            override fun onItemClick(dose: Dose) {
                 // 리사이클러뷰 아이템 클릭 시 동작
                 // 예: 별도의 화면으로 이동하거나 작업 수행
             }
         })
+        val doseList = listOf(
+            Dose("aa"))
 
         recyclerView.adapter = homeAdapter
+        homeAdapter.setData(userEmail, dbHelper)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // 복약 추가 버튼
@@ -70,11 +77,9 @@ class HomeFragment : Fragment() {
         }
 
         // 사용자의 이메일을 얻어와서 해당 사용자의 약 정보를 얻어온 후 어댑터에 설정
-        val userEmail = LoginActivity.loggedInUserEmail
+//        val userEmail = LoginActivity.loggedInUserEmail
         val dbHelper = DBHelper(requireContext(), "DRUG_INFO.db", null, 6)
-        if (userEmail != null) {
-            homeAdapter.setData(userEmail, dbHelper)
-        }
+
     }
 
     override fun onDestroyView() {

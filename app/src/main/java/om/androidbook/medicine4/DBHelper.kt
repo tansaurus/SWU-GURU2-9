@@ -108,6 +108,16 @@ class DBHelper(
         );
     """)
 
+            db.execSQL("""
+        CREATE TABLE IF NOT EXISTS diary_entries(
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            EMAIL TEXT NOT NULL,
+            DATE TEXT NOT NULL,
+            ENTRY TEXT NOT NULL,
+            FOREIGN KEY (EMAIL) REFERENCES member(EMAIL)
+        );
+""")
+
         }
     }
 
@@ -121,6 +131,7 @@ class DBHelper(
         db.execSQL("DROP TABLE IF EXISTS drug_info")
         db.execSQL("DROP TABLE IF EXISTS member")
         db.execSQL("DROP TABLE IF EXISTS dose_info")
+        db.execSQL("DROP TABLE IF EXISTS diary_entries")
 
         // 새로운 테이블 생성
         onCreate(db)
@@ -163,8 +174,8 @@ class DBHelper(
         return result != -1L
     }
 
-    fun getDoseList(userEmail: String): List<dose> {
-        val doseList = mutableListOf<dose>()
+    fun getDoseList(userEmail: String): List<Dose> {
+        val doseList = mutableListOf<Dose>()
         val db = this.readableDatabase
 
         val cursor = db.rawQuery("SELECT * FROM dose_info WHERE EMAIL = ?", arrayOf(userEmail))
@@ -175,7 +186,7 @@ class DBHelper(
 
             do {
                 val name = cursor.getString(nameColumnIndex)
-                val dose = dose(name)
+                val dose = Dose(name)
                 doseList.add(dose)
             } while (cursor.moveToNext())
         }
@@ -336,5 +347,69 @@ class DBHelper(
             return -1 // 사용자를 찾을 수 없는 경우
         }
     }
+    //일정 저장
+    fun saveDiaryEntryForUser(email: String, date: String, entry: String): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("EMAIL", email)
+            put("DATE", date)
+            put("ENTRY", entry)
+        }
+
+        return db.insert("diary_entries", null, values)
+    }
+    fun deleteDiaryEntryForUserAndDate(email: String, date: String, entry: String): Boolean {
+        val db = writableDatabase
+        val whereClause = "EMAIL = ? AND DATE = ? AND ENTRY = ?"
+        val whereArgs = arrayOf(email, date, entry)
+
+        val result = db.delete("diary_entries", whereClause, whereArgs)
+        db.close()
+
+        // delete 메서드는 삭제된 행의 개수를 반환하며, 오류 발생 시 0을 반환합니다.
+        return result > 0
+    }
+    fun updateDiaryEntryForUser(email: String, date: String, originalEntry: String, updatedEntry: String): Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("ENTRY", updatedEntry)
+        }
+
+        val whereClause = "EMAIL = ? AND DATE = ? AND ENTRY = ?"
+        val whereArgs = arrayOf(email, date, originalEntry)
+
+        val updatedRows = db.update("diary_entries", values, whereClause, whereArgs)
+        db.close()
+
+        return updatedRows > 0
+    }
+    fun getDiaryEntriesForUserAndDate(email: String, date: String): List<String> {
+        val db = readableDatabase
+        val entries = mutableListOf<String>()
+
+        val selection = "EMAIL = ? AND DATE = ?"
+        val selectionArgs = arrayOf(email, date)
+
+        val cursor = db.query(
+            "diary_entries",
+            arrayOf("ENTRY"),
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            val entry = cursor.getString(cursor.getColumnIndexOrThrow("ENTRY"))
+            entries.add(entry)
+        }
+
+        cursor.close()
+        db.close()
+        Log.d("DBHelper", "getDiaryEntriesForUserAndDate: email=$email, date=$date, entries=$entries")
+        return entries
+    }
+
 
 }
