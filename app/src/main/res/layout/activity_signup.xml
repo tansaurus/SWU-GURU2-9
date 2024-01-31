@@ -34,7 +34,7 @@
         android:text="@string/signup_text"
         android:textAppearance="@style/signup_text"
         android:textStyle="bold"
-        android:fontFamily="@font/sejonghospital"/>
+        android:fontFamily="@font/sejonghospitalbold"/>
 
 
     <EditText
