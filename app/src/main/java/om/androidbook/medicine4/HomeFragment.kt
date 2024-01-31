@@ -56,6 +56,13 @@ class HomeFragment : Fragment() {
         // 복약 추가 버튼
         val addDailyMedicineButton = binding?.registerPageButton
 
+        // 복약 추가 안내 문구 visibility
+        if (homeAdapter.itemCount > 0) {
+            binding?.addDailyMedicineTextView?.visibility = View.INVISIBLE
+        } else {
+            binding?.addDailyMedicineTextView?.visibility = View.VISIBLE
+        }
+
         // 복약 추가 버튼 클릭 시 이벤트
         addDailyMedicineButton?.setOnClickListener {
             // 복약 추가 화면으로 이동
@@ -102,6 +109,13 @@ class HomeFragment : Fragment() {
     private fun deleteDose(dose: Dose) {
         dbHelper.deleteDose(dose.name, userEmail)
         homeAdapter.setData(userEmail, dbHelper)
+
+        // 복약 추가 안내 문구 visibility
+        if (homeAdapter.itemCount > 0) {
+            binding?.addDailyMedicineTextView?.visibility = View.INVISIBLE
+        } else {
+            binding?.addDailyMedicineTextView?.visibility = View.VISIBLE
+        }
     }
 
     override fun onDestroyView() {

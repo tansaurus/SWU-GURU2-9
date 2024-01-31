@@ -29,7 +29,9 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
 
     override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
         val dose = doseList[position]
+
         holder.medicineNameTextView.text = dose.name
+        holder.medicineDoseTextView.text = "하루 복용량: ${dose.dose}"
 
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(dose)
@@ -44,6 +46,7 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
     }
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val medicineDoseTextView: TextView = itemView.findViewById(R.id.medicineDoseTextView)
         val medicineNameTextView: TextView = itemView.findViewById(R.id.medicineNameTextView)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
     }
