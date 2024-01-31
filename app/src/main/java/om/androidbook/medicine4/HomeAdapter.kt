@@ -58,5 +58,3 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
     }
 
 }
-
-

@@ -50,6 +50,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/home_medicine_list"/>
 
+
+
     <!-- 매일 복용 약이 없을 경우 안내 문구 (있을 경우 visibility="invisible" 수정) -->
     <TextView
         android:id="@+id/textView"
@@ -75,4 +77,5 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="108dp"
         android:background="@drawable/plus" />
+
 </RelativeLayout>
