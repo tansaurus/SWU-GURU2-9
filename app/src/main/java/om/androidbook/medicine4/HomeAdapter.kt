@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Button
+
 import androidx.recyclerview.widget.RecyclerView
 
 class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListener) :
@@ -19,16 +21,7 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
             Log.d("tag", doseList.toString())
         }
     }
-    fun getPosition(dose: Dose): Int {
-        return doseList.indexOf(dose)
-    }
 
-    fun removeAt(position: Int) {
-        if (position >= 0 && position < doseList.size) {
-            doseList = doseList.toMutableList().apply { removeAt(position) }
-            notifyItemRemoved(position)
-        }
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.home_medicine_list, parent, false)
         return HomeViewHolder(itemView)
@@ -41,6 +34,9 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(dose)
         }
+        holder.deleteButton.setOnClickListener {
+            onItemClickListener.onDeleteButtonClick(dose)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -49,7 +45,7 @@ class HomeAdapter(private val onItemClickListener: HomeAdapter.OnItemClickListen
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val medicineNameTextView: TextView = itemView.findViewById(R.id.medicineNameTextView)
-
+        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
     }
     interface OnItemClickListener {
         fun onItemClick(dose: Dose)
