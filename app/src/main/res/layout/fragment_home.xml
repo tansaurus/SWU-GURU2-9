@@ -37,7 +37,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookmarkListRecyclerView"
         android:layout_width="wrap_content"
-        android:layout_height="325dp"
+        android:layout_height="470dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -45,7 +45,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="174dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="1dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/home_medicine_list"/>
@@ -54,14 +54,14 @@
 
     <!-- 매일 복용 약이 없을 경우 안내 문구 (있을 경우 visibility="invisible" 수정) -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/addDailyMedicineTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="346dp"
         android:fontFamily="@font/sejonghospital"
-        android:text="매일 먹어야 하는 약을 추가해보세요."
+        android:text="매일 먹어야 하는 약을 추가해보세요"
         android:textSize="16sp"
         android:visibility="visible" />
 

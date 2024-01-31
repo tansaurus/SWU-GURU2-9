@@ -174,6 +174,7 @@ class DBHelper(
         return result != -1L
     }
 
+    @SuppressLint("Range")
     fun getDoseList(userEmail: String): List<Dose> {
         val doseList = mutableListOf<Dose>()
         val db = this.readableDatabase
@@ -186,7 +187,8 @@ class DBHelper(
 
             do {
                 val name = cursor.getString(nameColumnIndex)
-                val dose = Dose(name)
+                val count = cursor.getInt(cursor.getColumnIndex("COUNT"))
+                val dose = Dose(name, count.toString())
                 doseList.add(dose)
             } while (cursor.moveToNext())
         }
