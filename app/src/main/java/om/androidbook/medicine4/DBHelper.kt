@@ -141,6 +141,19 @@ class DBHelper(
         db.execSQL("DROP TABLE IF EXISTS DrugSearch")
         db.execSQL("DROP TABLE IF EXISTS OrderTable")
 
+        db.execSQL("DROP TABLE IF EXISTS member")
+        db.execSQL("""
+        CREATE TABLE IF NOT EXISTS member(
+            EMAIL TEXT PRIMARY KEY NOT NULL,
+            AUTH_ID TEXT NOT NULL,
+            PASSWORD TEXT NOT NULL,
+            USERNAME TEXT NOT NULL,
+            AGE TEXT NOT NULL,
+            PHONE TEXT NOT NULL
+        );
+""")
+        db.execSQL("""INSERT INTO member (EMAIL, AUTH_ID, PASSWORD, USERNAME, AGE, PHONE) 
+            VALUES ("tansaurus5001@swu.ac.kr", "swu", "swuswu9", "김슈니", "011005", "01011112222")""")
     }
 
     @Throws(IOException::class)
